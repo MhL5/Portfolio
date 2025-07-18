@@ -1,35 +1,13 @@
 "use client";
 
 import type { StringWithAutoComplete } from "@/app/(with-navigation)/snippets/types/AutoComplete";
-import { Button } from "@/components/ui/button";
+import SearchableLayout from "@/components/SearchableLayout";
 import { snippetsCategoryConfig } from "@/constants/constants";
 import { cn } from "@/lib/utils";
-import {
-  Calendar,
-  Code2,
-  ExternalLink,
-  Globe,
-  Monitor,
-  Palette,
-  Search,
-  Star,
-} from "lucide-react";
-import { useMemo, useState } from "react";
+import { Code2, ExternalLink, Globe, Palette, Star } from "lucide-react";
+import Link from "next/link";
 
-// Bookmark data structure
-interface Bookmark {
-  id: string;
-  title: string;
-  description: string;
-  url: string;
-  category: StringWithAutoComplete<"UI">;
-  tags: string[];
-  addedDate: string;
-  featured?: boolean;
-}
-
-// Sample bookmark data - replace with your actual bookmarks
-const bookmarksData: Bookmark[] = [
+const bookmarksData = [
   {
     id: "shadcn-extension",
     title: "Shadcn Extension",
@@ -37,7 +15,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://shadcn-extension.vercel.app/",
     category: "UI",
     tags: ["shadcn", "components", "ui", "react"],
-    addedDate: "2024-01-20",
   },
   {
     id: "shadcn-phone-input",
@@ -47,7 +24,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://shadcn-phone-input.vercel.app/",
     category: "UI",
     tags: ["shadcn", "input", "phone", "form"],
-    addedDate: "2024-01-20",
   },
   {
     id: "shadcn-form-build",
@@ -56,7 +32,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://www.shadcn-form.com/",
     category: "UI",
     tags: ["shadcn", "form", "builder", "playground"],
-    addedDate: "2024-01-20",
   },
   {
     featured: true,
@@ -66,7 +41,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://ui.aceternity.com/",
     category: "UI",
     tags: ["components", "tailwind", "ui", "modern"],
-    addedDate: "2024-01-20",
   },
   {
     featured: true,
@@ -76,7 +50,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://magicui.design/",
     category: "UI",
     tags: ["components", "effects", "animation", "design"],
-    addedDate: "2024-01-20",
   },
   {
     id: "shadcn/ui-expansions",
@@ -85,7 +58,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://shadcnui-expansions.typeart.cc/",
     category: "UI",
     tags: ["shadcn", "textarea", "form", "component"],
-    addedDate: "2024-01-20",
   },
   {
     featured: true,
@@ -96,7 +68,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://enhanced-button.vercel.app/",
     category: "UI",
     tags: ["button", "component", "ui", "interactive"],
-    addedDate: "2024-01-20",
   },
   {
     id: "cult-ui",
@@ -105,7 +76,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://www.cult-ui.com/",
     category: "UI",
     tags: ["components", "design", "modern", "library"],
-    addedDate: "2024-01-20",
   },
   {
     id: "awesome-shadcn",
@@ -114,7 +84,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://awesome-shadcn-ui.vercel.app/",
     category: "UI",
     tags: ["shadcn", "collection", "resources", "components"],
-    addedDate: "2024-01-20",
   },
   {
     id: "eldora-bento",
@@ -123,7 +92,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://www.eldoraui.site/",
     category: "UI",
     tags: ["bento", "grid", "layout", "design"],
-    addedDate: "2024-01-20",
   },
   {
     id: "wds-shadcn",
@@ -132,7 +100,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://wds-shadcn-registry.netlify.app/",
     category: "UI",
     tags: ["shadcn", "registry", "components", "collection"],
-    addedDate: "2024-01-20",
   },
   {
     id: "motion-primitives",
@@ -142,7 +109,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://motion-primitives.com/",
     category: "UI",
     tags: ["animation", "motion", "components", "interactive"],
-    addedDate: "2024-01-20",
   },
   {
     id: "origin-ui",
@@ -152,7 +118,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://originui.com/",
     category: "UI",
     tags: ["components", "minimal", "modern", "library"],
-    addedDate: "2024-01-20",
   },
   {
     id: "dice-ui-kanban",
@@ -162,7 +127,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://www.diceui.com/",
     category: "UI",
     tags: ["kanban", "components", "project-management", "interactive"],
-    addedDate: "2024-01-20",
   },
   {
     id: "21st-dev2",
@@ -172,7 +136,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://21st.dev/home",
     category: "UI",
     tags: ["kanban", "components", "project-management", "interactive"],
-    addedDate: "2024-01-20",
   },
 
   {
@@ -182,7 +145,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://simpleicons.org/",
     category: "Design",
     tags: ["icons", "svg", "brands", "resources"],
-    addedDate: "2024-01-20",
   },
   {
     id: "og-image-generator",
@@ -192,7 +154,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://ogimage.click/",
     category: "Tools",
     tags: ["seo", "open-graph", "social-media", "images"],
-    addedDate: "2024-01-20",
   },
 
   {
@@ -203,7 +164,6 @@ const bookmarksData: Bookmark[] = [
     url: "https://www.npmjs.com/package/eslint-plugin-jsx-a11y",
     category: "Development",
     tags: ["accessibility", "eslint", "jsx", "react", "a11y"],
-    addedDate: "2024-01-20",
   },
   {
     id: "unlighthouse",
@@ -213,9 +173,38 @@ const bookmarksData: Bookmark[] = [
     url: "https://next.unlighthouse.dev/",
     category: "Development",
     tags: ["performance", "lighthouse", "seo", "audit", "testing"],
-    addedDate: "2024-01-20",
   },
 ];
+
+export default function BookmarksPage() {
+  return (
+    <>
+      <SearchableLayout
+        title="Bookmarks"
+        description="A curated collection of interesting links, articles, and resources I've saved. From development tools to design inspiration, these are the digital gems I keep coming back to."
+        items={bookmarksData}
+        render={(item) => <BookmarkCard key={item.title} item={item} />}
+        filter={(item, searchQuery, selectedCategory) => {
+          const matchesSearch =
+            searchQuery === "" ||
+            item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.description
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase()) ||
+            item.tags?.some((tag) =>
+              tag.toLowerCase().includes(searchQuery.toLowerCase()),
+            );
+
+          const matchesCategory =
+            selectedCategory === "All" || item.category === selectedCategory;
+
+          return matchesSearch && matchesCategory;
+        }}
+        categories={bookmarksData.map((item) => item.category)}
+      />
+    </>
+  );
+}
 
 const categoryConfig = {
   Development: { icon: Code2, color: "text-blue-600 dark:text-blue-400" },
@@ -231,15 +220,26 @@ const categoryConfig = {
   },
 };
 
-function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
+function BookmarkCard({
+  item,
+}: {
+  item: {
+    title: string;
+    description: string;
+    url: string;
+    category?: StringWithAutoComplete<"UI">;
+    tags?: string[];
+    featured?: boolean;
+  };
+}) {
   const categoryInfo =
-    categoryConfig[bookmark.category as keyof typeof categoryConfig] ||
+    categoryConfig[item.category as keyof typeof categoryConfig] ||
     categoryConfig.General;
   const CategoryIcon = categoryInfo.icon;
 
   return (
     <div className="bg-card group relative rounded-lg border p-6 transition-all hover:shadow-md hover:shadow-black/5 dark:hover:shadow-white/5">
-      {bookmark.featured && (
+      {item.featured && (
         <div className="absolute -top-2 -right-2">
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900/30">
             <Star className="h-3 w-3 fill-yellow-500 text-yellow-500" />
@@ -260,166 +260,42 @@ function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <h3 className="text-foreground group-hover:text-primary font-semibold transition-colors">
-              {bookmark.title}
+              {item.title}
             </h3>
             <ExternalLink className="text-muted-foreground h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
           </div>
 
           <p className="text-muted-foreground mt-1 line-clamp-2 text-sm">
-            {bookmark.description}
+            {item.description}
           </p>
 
           <div className="mt-3 flex flex-wrap gap-1">
-            {bookmark.tags.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="bg-secondary text-secondary-foreground inline-block rounded-md px-2 py-1 text-xs"
-              >
-                #{tag}
-              </span>
-            ))}
-            {bookmark.tags.length > 3 && (
+            {item.tags
+              ? item.tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-secondary text-secondary-foreground inline-block rounded-md px-2 py-1 text-xs"
+                  >
+                    #{tag}
+                  </span>
+                ))
+              : null}
+            {item.tags && item.tags.length > 3 && (
               <span className="bg-secondary text-secondary-foreground inline-block rounded-md px-2 py-1 text-xs">
-                +{bookmark.tags.length - 3}
+                +{item.tags.length - 3}
               </span>
             )}
           </div>
-
-          <div className="text-muted-foreground mt-3 flex items-center gap-2 text-xs">
-            <Calendar className="h-3 w-3" />
-            {new Date(bookmark.addedDate).toLocaleDateString()}
-          </div>
         </div>
       </div>
 
-      <a
-        href={bookmark.url}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href={item.url}
+        target={item.url.startsWith("http") ? "_blank" : undefined}
+        rel={item.url.startsWith("http") ? "noopener noreferrer" : undefined}
         className="absolute inset-0 rounded-lg"
-        aria-label={`Open ${bookmark.title}`}
+        aria-label={`Open ${item.title}`}
       />
     </div>
-  );
-}
-
-export default function BookmarksPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-
-  const categories = [
-    "All",
-    ...Array.from(new Set(bookmarksData.map((b) => b.category))),
-  ];
-
-  const filteredBookmarks = useMemo(() => {
-    return bookmarksData.filter((bookmark) => {
-      const matchesSearch =
-        searchQuery === "" ||
-        bookmark.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        bookmark.description
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase()) ||
-        bookmark.tags.some((tag) =>
-          tag.toLowerCase().includes(searchQuery.toLowerCase()),
-        );
-
-      const matchesCategory =
-        selectedCategory === "All" || bookmark.category === selectedCategory;
-
-      return matchesSearch && matchesCategory;
-    });
-  }, [searchQuery, selectedCategory]);
-
-  const featuredBookmarks = bookmarksData.filter((b) => b.featured);
-
-  return (
-    <main className="mx-auto min-h-svh max-w-7xl px-4 py-8 md:px-6">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl">
-          Bookmarks
-        </h1>
-        <p className="text-muted-foreground mt-4 max-w-2xl text-lg">
-          A curated collection of interesting links, articles, and resources
-          I&apos;ve saved. From development tools to design inspiration, these
-          are the digital gems I keep coming back to.
-        </p>
-      </div>
-
-      {/* Featured Section */}
-      {featuredBookmarks.length > 0 && (
-        <section className="mb-12">
-          <div className="mb-6 flex items-center gap-2">
-            <Star className="h-5 w-5 fill-yellow-500 text-yellow-500" />
-            <h2 className="text-foreground text-2xl font-semibold">Featured</h2>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredBookmarks.map((bookmark) => (
-              <BookmarkCard key={bookmark.id} bookmark={bookmark} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Search and Filter */}
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="relative max-w-md flex-1">
-          <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
-          <input
-            type="text"
-            placeholder="Search bookmarks..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-background focus:ring-ring w-full rounded-lg border py-2 pr-4 pl-10 text-sm focus:border-transparent focus:ring-2 focus:outline-none"
-          />
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedCategory(category)}
-              className="text-xs"
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-      </div>
-
-      {/* Bookmarks Grid */}
-      <section className="min-h-[50svh]">
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-foreground text-xl font-semibold">
-            All Bookmarks
-            <span className="text-muted-foreground ml-2 text-sm font-normal">
-              ({filteredBookmarks.length})
-            </span>
-          </h2>
-        </div>
-
-        {filteredBookmarks.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredBookmarks.map((bookmark) => (
-              <BookmarkCard key={bookmark.id} bookmark={bookmark} />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <Monitor className="text-muted-foreground/50 mb-4 h-12 w-12" />
-            <h3 className="text-foreground mb-2 text-lg font-medium">
-              No bookmarks found
-            </h3>
-            <p className="text-muted-foreground max-w-md">
-              Try adjusting your search query or selected category to find what
-              you&apos;re looking for.
-            </p>
-          </div>
-        )}
-      </section>
-    </main>
   );
 }
