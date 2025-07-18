@@ -24,6 +24,10 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/components/horizontalScroll"
       },
       {
+        "title": "ScrollToTopOnNavigation",
+        "url": "/snippets/components/ScrollToTopOnNavigation"
+      },
+      {
         "title": "StructuredDataScript",
         "url": "/snippets/components/StructuredDataScript"
       },
