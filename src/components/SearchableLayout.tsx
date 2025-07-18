@@ -1,12 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Monitor, Search } from "lucide-react";
 import { useMemo, useState, type ReactNode } from "react";
 
 type SearchableLayoutProps<T> = {
   title: string;
-  description: string;
+  description?: string;
   items: T[];
   render: (item: T, index: number) => ReactNode;
   categories?: string[];
@@ -22,12 +23,15 @@ export default function SearchableLayout<T>(props: SearchableLayoutProps<T>) {
   return (
     <section className="mx-auto min-h-svh max-w-7xl px-4 py-8 md:px-6">
       <div className="mb-8">
-        <h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="text-foreground text-4xl font-bold tracking-tight capitalize sm:text-5xl">
           {props.title}
         </h1>
-        <p className="text-muted-foreground mt-4 max-w-2xl text-lg">
-          {props.description}
-        </p>
+
+        {props?.description ? (
+          <p className="text-muted-foreground mt-4 max-w-2xl text-lg">
+            {props.description}
+          </p>
+        ) : null}
       </div>
 
       <SearchableLayoutGrid {...props} />
@@ -47,6 +51,8 @@ function SearchableLayoutGrid<T>({
 
   const allCategories = ["All", ...Array.from(new Set(categories))];
 
+  const hasCategories = allCategories?.length > 1;
+
   const filteredItems = useMemo(() => {
     return items.filter((item, index) =>
       filter(item, searchQuery, selectedCategory, index),
@@ -56,7 +62,7 @@ function SearchableLayoutGrid<T>({
   return (
     <>
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="relative max-w-md flex-1">
+        <div className={cn("relative flex-1", hasCategories ? "max-w-md" : "")}>
           <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
           <input
             type="text"
@@ -67,7 +73,7 @@ function SearchableLayoutGrid<T>({
           />
         </div>
 
-        {allCategories?.length > 1 ? (
+        {hasCategories ? (
           <div className="flex flex-wrap gap-2">
             {allCategories.map((category) => {
               if (!category) return null;
