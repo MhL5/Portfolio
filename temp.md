@@ -1,56 +1,32 @@
-# Notes
-
-## Eslint
-
-[accessibility package](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
-
-## SEO
-
-Structured data:
-
-- [Intro to Structured Data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
-- [Structured Data Search Gallery](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)
-
-- [open graph generator](https://ogimage.click/)
-
 ## git
 
 Let me explain the common conventional commit message types. This is based on the Conventional Commits specification, which is widely used in many projects:
 
 1. `feat:` - New features
-
    - Example: `feat: add user authentication system`
 
 2. `fix:` - Bug fixes
-
    - Example: `fix: resolve login page crash`
 
 3. `docs:` - Documentation changes
-
    - Example: `docs: update API documentation`
 
 4. `style:` - Code style changes (formatting, semicolons, etc) that don't affect code logic
-
    - Example: `style: format using prettier`
 
 5. `refactor:` - Code changes that neither fix a bug nor add a feature
-
    - Example: `refactor: restructure user service`
 
 6. `perf:` - Performance improvements
-
    - Example: `perf: optimize image loading`
 
 7. `test:` - Adding or modifying tests
-
    - Example: `test: add unit tests for user registration`
 
 8. `chore:` - Changes to build process, tools, libraries, etc
-
    - Example: `chore: update dependencies`
 
 9. `ci:` - Changes to CI configuration files and scripts
-
    - Example: `ci: add GitHub Actions workflow`
 
 10. `revert:` - Reverting a previous commit
@@ -161,50 +137,6 @@ gradient underline
 }
 ```
 
-## schema
-
-with id Example
-
-```ts
-type WithProductId<K extends keyof Schema & ArrayObjectKeys<Schema>> =
-  (Schema[K][number] & { product_id: string })[];
-```
-
-string with auto complete:
-
-```ts
-type StringWithAutocompleteOptions<TOptions extends string> =
-  | (string & {})
-  | TOptions;
-```
-
-file schema (zod v4 supports file validation and you don't need this)
-
-```ts
-import { z } from "zod";
-
-const MAX_FILE_SIZE = 1024 * 1024 * 2;
-const ACCEPTED_IMAGE_MIME_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
-export const allowedImageFormats = ["jpeg", "jpg", "png", "webp"];
-
-const imageSchema = z
-  .instanceof(File)
-  .refine((file) => {
-    return !file || file.size <= MAX_FILE_SIZE;
-  }, "Max image size is 2MB.")
-  .refine((file) => {
-    return !!file?.type && ACCEPTED_IMAGE_MIME_TYPES.includes(file?.type);
-  }, "Only .jpg, .jpeg, .png and .webp formats are supported.");
-
-export type ImageSchemaType = z.infer<typeof imageSchema>;
-export default imageSchema;
-```
-
 ## npm
 
 version numbers in npm :
@@ -265,52 +197,3 @@ const nextConfig: NextConfig = {
 
 export default nextConfig;
 ```
-
-## perf check
-
-[un lighthouse](https://next.unlighthouse.dev/)
-
-## links to check
-
-### Resume Website Inspirations
-
-- [Bahooosh Portfolios](https://bahooosh.com/portfolios)
-- [Let the People Use Their Tools – nmn.sh](https://nmn.sh/blog/2023-10-02-let-the-people-use-their-tools)
-- [Lee Robinson’s Website](https://leerob.com/)
-- [Lee Robinson’s GitHub Site Code](https://github.com/leerob/site)
-- [Magic UI Portfolio Example](https://portfolio-magicui.vercel.app/)
-- [Firebase Auth Middleware – Fireship](https://fireship.io/snippets/express-middleware-auth-token-firebase/)
-- [Max Schmitt’s Website](https://maxschmitt.me/)
-- [React Router Website](https://reactrouter.com/)
-- [template](https://karthikeyavarmamudunuri.vercel.app/)
-- [nmn blog](https://nmn.sh/blog)
-
-### Component Libraries
-
-**Shadcn-related libraries:**
-
-- [shadcn-extension](https://shadcn-extension.vercel.app/)
-- [shadcn-phone-input](https://shadcn-phone-input.vercel.app/)
-- [shadcn-form-build Playground](https://shadcn-form-build.vercel.app/playground)
-- [Aceternity UI](https://ui.aceternity.com/)
-- [MagicUI](https://magicui.design/)
-- [Autosize Textarea – TypeArt](https://shadcnui-expansions.typeart.cc/docs/autosize-textarea)
-- [shadcn-extension Multi-Select Docs](https://shadcn-extension.vercel.app/docs/multi-select)
-- [Enhanced Button](https://enhanced-button.vercel.app/)
-- [Cult UI](https://www.cult-ui.com/)
-- [UI Layout Components](https://www.ui-layout.com/components)
-- [Awesome Shadcn UI](https://awesome-shadcn-ui.vercel.app/)
-- [EldoraUI BentoGrid](https://www.eldoraui.site/components/sections/bentogrid)
-- [web dev simplified shadcn ui registry](https://wds-shadcn-registry.netlify.app/)
-- [Motion Primitives](https://motion-primitives.com/)
-- [Origin UI](https://originui.com/)
-- [UI Libs Collection](https://21st.dev/q/ecommerce)
-- [DiceUI Kanban Components](https://www.diceui.com/docs/components/kanban)
-
-### SEO Performance
-
-- [Next.js Lighthouse – un lighthouse.dev](https://next.unlighthouse.dev/)
-
-## idk what category it should be, not in mood for checking
-
-https://simpleicons.org/

@@ -1,5 +1,6 @@
 "use client";
 
+import type { StringWithAutoComplete } from "@/app/(with-navigation)/snippets/types/AutoComplete";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
@@ -23,7 +24,7 @@ interface Bookmark {
   title: string;
   description: string;
   url: string;
-  category: string;
+  category: StringWithAutoComplete<"UI">;
   tags: string[];
   addedDate: string;
   featured?: boolean;
@@ -32,87 +33,187 @@ interface Bookmark {
 // Sample bookmark data - replace with your actual bookmarks
 const bookmarksData: Bookmark[] = [
   {
-    id: "1",
-    title: "Framer Motion",
-    description:
-      "A production-ready motion library for React. Perfect for creating smooth animations and transitions.",
-    url: "https://www.framer.com/motion/",
-    category: "Development",
-    tags: ["react", "animation", "motion", "ui"],
-    addedDate: "2024-01-15",
-    featured: true,
+    id: "shadcn-extension",
+    title: "Shadcn Extension",
+    description: "Additional components and utilities for shadcn/ui.",
+    url: "https://shadcn-extension.vercel.app/",
+    category: "UI",
+    tags: ["shadcn", "components", "ui", "react"],
+    addedDate: "2024-01-20",
   },
   {
-    id: "2",
-    title: "Coolors",
+    id: "shadcn-phone-input",
+    title: "Shadcn Phone Input",
     description:
-      "The super fast color schemes generator! Create beautiful color palettes with ease.",
-    url: "https://coolors.co/",
+      "Phone input component for shadcn/ui with international format support.",
+    url: "https://shadcn-phone-input.vercel.app/",
+    category: "UI",
+    tags: ["shadcn", "input", "phone", "form"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "shadcn-form-build",
+    title: "Shadcn Form Builder",
+    description: "Visual form builder and playground for shadcn/ui components.",
+    url: "https://www.shadcn-form.com/",
+    category: "UI",
+    tags: ["shadcn", "form", "builder", "playground"],
+    addedDate: "2024-01-20",
+  },
+  {
+    featured: true,
+    id: "aceternity-ui",
+    title: "Aceternity UI",
+    description: "Beautiful and modern UI components built with Tailwind CSS.",
+    url: "https://ui.aceternity.com/",
+    category: "UI",
+    tags: ["components", "tailwind", "ui", "modern"],
+    addedDate: "2024-01-20",
+  },
+  {
+    featured: true,
+    id: "magic-ui",
+    title: "MagicUI",
+    description: "Collection of magical UI components and effects.",
+    url: "https://magicui.design/",
+    category: "UI",
+    tags: ["components", "effects", "animation", "design"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "shadcn/ui-expansions",
+    title: "shadcn/ui expansions",
+    description: "More components built on top of shadcn-ui.",
+    url: "https://shadcnui-expansions.typeart.cc/",
+    category: "UI",
+    tags: ["shadcn", "textarea", "form", "component"],
+    addedDate: "2024-01-20",
+  },
+  {
+    featured: true,
+    id: "enhanced-button",
+    title: "Enhanced Button",
+    description:
+      "Advanced button components with additional features and styles.",
+    url: "https://enhanced-button.vercel.app/",
+    category: "UI",
+    tags: ["button", "component", "ui", "interactive"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "cult-ui",
+    title: "Cult UI",
+    description: "Modern UI component library with unique design approach.",
+    url: "https://www.cult-ui.com/",
+    category: "UI",
+    tags: ["components", "design", "modern", "library"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "awesome-shadcn",
+    title: "Awesome Shadcn UI",
+    description: "Curated collection of shadcn/ui resources and components.",
+    url: "https://awesome-shadcn-ui.vercel.app/",
+    category: "UI",
+    tags: ["shadcn", "collection", "resources", "components"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "eldora-bento",
+    title: "EldoraUI BentoGrid",
+    description: "Bento grid components and layouts for modern web design.",
+    url: "https://www.eldoraui.site/",
+    category: "UI",
+    tags: ["bento", "grid", "layout", "design"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "wds-shadcn",
+    title: "WDS Shadcn Registry",
+    description: "Component registry for shadcn/ui by Web Dev Simplified.",
+    url: "https://wds-shadcn-registry.netlify.app/",
+    category: "UI",
+    tags: ["shadcn", "registry", "components", "collection"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "motion-primitives",
+    title: "Motion Primitives",
+    description:
+      "Animation primitives and components for modern web applications.",
+    url: "https://motion-primitives.com/",
+    category: "UI",
+    tags: ["animation", "motion", "components", "interactive"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "origin-ui",
+    title: "Origin UI",
+    description:
+      "Clean and minimal UI component library for modern applications.",
+    url: "https://originui.com/",
+    category: "UI",
+    tags: ["components", "minimal", "modern", "library"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "dice-ui-kanban",
+    title: "DiceUI Kanban",
+    description:
+      "A collection of composable, unstyled UI primitives for building accessible web applications.",
+    url: "https://www.diceui.com/",
+    category: "UI",
+    tags: ["kanban", "components", "project-management", "interactive"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "21st-dev2",
+    title: "21st.dev",
+    description:
+      "A collection of composable, unstyled UI primitives for building accessible web applications.",
+    url: "https://21st.dev/home",
+    category: "UI",
+    tags: ["kanban", "components", "project-management", "interactive"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "simple-icons",
+    title: "Simple Icons",
+    description: "3334 SVG icons for popular brands",
+    url: "https://simpleicons.org/",
     category: "Design",
-    tags: ["colors", "palette", "design", "tools"],
-    addedDate: "2024-01-12",
-    featured: true,
+    tags: ["icons", "svg", "brands", "resources"],
+    addedDate: "2024-01-20",
   },
   {
-    id: "3",
-    title: "CSS Tricks",
+    id: "eslint-plugin-jsx-a11y",
+    title: "eslint-plugin-jsx-a11y",
     description:
-      "Daily articles about CSS, HTML, JavaScript, and all things related to web design and development.",
-    url: "https://css-tricks.com/",
-    category: "Learning",
-    tags: ["css", "html", "javascript", "tutorials"],
-    addedDate: "2024-01-10",
-  },
-  {
-    id: "4",
-    title: "React Hook Form",
-    description:
-      "Performant, flexible and extensible forms with easy validation for React applications.",
-    url: "https://react-hook-form.com/",
+      "Static AST checker for accessibility rules on JSX elements. Helps ensure your React applications are accessible to users with disabilities.",
+    url: "https://www.npmjs.com/package/eslint-plugin-jsx-a11y",
     category: "Development",
-    tags: ["react", "forms", "validation", "performance"],
-    addedDate: "2024-01-08",
+    tags: ["accessibility", "eslint", "jsx", "react", "a11y"],
+    addedDate: "2024-01-20",
   },
   {
-    id: "5",
-    title: "Vercel AI SDK",
+    id: "og-image-generator",
+    title: "OG Image Generator",
     description:
-      "The AI Toolkit for TypeScript developers. Build AI-powered applications with ease.",
-    url: "https://sdk.vercel.ai/",
-    category: "AI/ML",
-    tags: ["ai", "typescript", "sdk", "vercel"],
-    addedDate: "2024-01-05",
-    featured: true,
-  },
-  {
-    id: "6",
-    title: "Dribbble",
-    description:
-      "Discover the world's top designers & creatives. Get inspired by beautiful design work.",
-    url: "https://dribbble.com/",
-    category: "Design",
-    tags: ["inspiration", "design", "creative", "portfolio"],
-    addedDate: "2024-01-03",
-  },
-  {
-    id: "7",
-    title: "MDN Web Docs",
-    description:
-      "The definitive resource for web developers. Comprehensive documentation for web technologies.",
-    url: "https://developer.mozilla.org/",
-    category: "Learning",
-    tags: ["documentation", "web", "javascript", "css", "html"],
-    addedDate: "2024-01-01",
-  },
-  {
-    id: "8",
-    title: "Raycast",
-    description:
-      "Blazingly fast, totally extendable launcher. Control your tools with a few keystrokes.",
-    url: "https://raycast.com/",
+      "Free Open Graph image generator for websites. Create beautiful social media preview images for your web pages.",
+    url: "https://ogimage.click/",
     category: "Tools",
-    tags: ["productivity", "launcher", "macos", "extensions"],
-    addedDate: "2023-12-28",
+    tags: ["seo", "open-graph", "social-media", "images"],
+    addedDate: "2024-01-20",
+  },
+  {
+    id: "unlighthouse",
+    title: "Unlighthouse",
+    description:
+      "Scan your entire website with Google Lighthouse️ - in 2 minutes. A powerful tool for automated Lighthouse auditing and performance analysis.",
+    url: "https://next.unlighthouse.dev/",
+    category: "Development",
+    tags: ["performance", "lighthouse", "seo", "audit", "testing"],
+    addedDate: "2024-01-20",
   },
 ];
 
@@ -133,7 +234,7 @@ function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
   const CategoryIcon = categoryInfo.icon;
 
   return (
-    <div className="group bg-card relative rounded-lg border p-6 transition-all hover:shadow-md hover:shadow-black/5 dark:hover:shadow-white/5">
+    <div className="bg-card group relative rounded-lg border p-6 transition-all hover:shadow-md hover:shadow-black/5 dark:hover:shadow-white/5">
       {bookmark.featured && (
         <div className="absolute -top-2 -right-2">
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900/30">
