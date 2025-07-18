@@ -2,8 +2,28 @@
 
 import LinkButton from "@/components/blocks/buttons/LinkButton";
 import { ThemeToggle } from "@/components/blocks/buttons/ThemeToggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
+
+const links = [
+  {
+    label: "Snippets",
+    href: "/snippets",
+  },
+  {
+    label: "Bookmarks",
+    href: "/bookmarks",
+  },
+];
 
 export default function Header() {
   const pathname = usePathname();
@@ -22,29 +42,63 @@ export default function Header() {
             <LinkButton
               buttonProps={{ variant: "link" }}
               href="/"
-              className="font-nunito text-xl font-bold"
+              className="font-nunito px-0 text-xl font-bold md:px-4"
             >
               MhL
             </LinkButton>
 
-            <LinkButton
-              buttonProps={{ variant: "link" }}
-              className="font-medium"
-              href="/snippets"
-            >
-              Snippets
-            </LinkButton>
-            <LinkButton
-              buttonProps={{ variant: "link" }}
-              className="font-medium"
-              href="/bookmarks"
-            >
-              Bookmarks
-            </LinkButton>
+            {links.map(({ href, label }) => {
+              return (
+                <LinkButton
+                  key={href}
+                  buttonProps={{ variant: "link" }}
+                  className="hidden font-medium lg:inline-block"
+                  href={href}
+                >
+                  {label}
+                </LinkButton>
+              );
+            })}
           </div>
 
-          <div>
+          <div className="flex items-center gap-2 px-2">
             <ThemeToggle />
+
+            <Sheet>
+              <SheetTrigger className="lg:hidden">
+                <span className="sr-only">Menu</span>
+                <MenuIcon className="h-5 w-5" />
+              </SheetTrigger>
+              <SheetContent className="max-w-xs sm:max-w-xs">
+                <SheetHeader>
+                  <SheetTitle>
+                    <LinkButton
+                      buttonProps={{ variant: "link" }}
+                      href="/"
+                      className="font-nunito px-0 text-xl font-bold md:px-4"
+                    >
+                      MhL
+                    </LinkButton>
+                  </SheetTitle>
+                  <SheetDescription className="sr-only">
+                    main page navigation menu for mobile devices
+                  </SheetDescription>
+                </SheetHeader>
+
+                {links.map(({ href, label }) => {
+                  return (
+                    <LinkButton
+                      key={href}
+                      buttonProps={{ variant: "link" }}
+                      className="justify-start font-medium"
+                      href={href}
+                    >
+                      {label}
+                    </LinkButton>
+                  );
+                })}
+              </SheetContent>
+            </Sheet>
           </div>
         </nav>
       </header>
