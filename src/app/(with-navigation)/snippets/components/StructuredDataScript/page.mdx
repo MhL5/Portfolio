@@ -6,58 +6,13 @@ Structured data is a standardized format for providing information about a page 
 
 The `StructuredDataScript` component provides a type-safe way to add structured data to your Next.js pages using the `schema-dts` package. It follows Next.js 15's recommended approach for implementing structured data.
 
-```tsx
-import type { Thing, WithContext } from "schema-dts";
-
-type StructuredDataScriptProps<T extends Thing> = {
-  data: WithContext<T>;
-  id?: string;
-};
-
-export default function StructuredDataScript<T extends Thing>({
-  data,
-  id,
-}: StructuredDataScriptProps<T>) {
-  return (
-    <script
-      id={id}
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(data),
-      }}
-    />
-  );
-}
-```
+<CodeBlock path="src/app/(with-navigation)/snippets/components/StructuredDataScript/index.tsx" />
 
 ## Usage Examples
 
 ### Basic Usage
 
-```tsx
-import { StructuredDataScript } from "@/components/structured-data";
-import type { WithContext, Article } from "schema-dts";
-
-const articleData: WithContext<Article> = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "My Article Title",
-  author: {
-    "@type": "Person",
-    name: "John Doe",
-  },
-  datePublished: "2024-03-20",
-};
-
-export default function ArticlePage() {
-  return (
-    <>
-      <StructuredDataScript data={articleData} />
-      {/* Your page content */}
-    </>
-  );
-}
-```
+<CodeBlock path="src/app/(with-navigation)/snippets/components/StructuredDataScript/Example.tsx" />
 
 ## References
 

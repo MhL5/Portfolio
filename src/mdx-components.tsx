@@ -1,6 +1,7 @@
 import CopyButton from "@/components/blocks/buttons/CopyButton";
 import LinkButton from "@/components/blocks/buttons/LinkButton";
 import CustomBreadCrumb from "@/components/BreadCrumb";
+import CodeBlock from "@/components/CodeBlock";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
@@ -130,6 +131,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </code>
       );
     },
+    CodeBlock: CodeBlock,
     ...components,
   };
 }
