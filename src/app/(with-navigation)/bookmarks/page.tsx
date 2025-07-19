@@ -121,10 +121,43 @@ const bookmarksData = [
   },
   {
     id: "dice-ui-kanban",
-    title: "DiceUI Kanban",
+    title: "DiceUI",
     description:
       "A collection of composable, unstyled UI primitives for building accessible web applications.",
     url: "https://www.diceui.com/",
+    category: "UI",
+    tags: ["kanban", "components", "project-management", "interactive"],
+  },
+  {
+    id: "mvp-blocks",
+    title: "MVP Blocks",
+    description: "Prebuilt UI Logo blocks to ship beautiful MVPs fast",
+    url: "https://blocks.mvp-subha.me/",
+    category: "UI",
+    tags: ["kanban", "components", "project-management", "interactive"],
+  },
+  {
+    id: "https://www.shsfui.com/",
+    title: "shsfui",
+    description: "Motion-first UI library for those who care about details.",
+    url: "https://www.shsfui.com/",
+    category: "UI",
+    tags: ["kanban", "components", "project-management", "interactive"],
+  },
+  {
+    id: "https://www.kibo-ui.com/",
+    title: "kibo ui",
+    description:
+      "Kibo UI is a custom registry of composable, accessible and open source components designed for use with shadcn/ui.",
+    url: "https://www.kibo-ui.com/",
+    category: "UI",
+    tags: ["kanban", "components", "project-management", "interactive"],
+  },
+  {
+    id: "https://skiper-ui.com/",
+    title: "skiper ui",
+    description: "Components crafted for Modern Websites",
+    url: "https://skiper-ui.com/",
     category: "UI",
     tags: ["kanban", "components", "project-management", "interactive"],
   },
@@ -136,6 +169,15 @@ const bookmarksData = [
     url: "https://21st.dev/home",
     category: "UI",
     tags: ["kanban", "components", "project-management", "interactive"],
+  },
+  {
+    id: "untitled ui",
+    title: "Untitled UI",
+    description:
+      "Untitled UI React is the world’s largest collection of open-source React components built with Tailwind CSS and React Aria. Just copy, paste, and build.",
+    url: "https://www.untitledui.com/react",
+    category: "UI",
+    tags: ["components", "project-management", "interactive"],
   },
 
   {
