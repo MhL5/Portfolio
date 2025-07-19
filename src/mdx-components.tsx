@@ -1,7 +1,8 @@
 import CopyButton from "@/components/blocks/buttons/CopyButton";
 import LinkButton from "@/components/blocks/buttons/LinkButton";
 import BreadCrumb from "@/components/BreadCrumb";
-import CodeBlock from "@/components/CodeBlock";
+import CodeBlockServer from "@/components/code-components/CodeBlock/CodeBlockServer";
+import CodePreview from "@/components/code-components/CodePreview";
 import { Button } from "@/components/ui/button";
 import { snippetsLinks } from "@/constants/snippetsLinks";
 import { cn } from "@/lib/utils";
@@ -159,7 +160,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </code>
       );
     },
-    CodeBlock: CodeBlock,
+    CodeBlockServer: CodeBlockServer,
+    CodePreview: CodePreview,
     SnippetH1: ({
       heading,
       className,

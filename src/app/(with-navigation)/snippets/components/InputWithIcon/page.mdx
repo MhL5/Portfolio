@@ -1,5 +1,6 @@
 import InputWithIcon from "@/app/(with-navigation)/snippets/components/InputWithIcon";
 import { Search } from "lucide-react";
+import Demo from "./Demo";
 
 <SnippetH1 heading={`InputWithIcon`} pageSlug="InputWithIcon" />
 
@@ -12,36 +13,8 @@ Key features:
 - Fully customizable through className props for the container, input, and icon
 - Inherits all native input props through ComponentPropsWithoutRef
 
-<CodeBlock path="src/app/(with-navigation)/snippets/components/InputWithIcon/index.tsx" />
+<CodeBlockServer path="src/app/(with-navigation)/snippets/components/InputWithIcon/index.tsx" />
 
 ## Examples
 
-### Default
-
-<InputWithIcon icon={Search} inputProps={{ placeholder: "search..." }} />
-
-### Right icon
-
-<InputWithIcon
-  icon={Search}
-  iconXPosition="right"
-  inputProps={{ placeholder: "search..." }}
-/>
-
-### Right icon with RTL
-
-<InputWithIcon
-  icon={Search}
-  className="[direction:rtl]"
-  iconXPosition="right"
-  inputProps={{ placeholder: "جستجو..." }}
-/>
-
-### Left icon with RTL
-
-<InputWithIcon
-  icon={Search}
-  className="[direction:rtl]"
-  iconXPosition="left"
-  inputProps={{ placeholder: "جستجو..." }}
-/>
+<Demo />
