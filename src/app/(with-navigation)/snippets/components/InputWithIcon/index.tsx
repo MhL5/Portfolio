@@ -10,10 +10,6 @@ type InputWithIconProps = {
   inputProps?: ComponentPropsWithoutRef<typeof Input>;
 } & ComponentPropsWithoutRef<"div">;
 
-/**
- * Caveats:
- *  - don't change the container's padding
- */
 export default function InputWithIcon({
   className,
   icon: Icon,

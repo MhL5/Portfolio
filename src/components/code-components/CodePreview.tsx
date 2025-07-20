@@ -1,12 +1,13 @@
+import CodeBlockServer from "@/components/code-components/CodeBlock/CodeBlockServer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { type ReactNode } from "react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
 type CodePreviewProps = {
-  children: ReactNode;
   preview: ReactNode;
+  codePath: ComponentPropsWithoutRef<typeof CodeBlockServer>["path"];
 };
 
-export default function CodePreview({ preview, children }: CodePreviewProps) {
+export default function CodePreview({ codePath, preview }: CodePreviewProps) {
   return (
     <Tabs defaultValue="preview" className="min-h-110 w-full">
       <TabsList className="flex w-fit">
@@ -20,7 +21,9 @@ export default function CodePreview({ preview, children }: CodePreviewProps) {
         </div>
       </TabsContent>
 
-      <TabsContent value="code">{children}</TabsContent>
+      <TabsContent value="code">
+        <CodeBlockServer path={codePath} />
+      </TabsContent>
     </Tabs>
   );
 }

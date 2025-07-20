@@ -1,5 +1,5 @@
 import type { StringWithAutoComplete } from "@/app/(with-navigation)/snippets/types/AutoComplete";
-import { fileReader } from "@/components/code-components/actions/fileReader";
+import { fileReader } from "@/actions/fileReader";
 import type { CodeBlockProps } from "@/components/code-components/CodeBlock/types/types";
 import CodeBlockShell from "@/components/code-components/CodeBlock/ui/Shell";
 import CodeBlockSkeleton from "@/components/code-components/CodeBlock/ui/Skeleton";
