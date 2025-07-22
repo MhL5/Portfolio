@@ -1,21 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMediaQuery } from "@/app/(with-navigation)/snippets/hooks/useMediaQuery";
 
-const DEFAULT_MOBILE_BREAKPOINT = 768;
-
-export function useIsMobile(mobileBreakPoint = DEFAULT_MOBILE_BREAKPOINT) {
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
-
-  useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${mobileBreakPoint - 1}px)`);
-    const onChange = () => {
-      setIsMobile(window.innerWidth < mobileBreakPoint);
-    };
-    mql.addEventListener("change", onChange);
-    setIsMobile(window.innerWidth < mobileBreakPoint);
-    return () => mql.removeEventListener("change", onChange);
-  }, [mobileBreakPoint]);
-
-  return !!isMobile;
+export function useIsMobile() {
+  return useMediaQuery({ breakpoint: "md", direction: "max" });
 }
