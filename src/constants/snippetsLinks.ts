@@ -80,6 +80,10 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/hooks/useIsMounted"
       },
       {
+        "title": "useIsVisible",
+        "url": "/snippets/hooks/useIsVisible"
+      },
+      {
         "title": "useLocalStorageExternalStore",
         "url": "/snippets/hooks/useLocalStorageExternalStore"
       },
