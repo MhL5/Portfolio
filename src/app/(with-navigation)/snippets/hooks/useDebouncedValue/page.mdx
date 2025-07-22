@@ -1,23 +1,5 @@
 # useDebouncedValue
 
-```tsx
-"use client";
+Simple hook for debouncing a value.
 
-import { useEffect, useState } from "react";
-
-export function useDebouncedValue<T>(inputValue: T, delay: number) {
-  const [debouncedValue, setDebouncedValue] = useState<T>(inputValue);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(inputValue);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [inputValue, delay]);
-
-  return debouncedValue;
-}
-```
+<CodeBlockServer path="src/app/(with-navigation)/snippets/hooks/useDebouncedValue/index.ts" />
