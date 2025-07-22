@@ -20,6 +20,10 @@ export const snippetsLinks: Links[] = [
     "url": "/snippets/components",
     "items": [
       {
+        "title": "ClientOnly",
+        "url": "/snippets/components/ClientOnly"
+      },
+      {
         "title": "InputWithIcon",
         "url": "/snippets/components/InputWithIcon"
       },

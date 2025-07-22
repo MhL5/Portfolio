@@ -1,0 +1,7 @@
+# ClientOnly
+
+Renders children only on the client.
+
+This is useful for components that need to be rendered on the client but not on the server. this component uses the [useIsMounted](/snippets/hooks/useIsMounted) hook internally to determine whether the component is mounted.
+
+<CodeBlockServer path="src/app/(with-navigation)/snippets/components/ClientOnly/index.tsx" />
