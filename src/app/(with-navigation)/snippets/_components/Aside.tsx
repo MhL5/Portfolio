@@ -72,16 +72,6 @@ export default function Aside() {
                         url={item.url}
                         isActive={isActive}
                       />
-                      {item?.subItems?.map((subItem) => (
-                        <NavItem
-                          key={subItem.title}
-                          title={subItem.title}
-                          url={subItem.url}
-                          isActive={isActive}
-                          isSubItem
-                          className="pl-6"
-                        />
-                      ))}
                     </div>
                   );
                 })}
