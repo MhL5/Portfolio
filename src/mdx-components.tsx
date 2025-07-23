@@ -1,7 +1,7 @@
-import CopyButton from "@/components/blocks/buttons/CopyButton";
 import LinkButton from "@/components/blocks/buttons/LinkButton";
 import BreadCrumb from "@/components/BreadCrumb";
 import CodeBlockServer from "@/components/code-components/CodeBlock/CodeBlockServer";
+import CodeBlockShell from "@/components/code-components/CodeBlock/ui/Shell";
 import CodePreview from "@/components/code-components/CodePreview";
 import { Button } from "@/components/ui/button";
 import { snippetsLinks } from "@/constants/snippetsLinks";
@@ -135,17 +135,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         });
 
         return (
-          <div className="relative h-fit max-w-full overflow-x-auto">
-            <CopyButton
-              content={children as string}
-              className="absolute top-3 right-3"
-            />
-            <code
-              dangerouslySetInnerHTML={{ __html: codeHTML }}
-              className={cn("block max-w-full", className)}
-              {...props}
-            />
-          </div>
+          <CodeBlockShell
+            codeHTML={codeHTML}
+            className={className}
+            {...props}
+          />
         );
       }
 
