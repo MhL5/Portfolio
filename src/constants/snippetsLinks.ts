@@ -96,6 +96,10 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/hooks/useOnClickOutside"
       },
       {
+        "title": "useStateWithValidation",
+        "url": "/snippets/hooks/useStateWithValidation"
+      },
+      {
         "title": "useToggleState",
         "url": "/snippets/hooks/useToggleState"
       }
