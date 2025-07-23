@@ -96,6 +96,10 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/hooks/useOnClickOutside"
       },
       {
+        "title": "useSize",
+        "url": "/snippets/hooks/useSize"
+      },
+      {
         "title": "useStateWithValidation",
         "url": "/snippets/hooks/useStateWithValidation"
       },
