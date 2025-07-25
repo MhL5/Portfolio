@@ -60,7 +60,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
             <h1
               className={cn(
-                "mb-0",
+                "mb-0 break-all",
                 typeof children === "string" &&
                   !children.toLowerCase().startsWith("use")
                   ? "capitalize"

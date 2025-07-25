@@ -33,12 +33,12 @@ const NavItem = ({
   </Button>
 );
 
-export default function Aside() {
+export default function Aside({ className }: { className?: string }) {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-full pt-6 lg:block">
-      <nav className="no-visible-scrollbar || grid gap-6 px-3 xl:sticky xl:top-20 xl:h-[calc(100svh-4rem)] xl:overflow-y-auto xl:px-5 xl:pb-8">
+    <aside className={cn("w-full", className)}>
+      <nav className="no-visible-scrollbar || grid gap-6 px-3 pt-4 xl:sticky xl:top-16 xl:h-[calc(100svh-4rem)] xl:overflow-y-auto xl:px-5 xl:pb-8">
         {snippetsLinks.map(({ title, url, items }) => {
           const config = snippetsCategoryConfig?.[`${title}`];
           const Icon = config.icon;
