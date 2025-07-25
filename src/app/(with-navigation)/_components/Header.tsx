@@ -4,6 +4,7 @@ import LinkButton from "@/components/blocks/buttons/LinkButton";
 import { ThemeToggle } from "@/components/blocks/buttons/ThemeToggle";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -101,16 +102,17 @@ export default function Header() {
                   </SheetDescription>
                 </SheetHeader>
 
-                {links.map(({ href, label }) => {
+                {links.map(({ href, label }, i) => {
                   return (
-                    <LinkButton
-                      key={href}
-                      buttonProps={{ variant: "link" }}
-                      className="justify-start font-medium"
-                      href={href}
-                    >
-                      {label}
-                    </LinkButton>
+                    <SheetClose key={`${href}-${label}-${i}`} asChild>
+                      <LinkButton
+                        buttonProps={{ variant: "link" }}
+                        className="justify-start font-medium"
+                        href={href}
+                      >
+                        {label}
+                      </LinkButton>
+                    </SheetClose>
                   );
                 })}
               </SheetContent>
