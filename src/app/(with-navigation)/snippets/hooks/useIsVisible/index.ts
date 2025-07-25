@@ -15,10 +15,12 @@ export default function useIsVisible(
     const element = ref.current;
     if (!element) return;
 
+    // IntersectionObserver is async and callback can even run after the component is unmounted
+    // so we need to check if the component is mounted before setting the state
     let isMounted = true;
 
     const observer = new IntersectionObserver(
-      async ([entry]) => {
+      ([entry]) => {
         if (!isMounted) return;
 
         setIsVisible(entry.isIntersecting);
