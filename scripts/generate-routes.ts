@@ -10,6 +10,13 @@ type Links = {
   }[];
 };
 
+function hasPageFile(dirPath: string): boolean {
+  return (
+    fs.existsSync(path.join(dirPath, "page.tsx")) ||
+    fs.existsSync(path.join(dirPath, "page.mdx"))
+  );
+}
+
 function processDirectory(dirPath: string, baseUrl: string): Links[] {
   const items: Links[] = [];
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
@@ -23,13 +30,16 @@ function processDirectory(dirPath: string, baseUrl: string): Links[] {
       const fullPath = path.join(dirPath, entry.name);
       const url = `${baseUrl}/${entry.name}`;
 
-      const subItems = processDirectory(fullPath, url);
+      // Only process directories that have page files
+      if (hasPageFile(fullPath)) {
+        const subItems = processDirectory(fullPath, url);
 
-      items.push({
-        title: entry.name.replace(/-/g, " "),
-        url: url,
-        items: subItems.length > 0 ? subItems : undefined,
-      });
+        items.push({
+          title: entry.name.replace(/-/g, " "),
+          url: url,
+          items: subItems.length > 0 ? subItems : undefined,
+        });
+      }
     }
   }
 

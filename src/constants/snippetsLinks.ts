@@ -54,6 +54,10 @@ export const snippetsLinks: Links[] = [
     url: "/snippets/hooks",
     items: [
       {
+        title: "useArray",
+        url: "/snippets/hooks/useArray",
+      },
+      {
         title: "useCopyToClipboard",
         url: "/snippets/hooks/useCopyToClipboard",
       },
@@ -78,10 +82,6 @@ export const snippetsLinks: Links[] = [
         url: "/snippets/hooks/useIsVisible",
       },
       {
-        title: "useLocalStorageExternalStore",
-        url: "/snippets/hooks/useLocalStorageExternalStore",
-      },
-      {
         title: "useMediaQuery",
         url: "/snippets/hooks/useMediaQuery",
       },
@@ -90,12 +90,24 @@ export const snippetsLinks: Links[] = [
         url: "/snippets/hooks/useOnClickOutside",
       },
       {
+        title: "usePrevious",
+        url: "/snippets/hooks/usePrevious",
+      },
+      {
         title: "useSize",
         url: "/snippets/hooks/useSize",
       },
       {
+        title: "useStateWithHistory",
+        url: "/snippets/hooks/useStateWithHistory",
+      },
+      {
         title: "useStateWithValidation",
         url: "/snippets/hooks/useStateWithValidation",
+      },
+      {
+        title: "useStorage",
+        url: "/snippets/hooks/useStorage",
       },
       {
         title: "useTimeout",
