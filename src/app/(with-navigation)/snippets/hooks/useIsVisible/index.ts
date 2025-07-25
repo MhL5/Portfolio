@@ -15,8 +15,12 @@ export default function useIsVisible(
     const element = ref.current;
     if (!element) return;
 
+    let isMounted = true;
+
     const observer = new IntersectionObserver(
-      ([entry]) => {
+      async ([entry]) => {
+        if (!isMounted) return;
+
         setIsVisible(entry.isIntersecting);
         if (once && entry.isIntersecting) observer.disconnect();
       },
@@ -25,7 +29,10 @@ export default function useIsVisible(
 
     observer.observe(element);
 
-    return () => observer.unobserve(element);
+    return () => {
+      observer.unobserve(element);
+      isMounted = false;
+    };
   }, [ref, rootMargin, once]);
 
   return isVisible;
