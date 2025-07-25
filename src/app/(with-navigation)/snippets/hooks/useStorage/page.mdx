@@ -1,0 +1,9 @@
+<SnippetH1 pageSlug="useStorage" heading="useStorage" />
+
+The `useLocalStorage` and `useSessionStorage` hooks provide a simple way to persist state in the browser's localStorage and sessionStorage, respectively.
+
+They work like React state hooks, but automatically keep the stored value in sync with the corresponding storage, making it easy to save and retrieve data across page reloads or sessions.
+
+To prevent hydration errors, you can wrap your component in a [ClientOnly](/snippets/components/ClientOnly) component or use [useIsMounted](/snippets/hooks/useIsMounted).
+
+<CodeBlockServer path="src/app/(with-navigation)/snippets/hooks/useStorage/index.ts" />
