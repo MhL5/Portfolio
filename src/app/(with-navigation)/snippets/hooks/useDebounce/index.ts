@@ -11,7 +11,7 @@ export function useDebounce(
   useEffect(clear, [clear]);
 }
 
-export function useDebounceValue<T>(inputValue: T, delay: number) {
+export function useDebouncedValue<T>(inputValue: T, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(inputValue);
 
   useDebounce(
