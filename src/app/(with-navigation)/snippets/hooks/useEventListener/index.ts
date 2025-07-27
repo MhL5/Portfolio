@@ -4,21 +4,21 @@ import { useEffect, useRef } from "react";
 export default function useEventListener<T extends keyof WindowEventMap>(
   eventType: T,
   callback: (e: WindowEventMap[T]) => void,
-  element?: Window,
+  element?: Window | undefined,
 ): void;
 
 // Overload for Document events
 export default function useEventListener<T extends keyof DocumentEventMap>(
   eventType: T,
   callback: (e: DocumentEventMap[T]) => void,
-  element: Document,
+  element: Document | undefined,
 ): void;
 
 // Overload for HTMLElement events
 export default function useEventListener<T extends keyof HTMLElementEventMap>(
   eventType: T,
   callback: (e: HTMLElementEventMap[T]) => void,
-  element: HTMLElement,
+  element: HTMLElement | undefined,
 ): void;
 
 export default function useEventListener<
@@ -26,7 +26,7 @@ export default function useEventListener<
 >(
   eventType: T,
   callback: (e: Event) => void,
-  element: Window | Document | HTMLElement = window,
+  element: Window | Document | HTMLElement | undefined = window,
 ): void {
   const callbackRef = useRef(callback);
 
@@ -35,7 +35,7 @@ export default function useEventListener<
   }, [callback]);
 
   useEffect(() => {
-    if (element == null) return;
+    if (!element) return;
     const handler = (e: Event) => callbackRef.current(e);
     element.addEventListener(eventType, handler as EventListener);
 

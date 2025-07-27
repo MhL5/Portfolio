@@ -1,15 +1,18 @@
 import useEventListener from "@/app/(with-navigation)/snippets/hooks/useEventListener";
+import { isServer } from "@/app/(with-navigation)/snippets/utils/checks";
 import type { RefObject } from "react";
 
 export default function useOnClickOutside(
   ref: RefObject<HTMLElement | null>,
   cb: (e: MouseEvent) => void,
 ) {
+  const element = isServer() ? undefined : document;
+
   useEventListener(
     "click",
     (e) => {
       if (ref.current && !ref.current.contains(e.target as HTMLElement)) cb(e);
     },
-    document,
+    element,
   );
 }

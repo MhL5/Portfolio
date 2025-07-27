@@ -154,12 +154,12 @@ export const snippetsLinks: Links[] = [
     "url": "/snippets/utils",
     "items": [
       {
-        "title": "groupByKey",
-        "url": "/snippets/utils/groupByKey"
+        "title": "checks",
+        "url": "/snippets/utils/checks"
       },
       {
-        "title": "isServer",
-        "url": "/snippets/utils/isServer"
+        "title": "groupByKey",
+        "url": "/snippets/utils/groupByKey"
       },
       {
         "title": "objectKeysTyped",
