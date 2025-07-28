@@ -1,9 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-export type UseMediaQueryProps = {
-  breakpoint: number | keyof typeof breakpoints;
-  direction?: "max" | "min";
-};
+type Direction = "max" | "min";
+
+function useMediaQueryCore(breakpoint: number, direction: Direction) {
+  const [matches, setMatches] = useState<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia(
+      `(${direction}-width: ${breakpoint}rem)`,
+    );
+
+    const handleChange = () => setMatches(mediaQueryList.matches);
+
+    mediaQueryList.addEventListener("change", handleChange);
+    setMatches(mediaQueryList.matches);
+
+    return () => mediaQueryList.removeEventListener("change", handleChange);
+  }, [direction, breakpoint]);
+
+  return matches;
+}
+
+/**
+ * Hook for custom breakpoint values
+ * @param breakpoint - Numeric value in rem
+ * @param direction - Whether to check for min-width or max-width (default: "min")
+ * @returns boolean indicating if the media query matches
+ * @example
+ * ```tsx
+ * const isLg = useMediaQuery(64, "min");
+ * const isCustom = useMediaQuery(50, "min");
+ * const isBelowCustom = useMediaQuery(75, "max");
+ * ```
+ */
+export function useMediaQuery(
+  breakpoint: number,
+  direction: Direction = "min",
+) {
+  return useMediaQueryCore(breakpoint, direction);
+}
 
 /**
  * based on tailwind v4 breakpoints and some custom xs breakpoints
@@ -21,38 +56,33 @@ const breakpoints = {
 } as const;
 
 /**
- * Hook to check if the current viewport matches a media query
- * @param breakpoint - Either a numeric value in rem or a predefined breakpoint key
+ * Hook for tailwind breakpoints
+ * @param breakpoint - Tailwind breakpoint key
  * @param direction - Whether to check for min-width or max-width (default: "min")
  * @returns boolean indicating if the media query matches
  * @example
  * ```tsx
- * const isMobile = useMediaQuery({ breakpoint: "md", direction: "max" });
- * const isCustom = useMediaQuery({ breakpoint: 50, direction: "min" });
+ * const isMobile = useMediaQueryBreakpoint("sm");
+ * const isTablet = useMediaQueryBreakpoint("md","max");
+ * const isDesktop = useMediaQueryBreakpoint("lg","min");
  * ```
  */
-export function useMediaQuery({
-  breakpoint,
-  direction = "min",
-}: UseMediaQueryProps) {
-  const [matches, setMatches] = useState<boolean | undefined>(undefined);
+export function useMediaQueryBreakpoint(
+  breakpoint: keyof typeof breakpoints,
+  direction: Direction = "min",
+) {
+  const valueInRem = useMemo(() => breakpoints[breakpoint], [breakpoint]);
+  return useMediaQueryCore(valueInRem, direction);
+}
 
-  const valueInRem =
-    typeof breakpoint === "number" ? breakpoint : breakpoints[breakpoint];
-
-  useEffect(() => {
-    const mediaQueryList = window.matchMedia(
-      `(${direction}-width: ${valueInRem}rem)`,
-    );
-
-    const handleChange = () => setMatches(mediaQueryList.matches);
-
-    mediaQueryList.addEventListener("change", handleChange);
-
-    setMatches(mediaQueryList.matches);
-
-    return () => mediaQueryList.removeEventListener("change", handleChange);
-  }, [direction, valueInRem]);
-
-  return matches;
+/**
+ * Hook for mobile breakpoint
+ * @returns boolean indicating if the media query matches
+ * @example
+ * ```tsx
+ * const isMobile = useIsMobile();
+ * ```
+ */
+export function useIsMobile() {
+  return useMediaQueryBreakpoint("md", "max");
 }

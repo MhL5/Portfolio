@@ -77,6 +77,7 @@ function SearchableLayoutGrid<T>({
           <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
           <input
             type="text"
+            autoFocus
             placeholder={`Search ${title}...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

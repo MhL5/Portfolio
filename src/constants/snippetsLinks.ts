@@ -74,10 +74,6 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/hooks/useEventListener"
       },
       {
-        "title": "useIsMobile",
-        "url": "/snippets/hooks/useIsMobile"
-      },
-      {
         "title": "useIsMounted",
         "url": "/snippets/hooks/useIsMounted"
       },

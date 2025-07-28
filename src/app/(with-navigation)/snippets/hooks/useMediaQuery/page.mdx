@@ -1,5 +1,30 @@
 # useMediaQuery
 
-Hook to check if the current viewport matches a media query
+the `useMediaQuery` module provides hooks for working with responsive breakpoints in React applications. its written using the `window.matchMedia` API and `facade` pattern.
+
+this module provides 3 hooks:
+
+- `useMediaQuery` - for custom breakpoints (in rem units)
+
+  ```ts
+  const isLg = useMediaQuery(64, "min");
+  const isNotMd = useMediaQuery(48, "max");
+  ```
+
+- `useMediaQueryBreakpoint` - based on Tailwind breakpoints for better developer experience
+
+  ```ts
+  const isMobile = useMediaQueryBreakpoint("sm");
+  const isTablet = useMediaQueryBreakpoint("md", "max");
+  const isDesktop = useMediaQueryBreakpoint("lg", "min");
+  ```
+
+- `useIsMobile` - super simple hook for checking if the screen is mobile
+
+  ```ts
+  const isMobile = useIsMobile();
+  ```
+
+## Snippet
 
 <CodeBlockServer path="src/app/(with-navigation)/snippets/hooks/useMediaQuery/index.ts" />
