@@ -1,3 +1,4 @@
+import { isServer } from "@/app/(with-navigation)/snippets/utils/checks";
 import { useEffect, useRef } from "react";
 
 // Overload for Window events
@@ -26,7 +27,7 @@ export default function useEventListener<
 >(
   eventType: T,
   callback: (e: Event) => void,
-  element: Window | Document | HTMLElement | undefined = window,
+  element: Window | Document | HTMLElement | undefined = undefined,
 ): void {
   const callbackRef = useRef(callback);
 
@@ -35,11 +36,14 @@ export default function useEventListener<
   }, [callback]);
 
   useEffect(() => {
-    if (!element) return;
+    const defaultElement = element ?? (isServer() ? undefined : window);
+
+    if (!defaultElement) return;
+
     const handler = (e: Event) => callbackRef.current(e);
-    element.addEventListener(eventType, handler as EventListener);
+    defaultElement.addEventListener(eventType, handler as EventListener);
 
     return () =>
-      element.removeEventListener(eventType, handler as EventListener);
+      defaultElement.removeEventListener(eventType, handler as EventListener);
   }, [eventType, element]);
 }
