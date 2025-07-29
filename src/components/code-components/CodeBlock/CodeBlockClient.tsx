@@ -1,5 +1,6 @@
 "use client";
 
+import { fileReader } from "@/actions/fileReader";
 import type { CodeBlockProps } from "@/components/code-components/CodeBlock/types/types";
 import CodeBlockShell from "@/components/code-components/CodeBlock/ui/Shell";
 import CodeBlockSkeleton from "@/components/code-components/CodeBlock/ui/Skeleton";
@@ -7,19 +8,21 @@ import { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
 
 type CodeBlockClientProps = {
-  code: string;
+  path: string;
 } & CodeBlockProps;
 
 export default function CodeBlockClient({
-  code,
+  path,
   lang = "tsx",
   className,
   ...props
 }: CodeBlockClientProps) {
   const [codeHTML, setCodeHTML] = useState<string | null>(null);
+  const [code, setCode] = useState<string | null>(null);
 
   useEffect(() => {
     async function getCodeHTML() {
+      const code = await fileReader(path);
       const codeHTML = await codeToHtml(code.trim(), {
         lang,
         themes: {
@@ -27,12 +30,14 @@ export default function CodeBlockClient({
           dark: "github-dark",
         },
       });
+
       setCodeHTML(codeHTML);
+      setCode(code);
     }
     getCodeHTML();
-  }, [code, lang]);
+  }, [lang, path]);
 
-  if (!codeHTML) return <CodeBlockSkeleton />;
+  if (!codeHTML || !code) return <CodeBlockSkeleton />;
 
   return (
     <CodeBlockShell
