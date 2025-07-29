@@ -187,6 +187,13 @@ const uiBookmarks: Bookmark[] = [
     url: "https://www.untitledui.com/react",
     category: "UI",
   },
+  {
+    title: "react bits",
+    description: "animated react components for creative developers",
+    url: "https://reactbits.dev",
+    category: "UI",
+    featured: true,
+  },
 ];
 
 export const allBookmarks: Bookmark[] = [
