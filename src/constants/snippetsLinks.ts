@@ -120,6 +120,10 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/hooks/useStateWithValidation"
       },
       {
+        "title": "useStepper",
+        "url": "/snippets/hooks/useStepper"
+      },
+      {
         "title": "useStorage",
         "url": "/snippets/hooks/useStorage"
       },
