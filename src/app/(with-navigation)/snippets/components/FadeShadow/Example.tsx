@@ -35,9 +35,17 @@ export default function Example() {
           })}
         </Marquee>
 
-        <FadeShadow orientation="vertical" position="left" className="w-1/3" />
+        <FadeShadow
+          orientation="horizontal"
+          positionX="left"
+          className="w-1/3"
+        />
 
-        <FadeShadow orientation="vertical" position="right" className="w-1/3" />
+        <FadeShadow
+          orientation="horizontal"
+          positionX="right"
+          className="w-1/3"
+        />
       </div>
     </>
   );

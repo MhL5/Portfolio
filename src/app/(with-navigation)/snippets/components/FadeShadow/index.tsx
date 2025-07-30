@@ -3,11 +3,11 @@ import { cn } from "@/lib/utils";
 type FadeShadowProps = (
   | {
       orientation: "vertical";
-      position: "left" | "right";
+      positionY: "top" | "bottom";
     }
   | {
       orientation: "horizontal";
-      position: "top" | "bottom";
+      positionX: "left" | "right";
     }
 ) & {
   className?: string;
@@ -20,19 +20,24 @@ const positionClassNames = {
   bottom: "bottom-0 bg-linear-to-t",
 };
 
-export default function FadeShadow({
-  position,
-  className,
-  orientation = "horizontal",
-}: FadeShadowProps) {
+export default function FadeShadow(props: FadeShadowProps) {
+  const { className } = props;
+
+  let positionClassName = "";
+
+  if (props.orientation === "horizontal")
+    positionClassName = positionClassNames[props.positionX];
+  if (props.orientation === "vertical")
+    positionClassName = positionClassNames[props.positionY];
+
   return (
     <span
       className={cn(
         "from-background pointer-events-none absolute to-transparent",
-        orientation === "vertical"
+        props.orientation === "horizontal"
           ? "top-1/2 h-full w-14 -translate-y-1/2"
           : "left-1/2 h-14 w-full -translate-x-1/2",
-        positionClassNames[position],
+        positionClassName,
         className,
       )}
     />
