@@ -25,9 +25,9 @@ export default function PreviewExample() {
   return (
     <div className="not-prose mx-auto grid w-[calc(100%-3rem)] gap-5">
       <div>
-        <h3 className="mb-2.5 text-base font-medium">
+        <span className="mb-2.5 text-base font-medium">
           Click to Change Variant
-        </h3>
+        </span>
         <div className="flex gap-2">
           {alertVariants.map((variant) => {
             const isActive = variant === selectedVariant;

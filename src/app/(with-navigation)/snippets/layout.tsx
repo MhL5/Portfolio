@@ -1,6 +1,6 @@
 import Aside from "@/app/(with-navigation)/snippets/_components/Aside";
+import SnippetToc from "@/app/(with-navigation)/snippets/_components/SnippetToc";
 import AutoScrollToTop from "@/app/(with-navigation)/snippets/components/ScrollToTopOnNavigation";
-import LinkButton from "@/components/blocks/buttons/LinkButton";
 import SkipLink from "~/todos/SkipLink";
 
 export default function MdxLayout({ children }: { children: React.ReactNode }) {
@@ -16,28 +16,8 @@ export default function MdxLayout({ children }: { children: React.ReactNode }) {
           {children}
         </main>
 
-        {/* todo: hidden */}
-        <aside className="text-muted-foreground flex flex-col gap-1 pt-8 pb-2 text-sm opacity-0">
-          <LinkButton
-            buttonProps={{
-              variant: "ghost",
-              size: "sm",
-            }}
-            href=""
-            className="text-muted-foreground inline-block h-6 w-fit text-sm"
-          >
-            lets see
-          </LinkButton>
-          <LinkButton
-            buttonProps={{
-              variant: "ghost",
-              size: "sm",
-            }}
-            href=""
-            className="text-muted-foreground inline-block h-6 w-fit text-sm"
-          >
-            lets see
-          </LinkButton>
+        <aside className="text-muted-foreground flex flex-col gap-1 pt-8 pb-2 text-sm">
+          <SnippetToc />
         </aside>
       </div>
     </>

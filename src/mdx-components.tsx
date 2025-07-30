@@ -67,6 +67,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                   : "",
                 className,
               )}
+              id={
+                typeof children === "string"
+                  ? children.toLowerCase().replaceAll(" ", "-")
+                  : ""
+              }
               {...props}
             >
               {children}
@@ -107,6 +112,31 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </div>
       );
     },
+    h2: (props: ComponentPropsWithoutRef<"h2">) => {
+      return (
+        <h2
+          id={
+            typeof props.children === "string"
+              ? props.children.toLowerCase().replaceAll(" ", "-")
+              : ""
+          }
+          {...props}
+        />
+      );
+    },
+    h3: (props: ComponentPropsWithoutRef<"h3">) => {
+      return (
+        <h3
+          id={
+            typeof props.children === "string"
+              ? props.children.toLowerCase().replaceAll(" ", "-")
+              : ""
+          }
+          {...props}
+        />
+      );
+    },
+
     pre: ({
       children,
       className,

@@ -281,7 +281,7 @@
   }
 
   [id] {
-    @apply scroll-m-7;
+    @apply scroll-m-24;
   }
 
   ::selection {
