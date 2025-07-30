@@ -11,12 +11,12 @@ const alertVariants = cva(
         destructive:
           "text-destructive bg-card *:data-[slot=alert-description]:text-destructive/90 [&>svg]:text-current",
         success:
-          "border-[hsl(145,92%,87%)] bg-[hsl(143,85%,96%)] text-[hsl(140,100%,27%)] *:data-[slot=alert-description]:text-[hsl(140,100%,27%)]/90 dark:border-[hsl(147,100%,12%)] dark:bg-[hsl(150,100%,6%)] dark:text-[hsl(150,86%,65%)] dark:*:data-[slot=alert-description]:text-[hsl(150,86%,65%)]/90 [&>svg]:text-current",
-        info: "border-[hsl(221,91%,93%)] bg-[hsl(208,100%,97%)] text-[hsl(210,92%,45%)] *:data-[slot=alert-description]:text-[hsl(210,92%,45%)]/90 dark:border-[hsl(223,43%,17%)] dark:bg-[hsl(215,100%,6%)] dark:text-[hsl(216,87%,65%)] dark:*:data-[slot=alert-description]:text-[hsl(216,87%,65%)]/90 [&>svg]:text-current",
+          "border-success-border bg-success-bg text-success-text *:data-[slot=alert-description]:text-success-text/90 [&>svg]:text-current",
+        info: "border-info-border bg-info-bg text-info-text *:data-[slot=alert-description]:text-info-text/90 [&>svg]:text-current",
         warning:
-          "border-[hsl(49,91%,84%)] bg-[hsl(49,100%,97%)] text-[hsl(31,92%,45%)] *:data-[slot=alert-description]:text-[hsl(31,92%,45%)]/90 dark:border-[hsl(60,100%,9%)] dark:bg-[hsl(64,100%,6%)] dark:text-[hsl(46,87%,65%)] dark:*:data-[slot=alert-description]:text-[hsl(46,87%,65%)]/90 [&>svg]:text-current",
+          "border-warning-border bg-warning-bg text-warning-text *:data-[slot=alert-description]:text-warning-text/90 [&>svg]:text-current",
         error:
-          "border-[hsl(359,100%,94%)] bg-[hsl(359,100%,97%)] text-[hsl(360,100%,45%)] *:data-[slot=alert-description]:text-[hsl(360,100%,45%)]/90 dark:border-[hsl(357,89%,16%)] dark:bg-[hsl(358,76%,10%)] dark:text-[hsl(358,100%,81%)] dark:*:data-[slot=alert-description]:text-[hsl(358,100%,81%)]/90 [&>svg]:text-current",
+          "border-error-border bg-error-bg text-error-text *:data-[slot=alert-description]:text-error-text/90 [&>svg]:text-current",
       },
     },
     defaultVariants: {

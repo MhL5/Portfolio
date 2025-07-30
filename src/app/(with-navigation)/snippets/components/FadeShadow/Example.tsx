@@ -12,7 +12,7 @@ export default function Example() {
             return (
               <div
                 key={i}
-                className="border-muted bg-card text-muted-foreground flex h-43.75 w-76.5 shrink-0 flex-col gap-3 rounded-lg px-6 py-5 xl:h-52.25 xl:w-111.5 xl:gap-4"
+                className="border-muted bg-muted text-muted-foreground flex h-43.75 w-76.5 shrink-0 flex-col gap-3 rounded-lg border px-6 py-5 xl:h-52.25 xl:w-111.5 xl:gap-4"
               >
                 <div className="text-foreground flex min-h-11.25 items-center justify-between gap-2">
                   <span className="truncate text-base font-semibold xl:text-lg">
