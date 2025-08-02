@@ -17,7 +17,7 @@ export default function MdxLayout({ children }: { children: React.ReactNode }) {
           {children}
         </main>
 
-        <aside className="text-muted-foreground flex flex-col gap-1 pt-8 pb-2 text-sm">
+        <aside className="text-muted-foreground hidden flex-col gap-1 pt-8 pb-2 text-sm xl:flex">
           <SnippetToc />
         </aside>
       </div>

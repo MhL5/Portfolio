@@ -86,7 +86,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                       size="icon"
                       disabled={!item}
                       variant="secondary"
-                      className="size-7"
+                      className="size-8 xl:size-9"
                     >
                       <H1PrevNextChildren disabled={true} index={index} />
                     </Button>
@@ -101,7 +101,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                       disabled: !item,
                       variant: "secondary",
                     }}
-                    className="size-7"
+                    className="size-8 xl:size-9"
                   >
                     <H1PrevNextChildren index={index} />
                   </LinkButton>
@@ -243,7 +243,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                       size="icon"
                       disabled={!item}
                       variant="secondary"
-                      className="size-7"
+                      className="size-8 xl:size-9"
                     >
                       <H1PrevNextChildren disabled={true} index={index} />
                     </Button>
@@ -258,7 +258,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                       disabled: !item,
                       variant: "secondary",
                     }}
-                    className="size-7"
+                    className="size-8 xl:size-9"
                   >
                     <H1PrevNextChildren index={index} />
                   </LinkButton>
