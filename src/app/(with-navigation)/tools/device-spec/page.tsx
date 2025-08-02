@@ -1,6 +1,8 @@
 "use client";
 
 import { ObjectKeysTyped } from "@/app/(with-navigation)/snippets/utils/ObjectKeysTyped";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { useEffect, useState, type ReactNode } from "react";
 
 type DeviceInfo = {
@@ -42,28 +44,46 @@ export default function DeviceSpec() {
   if (!deviceInfo) return null;
 
   return (
-    <div className="bg-card text-card-foreground mx-auto my-8 w-[calc(100%-2rem)] max-w-xl rounded-lg p-6 shadow-md">
-      <h2 className="mb-5 text-xl font-semibold">Device Specifications</h2>
+    <Card className="mx-auto my-8 w-[calc(100%-2rem)] max-w-sm">
+      <CardHeader>
+        <CardTitle>Device Specifications</CardTitle>
+      </CardHeader>
 
-      <ul className="space-y-3">
-        {deviceInfo &&
-          ObjectKeysTyped(deviceInfo).map((key) => (
-            <TitleValue
-              key={key}
-              title={key}
-              value={deviceInfo?.[key] ?? null}
-            />
-          ))}
-      </ul>
-    </div>
+      <CardContent>
+        <ul>
+          {deviceInfo &&
+            ObjectKeysTyped(deviceInfo).map((key) => (
+              <TitleValue
+                key={key}
+                title={key}
+                className="odd:bg-muted odd:text-foreground p-2"
+                value={deviceInfo?.[key] ?? null}
+              />
+            ))}
+        </ul>
+      </CardContent>
+    </Card>
   );
 }
 
-function TitleValue({ title, value }: { title: ReactNode; value: ReactNode }) {
+function TitleValue({
+  title,
+  value,
+  className,
+}: {
+  title: ReactNode;
+  value: ReactNode;
+  className?: string;
+}) {
   return (
-    <li className="flex items-start justify-between gap-2 border-b py-2 last:border-none">
-      <span className="font-medium capitalize">{title}</span>
-      <span className="text-sm">{value}</span>
+    <li
+      className={cn(
+        "flex items-start justify-between gap-2 border-b last:border-none",
+        className,
+      )}
+    >
+      <span className="text-sm font-medium capitalize">{title}</span>
+      <p className="text-sm">{value}</p>
     </li>
   );
 }
