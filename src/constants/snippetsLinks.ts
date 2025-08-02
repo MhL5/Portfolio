@@ -176,8 +176,8 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/utils/groupByKey"
       },
       {
-        "title": "objectKeysTyped",
-        "url": "/snippets/utils/objectKeysTyped"
+        "title": "ObjectKeysTyped",
+        "url": "/snippets/utils/ObjectKeysTyped"
       },
       {
         "title": "stringFormatters",
