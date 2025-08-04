@@ -57,6 +57,20 @@ const designBookmarks: Bookmark[] = [
 ];
 const uiBookmarks: Bookmark[] = [
   {
+    title: "Base UI",
+    description:
+      "Unstyled UI components for building accessible web apps and design systems. From the creators of Radix, Floating UI, and Material UI.",
+    url: "https://base-ui.com/",
+    category: "UI",
+  },
+  {
+    title: "Animata Design",
+    description:
+      "Hand-crafted ✍️ interaction animations and effects from around the internet 🛜 to copy and paste into your project.",
+    category: "UI",
+    url: "https://animata.design/",
+  },
+  {
     title: "Shadcn Extension",
     description: "Additional components and utilities for shadcn/ui.",
     url: "https://shadcn-extension.vercel.app/",
