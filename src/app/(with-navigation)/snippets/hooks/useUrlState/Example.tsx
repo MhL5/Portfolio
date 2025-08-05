@@ -4,8 +4,17 @@ import DebouncedInput from "@/app/(with-navigation)/snippets/components/Debounce
 import useUrlState from "@/app/(with-navigation)/snippets/hooks/useUrlState";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { Suspense } from "react";
 
 export default function Example() {
+  return (
+    <Suspense>
+      <ExampleSuspended />
+    </Suspense>
+  );
+}
+
+function ExampleSuspended() {
   const [value, setValue, isPending] = useUrlState("name");
 
   return (
