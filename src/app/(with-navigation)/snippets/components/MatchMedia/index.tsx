@@ -7,15 +7,13 @@ import {
 import type { ReactNode } from "react";
 
 type MatchMediaProps = {
-  direction?: Parameters<typeof useMediaQuery>[1];
-  breakpoint: Parameters<typeof useMediaQuery>[0];
-
+  query: Parameters<typeof useMediaQuery>[0];
   children: ReactNode;
   fallback?: ReactNode;
 };
 
-export function MatchMedia({ fallback, children, ...props }: MatchMediaProps) {
-  const matches = useMediaQuery(props.breakpoint, props.direction);
+export function MatchMedia({ fallback, children, query }: MatchMediaProps) {
+  const matches = useMediaQuery(query);
 
   if (matches === undefined) {
     if (!fallback) return children;
