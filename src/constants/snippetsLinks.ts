@@ -190,6 +190,10 @@ export const snippetsLinks: Links[] = [
       {
         "title": "stringFormatters",
         "url": "/snippets/utils/stringFormatters"
+      },
+      {
+        "title": "wait",
+        "url": "/snippets/utils/wait"
       }
     ]
   }
