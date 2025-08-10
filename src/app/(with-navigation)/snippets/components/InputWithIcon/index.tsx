@@ -12,7 +12,7 @@ import {
 } from "react";
 
 type ContextType = {
-  iconXPosition?: "right" | "left";
+  iconXPosition?: "right" | "left" | "both";
 };
 
 const Context = createContext<ContextType | null>(null);
@@ -36,11 +36,12 @@ function useContext() {
   return context;
 }
 
-type InputWithIconProps = ContextType & ComponentPropsWithoutRef<"div">;
+type InputWithIconProps = Omit<ContextType, "both"> &
+  ComponentPropsWithoutRef<"div">;
 
 function InputWithIcon({
   className,
-  iconXPosition = "left",
+  iconXPosition,
   ...props
 }: InputWithIconProps) {
   return (
@@ -50,15 +51,25 @@ function InputWithIcon({
   );
 }
 
-type InputWithIconInputProps = ComponentPropsWithoutRef<typeof Input>;
+type InputWithIconInputProps = ComponentPropsWithoutRef<typeof Input> & {
+  asChild?: boolean;
+};
 
-function InputWithIconInput({ className, ...props }: InputWithIconInputProps) {
+function InputWithIconInput({
+  className,
+  asChild,
+  ...props
+}: InputWithIconInputProps) {
   const { iconXPosition } = useContext();
+  const Component = asChild ? Slot : Input;
+
   return (
-    <Input
+    <Component
       className={cn(
         "h-[inherit] w-full",
-        iconXPosition === "right" ? "pr-8" : "pl-8",
+        iconXPosition === "right" ? "pr-8 rtl:pl-8" : "",
+        iconXPosition === "left" ? "pl-8 rtl:pr-8" : "",
+        iconXPosition === "both" ? "pr-8 pl-8" : "",
         className,
       )}
       {...props}
@@ -66,24 +77,31 @@ function InputWithIconInput({ className, ...props }: InputWithIconInputProps) {
   );
 }
 
-type InputWithIconIconSlotProps = ComponentPropsWithoutRef<typeof Slot>;
+type InputWithIconIconSlotProps = ComponentPropsWithoutRef<typeof Slot> &
+  Omit<ContextType, "both">;
 
 function InputWithIconIconSlot({
   className,
+  iconXPosition,
   ...props
 }: InputWithIconIconSlotProps) {
-  const { iconXPosition } = useContext();
-
   return (
-    <Slot
-      data-slot="input-with-icon-icon"
-      className={cn(
-        "absolute top-1/2 size-4 -translate-y-1/2 stroke-2",
-        iconXPosition === "right" ? "right-2.5" : "left-2.5",
-        className,
-      )}
-      {...props}
-    />
+    <>
+      <Slot
+        data-slot="input-with-icon-icon"
+        className={cn(
+          "absolute top-1/2 size-4 -translate-y-1/2 stroke-2",
+          iconXPosition === "right"
+            ? "right-2.5 rtl:right-auto rtl:left-2.5"
+            : "",
+          iconXPosition === "left"
+            ? "left-2.5 rtl:right-2.5 rtl:left-auto"
+            : "",
+          className,
+        )}
+        {...props}
+      />
+    </>
   );
 }
 
