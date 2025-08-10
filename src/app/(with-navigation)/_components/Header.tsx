@@ -1,5 +1,6 @@
 "use client";
 
+import SkipLink from "@/app/(with-navigation)/snippets/components/SkipLink";
 import LinkButton from "@/components/blocks/buttons/LinkButton";
 import { ThemeToggle } from "@/components/blocks/buttons/ThemeToggle";
 import {
@@ -15,7 +16,6 @@ import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import SkipLink from "~/todos/SkipLink";
 
 const links = [
   {
@@ -55,7 +55,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-background/50 fixed top-0 z-50 h-13 w-dvw backdrop-blur-md">
+      <header className="bg-background/50 border-border/30 fixed top-0 z-50 h-13 w-dvw border-b backdrop-blur-md">
         <nav className="mx-auto flex h-full w-full items-center justify-between px-4">
           <div className="flex items-center gap-6">
             {hasMainId && (

@@ -1,15 +1,11 @@
-import LinkButton from "@/components/blocks/buttons/LinkButton";
-import BreadCrumb from "@/components/BreadCrumb";
 import CodeBlockServer from "@/components/code-components/CodeBlock/CodeBlockServer";
 import CodeBlockShell from "@/components/code-components/CodeBlock/ui/Shell";
 import CodePreview from "@/components/code-components/CodePreview";
-import { Button } from "@/components/ui/button";
-import { snippetsLinks } from "@/constants/snippetsLinks";
+import SnippetH1 from "@/components/mdx-components/SnippetH1";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import { codeToHtml } from "shiki";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -35,81 +31,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </a>
       );
     },
-    h1: ({ children, className, ...props }: ComponentPropsWithoutRef<"h1">) => {
-      let prevNext: { title: string; url: string }[] = [];
-
-      for (const category of snippetsLinks) {
-        if (!category.items) continue;
-
-        for (let i = 0; i < category.items.length; i++) {
-          if (category.items[i].title === children) {
-            const prev = category.items[i - 1];
-            const next = category.items[i + 1];
-            prevNext = [prev, next];
-            break;
-          }
-        }
-
-        if (prevNext.length) break;
-      }
-
+    h1: ({ children, ...props }: ComponentPropsWithoutRef<"h1">) => {
       return (
-        <div className="grid gap-7">
-          <BreadCrumb />
-
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
-            <h1
-              className={cn(
-                "mb-0 break-all",
-                typeof children === "string" &&
-                  !children.toLowerCase().startsWith("use")
-                  ? "capitalize"
-                  : "",
-                className,
-              )}
-              id={
-                typeof children === "string"
-                  ? children.toLowerCase().replaceAll(" ", "-")
-                  : ""
-              }
-              {...props}
-            >
-              {children}
-            </h1>
-
-            <div className="flex gap-2">
-              {prevNext.map((item, index) => {
-                if (!item)
-                  return (
-                    <Button
-                      key={`h1-link-button${index}`}
-                      size="icon"
-                      disabled={!item}
-                      variant="secondary"
-                      className="size-8 xl:size-9"
-                    >
-                      <H1PrevNextChildren disabled={true} index={index} />
-                    </Button>
-                  );
-
-                return (
-                  <LinkButton
-                    key={`h1-link-button${index}`}
-                    href={item?.url || "#"}
-                    buttonProps={{
-                      size: "icon",
-                      disabled: !item,
-                      variant: "secondary",
-                    }}
-                    className="size-8 xl:size-9"
-                  >
-                    <H1PrevNextChildren index={index} />
-                  </LinkButton>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+        <h1
+          id={
+            typeof children === "string"
+              ? children.toLowerCase().replaceAll(" ", "-")
+              : ""
+          }
+          {...props}
+        >
+          {children}
+        </h1>
       );
     },
     h2: (props: ComponentPropsWithoutRef<"h2">) => {
@@ -136,7 +69,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         />
       );
     },
-
     pre: ({
       children,
       className,
@@ -190,103 +122,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     },
     CodeBlockServer: CodeBlockServer,
     CodePreview: CodePreview,
-    SnippetH1: ({
-      heading,
-      className,
-      pageSlug,
-    }: {
-      pageSlug: string;
-      heading: ReactNode;
-      className?: string;
-    }) => {
-      let prevNext: { title: string; url: string }[] = [];
-
-      for (const category of snippetsLinks) {
-        if (!category.items) continue;
-
-        for (let i = 0; i < category.items.length; i++) {
-          if (category.items[i].title === pageSlug) {
-            const prev = category.items[i - 1];
-            const next = category.items[i + 1];
-            prevNext = [prev, next];
-            break;
-          }
-        }
-
-        if (prevNext.length) break;
-      }
-
-      return (
-        <div className="grid gap-7">
-          <BreadCrumb />
-
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
-            <h1
-              className={cn(
-                "mb-0 break-all",
-                typeof heading === "string" &&
-                  !heading.toLowerCase().startsWith("use")
-                  ? "capitalize"
-                  : "",
-                className,
-              )}
-            >
-              {heading}
-            </h1>
-
-            <div className="flex gap-2">
-              {prevNext.map((item, index) => {
-                if (!item)
-                  return (
-                    <Button
-                      key={`h1-link-button${index}`}
-                      size="icon"
-                      disabled={!item}
-                      variant="secondary"
-                      className="size-8 xl:size-9"
-                    >
-                      <H1PrevNextChildren disabled={true} index={index} />
-                    </Button>
-                  );
-
-                return (
-                  <LinkButton
-                    key={`h1-link-button${index}`}
-                    href={item?.url || "#"}
-                    buttonProps={{
-                      size: "icon",
-                      disabled: !item,
-                      variant: "secondary",
-                    }}
-                    className="size-8 xl:size-9"
-                  >
-                    <H1PrevNextChildren index={index} />
-                  </LinkButton>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      );
-    },
+    SnippetH1,
     ...components,
   };
-}
-
-function H1PrevNextChildren({
-  index,
-  disabled,
-}: {
-  index: number;
-  disabled?: boolean;
-}) {
-  return (
-    <>
-      <span className="sr-only">
-        {disabled ? "not available" : `go ${index === 0 ? "previous" : "next"}`}
-      </span>
-
-      {index === 0 ? <ArrowRight className="rotate-180" /> : <ArrowRight />}
-    </>
-  );
 }

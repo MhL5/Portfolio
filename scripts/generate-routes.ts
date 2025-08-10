@@ -84,6 +84,8 @@ export const snippetsLinks: Links[] = ${JSON.stringify(routes, null, 2)};
     path.join(baseDir, "src", "constants", "snippetsLinks.ts"),
     output,
   );
+
+  // eslint-disable-next-line no-console
   console.log("\x1b[35m" + `Routes generated successfully!` + "\x1b[0m");
 }
 

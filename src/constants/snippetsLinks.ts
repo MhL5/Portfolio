@@ -62,6 +62,10 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/components/ScrollToTop"
       },
       {
+        "title": "SkipLink",
+        "url": "/snippets/components/SkipLink"
+      },
+      {
         "title": "StructuredDataScript",
         "url": "/snippets/components/StructuredDataScript"
       },

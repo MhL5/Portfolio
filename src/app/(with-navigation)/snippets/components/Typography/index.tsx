@@ -35,10 +35,10 @@ export default function Typography({
   effect,
   ...props
 }: TypographyProps) {
-  const Comp = variant || "p";
+  const Component = variant || "p";
 
   return (
-    <Comp
+    <Component
       className={cn(typographyVariants({ variant, effect, className }))}
       {...props}
     />

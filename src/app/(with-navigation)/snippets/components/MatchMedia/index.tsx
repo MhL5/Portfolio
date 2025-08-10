@@ -27,7 +27,6 @@ export function MatchMedia({ fallback, children, query }: MatchMediaProps) {
 type MatchMediaBreakpointProps = {
   direction?: Parameters<typeof useMediaQueryBreakpoint>[1];
   breakpoint: Parameters<typeof useMediaQueryBreakpoint>[0];
-
   children: ReactNode;
   fallback?: ReactNode;
 };
@@ -35,9 +34,10 @@ type MatchMediaBreakpointProps = {
 export function MatchMediaBreakpoint({
   fallback,
   children,
-  ...props
+  direction = "min",
+  breakpoint,
 }: MatchMediaBreakpointProps) {
-  const matches = useMediaQueryBreakpoint(props.breakpoint, props.direction);
+  const matches = useMediaQueryBreakpoint(breakpoint, direction);
 
   if (matches === undefined) {
     if (!fallback) return children;

@@ -18,7 +18,7 @@ export default function Example() {
       <search>
         <div>icon on both sides</div>
 
-        <InputWithIcon iconXPosition="both" className="h-8.5">
+        <InputWithIcon className="h-8.5">
           <InputWithIconIconSlot iconXPosition="left">
             <Search />
           </InputWithIconIconSlot>
@@ -36,6 +36,7 @@ export default function Example() {
           </InputWithIconIconSlot>
 
           <InputWithIconInput
+            iconsOn="both"
             className="text-base placeholder:text-sm"
             placeholder="Search..."
             value={search}
@@ -46,7 +47,7 @@ export default function Example() {
       <search>
         <div>icon on both sides rtl</div>
 
-        <InputWithIcon dir="rtl" iconXPosition="both" className="h-8.5">
+        <InputWithIcon dir="rtl" className="h-8.5">
           <InputWithIconIconSlot iconXPosition="left">
             <Search />
           </InputWithIconIconSlot>
@@ -64,6 +65,7 @@ export default function Example() {
           </InputWithIconIconSlot>
 
           <InputWithIconInput
+            iconsOn="both"
             className="text-base placeholder:text-sm"
             placeholder="جستجو..."
             value={searchRtl}
@@ -74,11 +76,12 @@ export default function Example() {
 
       <div>
         <div>icon on the right</div>
-        <InputWithIcon iconXPosition="right">
+        <InputWithIcon>
           <InputWithIconIconSlot iconXPosition="right">
             <Mail />
           </InputWithIconIconSlot>
           <InputWithIconInput
+            iconsOn="right"
             className="text-base placeholder:text-sm"
             placeholder="Email..."
             autoComplete="email"
@@ -88,11 +91,12 @@ export default function Example() {
 
       <div>
         <div>icon on the left</div>
-        <InputWithIcon iconXPosition="left">
+        <InputWithIcon>
           <InputWithIconIconSlot iconXPosition="left">
             <User2 />
           </InputWithIconIconSlot>
           <InputWithIconInput
+            iconsOn="left"
             className="text-base placeholder:text-sm"
             placeholder="Username..."
             autoComplete="username"
