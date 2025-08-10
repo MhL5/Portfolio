@@ -104,6 +104,10 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/hooks/useIsVisible"
       },
       {
+        "title": "useKey",
+        "url": "/snippets/hooks/useKey"
+      },
+      {
         "title": "useMediaQuery",
         "url": "/snippets/hooks/useMediaQuery"
       },

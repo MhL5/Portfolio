@@ -4,7 +4,7 @@ import useEventListener from "@/app/(with-navigation)/snippets/hooks/useEventLis
 
 type useKeyProps = {
   key: KeyboardEvent["key"];
-  eventName: keyof DocumentEventMap;
+  eventName: "keydown" | "keyup" | "keypress";
   handler: () => void;
 };
 
@@ -12,11 +12,8 @@ export function useKey({ eventName, key, handler }: useKeyProps) {
   useEventListener(
     eventName,
     (e) => {
-      if (
-        e instanceof KeyboardEvent &&
-        e.key.toLowerCase() === key.toLowerCase()
-      )
-        handler();
+      if (!(e instanceof KeyboardEvent)) return;
+      if (e.key.toLowerCase() === key.toLowerCase()) handler();
     },
     document,
   );
