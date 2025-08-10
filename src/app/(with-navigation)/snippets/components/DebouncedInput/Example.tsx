@@ -4,7 +4,7 @@ import DebouncedInput from "@/app/(with-navigation)/snippets/components/Debounce
 import { useState } from "react";
 
 export default function Example() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("Hey");
 
   return (
     <div className="mx-auto w-full max-w-xs space-y-3">
@@ -14,7 +14,8 @@ export default function Example() {
       </div>
 
       <DebouncedInput
-        initialValue="Hello"
+        delay={500}
+        initialValue={value}
         onDebouncedChange={(value) => setValue(value)}
       />
     </div>

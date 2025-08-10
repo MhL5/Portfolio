@@ -50,7 +50,7 @@ function ExampleSuspended() {
         <div className="mt-5">
           <div>With Debounce:</div>
           <DebouncedInput
-            delay={100}
+            delay={500}
             className="min-w-xs"
             placeholder="Enter a value to update url state with"
             initialValue={value}

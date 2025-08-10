@@ -1,9 +1,11 @@
-# useStateWithHistory
+<SnippetH1 heading="useStateWithHistory" />
 
 `useStateWithHistory` is a custom React hook that extends the basic `useState` functionality by keeping a history of state values, allowing you to move backward and forward through previous states, similar to undo and redo operations.
 
 It accepts a default value and an optional capacity to limit the history size. The hook returns the current value, a setter function, and an object containing the history array, the current pointer index, and functions to navigate back, forward, or jump to a specific point in the history.
 
 This is especially useful for features like undo/redo in forms, editors, or any component where tracking state changes is valuable.
+
+## Snippet
 
 <CodeBlockServer path="src/app/(with-navigation)/snippets/hooks/useStateWithHistory/index.ts" />
