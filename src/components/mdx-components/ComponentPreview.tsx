@@ -1,6 +1,8 @@
-import CodeBlockServer from "@/components/code-components/CodeBlock/CodeBlockServer";
+import ComponentSource from "@/components/mdx-components/ComponentSource";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { lazy, type ComponentType } from "react";
+import { Loader2Icon } from "lucide-react";
+import { lazy, Suspense, type ComponentType } from "react";
 
 function lazyImportComponent(
   path: `examples/${string}` | `mhl5-registry/${string}`,
@@ -38,7 +40,7 @@ export default function ComponentPreview({ name }: ComponentPreviewProps) {
 
   if (!Component)
     return (
-      <p className="text-muted-foreground text-sm">
+      <p className="text-muted-foreground not-prose text-sm">
         Component{" "}
         <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
           {name}
@@ -48,21 +50,30 @@ export default function ComponentPreview({ name }: ComponentPreviewProps) {
     );
 
   return (
-    <Tabs defaultValue="preview" className="w-full">
+    <Tabs defaultValue="preview" className="not-prose w-full">
       <TabsList className="flex w-fit">
         <TabsTrigger value="preview">Preview</TabsTrigger>
         <TabsTrigger value="code">Code</TabsTrigger>
       </TabsList>
 
-      <TabsContent value="preview" className="overflow-hidden">
-        <div className="bg-background flex h-96 items-center justify-center overflow-auto rounded-lg border">
-          <Component />
-        </div>
-      </TabsContent>
-
-      <TabsContent value="code" className="overflow-hidden">
-        <CodeBlockServer path={componentSourcePath} />
-      </TabsContent>
+      {/*  */}
+      <Card className="h-[450px] overflow-y-auto rounded-lg bg-transparent p-0 [scrollbar-color:var(--muted-foreground)_var(--code-background)]">
+        <CardContent className="h-full p-0">
+          <TabsContent
+            value="preview"
+            className="flex h-full items-center justify-center p-4"
+          >
+            <Suspense
+              fallback={<Loader2Icon className="size-16 animate-spin" />}
+            >
+              <Component />
+            </Suspense>
+          </TabsContent>
+          <TabsContent value="code" className="h-full">
+            <ComponentSource path={componentSourcePath} />
+          </TabsContent>
+        </CardContent>
+      </Card>
     </Tabs>
   );
 }

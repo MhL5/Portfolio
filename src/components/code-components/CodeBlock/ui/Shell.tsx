@@ -14,7 +14,7 @@ export default function CodeBlockShell({
   ...props
 }: ShellProps) {
   return (
-    <pre className="not-prose relative my-1 h-fit max-w-full overflow-x-auto">
+    <pre className="not-prose relative h-fit max-w-full overflow-x-auto">
       <CopyButton content={code} className="absolute top-3 right-3" />
 
       <code
