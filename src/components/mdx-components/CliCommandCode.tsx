@@ -1,17 +1,33 @@
 "use client";
 
-const packageManagersInstallCommands = {
-  pnpm: `pnpm add`,
-  npm: `npm install`,
-  yarn: `yarn add`,
-  bun: `bun add`,
+const PackageManagersActions = {
+  install: {
+    pnpm: `pnpm add`,
+    npm: `npm install`,
+    yarn: `yarn add`,
+    bun: `bun add`,
+  },
+  run: {
+    pnpm: `pnpm dlx`,
+    npm: `npx`,
+    yarn: `yarn`,
+    bun: `bunx --bun`,
+  },
 };
 
-export default function CliCommandCode({ command }: { command: string }) {
+type CliCommandCodeProps = {
+  action?: keyof typeof PackageManagersActions;
+  command: string;
+};
+
+export default function CliCommandCode({
+  command,
+  action = "run",
+}: CliCommandCodeProps) {
   return (
     <>
       <CliCommandCodeInternal
-        commands={Object.entries(packageManagersInstallCommands).map(
+        commands={Object.entries(PackageManagersActions[action]).map(
           ([label, code]) => ({
             label,
             code: `${code} ${command}`,

@@ -4,17 +4,25 @@ import { cn } from "@/lib/utils";
 import type { ComponentPropsWithoutRef } from "react";
 import { codeToHtml } from "shiki";
 
+type ComponentSourceProps = {
+  lang?: string;
+  className?: string;
+} & ComponentPropsWithoutRef<"code"> &
+  (
+    | {
+        path: string;
+      }
+    | {
+        code: string;
+      }
+  );
+
 export default async function ComponentSource({
-  path,
   lang = "tsx",
   className,
   ...props
-}: {
-  path: string;
-  lang?: string;
-  className?: string;
-} & ComponentPropsWithoutRef<"code">) {
-  const code = await fileReader(path);
+}: ComponentSourceProps) {
+  const code = "code" in props ? props.code : await fileReader(props.path);
   const codeHTML = await codeToHtml(code, {
     lang,
     themes: {
