@@ -1,3 +1,4 @@
+import { isProd } from "@/app/(with-navigation)/snippets/utils/checks";
 import { snippetsLinks } from "@/constants/snippetsLinks";
 import { Code2, Hammer, Package, Wrench, Zap } from "lucide-react";
 import type { JSX } from "react";
@@ -30,3 +31,11 @@ export const snippetsCategoryConfig: Record<
 
 export const snippetsPageLink =
   snippetsLinks?.[0]?.items && snippetsLinks[0].items[0]?.url;
+
+export const shadcnRegistry = await import("~/registry.json").then(
+  (res) => res.default,
+);
+
+export const frontendDomain = isProd()
+  ? process.env.NEXT_PUBLIC_FRONTEND_DOMAIN
+  : "http://localhost:7777";
