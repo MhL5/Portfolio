@@ -1,6 +1,6 @@
-import { fileReader } from "@/actions/fileReader";
 import CopyButton from "@/components/blocks/buttons/CopyButton";
 import { cn } from "@/lib/utils";
+import { fileReader } from "@/utils/fileReader";
 import type { ComponentPropsWithoutRef } from "react";
 import { codeToHtml } from "shiki";
 

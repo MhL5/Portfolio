@@ -56,7 +56,7 @@ export default function Header() {
   return (
     <>
       <header className="bg-background/50 border-border/30 fixed top-0 z-50 h-13 w-dvw border-b backdrop-blur-md">
-        <nav className="mx-auto flex h-full w-full items-center justify-between px-4">
+        <nav className="mx-auto flex h-full w-full max-w-[2000px] items-center justify-between px-4">
           <div className="flex items-center gap-6">
             {hasMainId && (
               <SkipLink href="#main">Skip to main content</SkipLink>

@@ -1,5 +1,3 @@
-"use server";
-
 import type { StringWithAutoComplete } from "@/app/(with-navigation)/snippets/types/AutoComplete";
 import fs from "node:fs/promises";
 

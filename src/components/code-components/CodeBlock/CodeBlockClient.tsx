@@ -1,6 +1,6 @@
 "use client";
 
-import { fileReader } from "@/actions/fileReader";
+import { fileReaderAction } from "@/actions/fileReaderAction";
 import type { CodeBlockProps } from "@/components/code-components/CodeBlock/types/types";
 import CodeBlockShell from "@/components/code-components/CodeBlock/ui/Shell";
 import CodeBlockSkeleton from "@/components/code-components/CodeBlock/ui/Skeleton";
@@ -22,7 +22,7 @@ export default function CodeBlockClient({
 
   useEffect(() => {
     async function getCodeHTML() {
-      const code = await fileReader(path);
+      const code = await fileReaderAction(path);
       const codeHTML = await codeToHtml(code.trim(), {
         lang,
         themes: {
