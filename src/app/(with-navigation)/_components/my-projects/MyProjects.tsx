@@ -15,7 +15,6 @@ const projects: ProjectCardProps[] = [
       "Official website for a anywrite application, a smart-keyboard tool that helps you write faster, smarter, and more efficiently.",
     href: "https://anywrite.ai",
     dates: "August 20, 2024",
-    status: "done",
     technologies: [
       "NextJs 15",
       "Typescript",
@@ -32,7 +31,6 @@ const projects: ProjectCardProps[] = [
     description: "Official website for a Vsim, a sms verification service.",
     href: "https://vsimapp.com",
     dates: "September 18, 2024",
-    status: "done",
     technologies: [
       "NextJs 15",
       "Typescript",
@@ -52,7 +50,7 @@ const projects: ProjectCardProps[] = [
       "platform for downloading applications,Not affiliated with Apple Inc. ",
     href: "https://apple-apss.vercel.app/",
     dates: "June 22, 2025",
-    status: "in-progress",
+    isOngoing: true,
     technologies: [
       "NextJs 15",
       "Typescript",
@@ -69,7 +67,7 @@ const projects: ProjectCardProps[] = [
       "An e-commerce website for a KafshMe, a platform for buying and selling high quality Shoes.",
     href: "https://kafsh.me",
     dates: "December 08, 2024",
-    status: "in-progress",
+    isOngoing: true,
     technologies: [
       "NextJs 15",
       "Typescript",

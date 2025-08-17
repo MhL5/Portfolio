@@ -16,7 +16,7 @@ export type ProjectCardProps = {
   description: string;
   dates: string;
   technologies: string[];
-  status: "active" | "done" | "in-progress";
+  isOngoing?: boolean;
   links?: {
     icon: React.ReactNode;
     type: string;
@@ -40,6 +40,7 @@ export default function ProjectCard({
   technologies,
   links,
   className,
+  isOngoing = false,
   ...props
 }: ProjectCardProps) {
   return (
@@ -72,7 +73,14 @@ export default function ProjectCard({
       )}
       <CardHeader className="mt-2.25 px-2">
         <div className="space-y-1">
-          <CardTitle className="text-xl">{title}</CardTitle>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <CardTitle className="text-xl">{title}</CardTitle>
+            {isOngoing && (
+              <Badge variant="warning" className="text-sm">
+                in progress
+              </Badge>
+            )}
+          </div>
           <time className="mb-2 inline-block text-sm">{dates}</time>
           <p className="text-muted-foreground max-w-full text-sm text-pretty">
             {description}
