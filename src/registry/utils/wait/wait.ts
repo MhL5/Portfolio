@@ -1,4 +1,4 @@
-import { isDev } from "@/app/(with-navigation)/snippets/utils/checks";
+import { isDev } from "@/registry/utils/checks/checks";
 
 export async function asyncWait(ms: number) {
   // safe guard so it only runs in dev mode

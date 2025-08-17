@@ -96,6 +96,45 @@
           "target": "src/utils/mhl5-registry/groupByKey.ts"
         }
       ]
+    },
+    {
+      "name": "ObjectKeysTyped",
+      "type": "registry:lib",
+      "title": "ObjectKeysTyped",
+      "description": "Same as `Object.keys()` but type-safe, returns a typed array of keys instead of `string[]`.",
+      "files": [
+        {
+          "path": "src/registry/utils/ObjectKeysTyped/ObjectKeysTyped.ts",
+          "type": "registry:lib",
+          "target": "src/utils/mhl5-registry/ObjectKeysTyped.ts"
+        }
+      ]
+    },
+    {
+      "name": "stringFormatters",
+      "type": "registry:lib",
+      "title": "stringFormatters",
+      "description": "A collection of string formatters.",
+      "files": [
+        {
+          "path": "src/registry/utils/stringFormatters/stringFormatters.ts",
+          "type": "registry:lib",
+          "target": "src/utils/mhl5-registry/stringFormatters.ts"
+        }
+      ]
+    },
+    {
+      "name": "wait",
+      "type": "registry:lib",
+      "title": "wait",
+      "description": "A collection of wait functions for simulating a delay.",
+      "files": [
+        {
+          "path": "src/registry/utils/wait/wait.ts",
+          "type": "registry:lib",
+          "target": "src/utils/mhl5-registry/wait.ts"
+        }
+      ]
     }
   ]
 }

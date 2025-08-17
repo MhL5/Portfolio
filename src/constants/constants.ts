@@ -1,4 +1,4 @@
-import { isProd } from "@/app/(with-navigation)/snippets/utils/checks";
+import { isProd } from "@/registry/utils/checks/checks";
 import { snippetsLinks } from "@/constants/snippetsLinks";
 import { Code2, Hammer, Package, Wrench, Zap } from "lucide-react";
 import type { JSX } from "react";

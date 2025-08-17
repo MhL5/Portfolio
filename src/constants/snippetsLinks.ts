@@ -154,6 +154,10 @@ export const snippetsLinks: Links[] = [
     ]
   },
   {
+    "title": "test",
+    "url": "/snippets/test"
+  },
+  {
     "title": "types",
     "url": "/snippets/types",
     "items": [
@@ -183,14 +187,6 @@ export const snippetsLinks: Links[] = [
     "title": "utils",
     "url": "/snippets/utils",
     "items": [
-      {
-        "title": "checks",
-        "url": "/snippets/utils/checks"
-      },
-      {
-        "title": "groupByKey",
-        "url": "/snippets/utils/groupByKey"
-      },
       {
         "title": "ObjectKeysTyped",
         "url": "/snippets/utils/ObjectKeysTyped"

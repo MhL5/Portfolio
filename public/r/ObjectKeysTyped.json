@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ObjectKeysTyped",
+  "type": "registry:lib",
+  "title": "ObjectKeysTyped",
+  "description": "Same as `Object.keys()` but type-safe, returns a typed array of keys instead of `string[]`.",
+  "files": [
+    {
+      "path": "src/registry/utils/ObjectKeysTyped/ObjectKeysTyped.ts",
+      "content": "export function ObjectKeysTyped<T extends Record<string, unknown>>(\r\n  obj: T,\r\n): Array<keyof T> {\r\n  return Object.keys(obj) as Array<keyof T>;\r\n}\r\n",
+      "type": "registry:lib",
+      "target": "src/utils/mhl5-registry/ObjectKeysTyped.ts"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wait",
+  "type": "registry:lib",
+  "title": "wait",
+  "description": "A collection of wait functions for simulating a delay.",
+  "files": [
+    {
+      "path": "src/registry/utils/wait/wait.ts",
+      "content": "import { isDev } from \"@/registry/utils/checks/checks\";\r\n\r\nexport async function asyncWait(ms: number) {\r\n  // safe guard so it only runs in dev mode\r\n  if (!isDev()) return;\r\n\r\n  await new Promise((resolve) => setTimeout(resolve, ms));\r\n}\r\n\r\nexport function syncWait(ms: number) {\r\n  // safe guard so it only runs in dev mode\r\n  if (!isDev()) return;\r\n\r\n  const start = Date.now();\r\n  let now = start;\r\n  while (now - start < ms) now = Date.now();\r\n}\r\n",
+      "type": "registry:lib",
+      "target": "src/utils/mhl5-registry/wait.ts"
+    }
+  ]
+}

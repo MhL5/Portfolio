@@ -1,6 +1,6 @@
 "use client";
 
-import { ObjectKeysTyped } from "@/app/(with-navigation)/snippets/utils/ObjectKeysTyped";
+import { ObjectKeysTyped } from "@/registry/utils/ObjectKeysTyped/ObjectKeysTyped";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useEffect, useState, type ReactNode } from "react";
