@@ -10,6 +10,8 @@ export default function SnippetPageLinks() {
         const Icon = snippetsCategoryConfig?.[snippet.title]?.icon;
         const titleClass =
           snippetsCategoryConfig?.[snippet.title]?.tailwindClass;
+
+        if (!Icon || !titleClass) return null;
         return (
           <LinkButton
             buttonProps={{
