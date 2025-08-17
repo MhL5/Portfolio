@@ -182,23 +182,5 @@ export const snippetsLinks: Links[] = [
         "url": "/snippets/types/RequiredPick"
       }
     ]
-  },
-  {
-    "title": "utils",
-    "url": "/snippets/utils",
-    "items": [
-      {
-        "title": "ObjectKeysTyped",
-        "url": "/snippets/utils/ObjectKeysTyped"
-      },
-      {
-        "title": "stringFormatters",
-        "url": "/snippets/utils/stringFormatters"
-      },
-      {
-        "title": "wait",
-        "url": "/snippets/utils/wait"
-      }
-    ]
   }
 ];
