@@ -1,5 +1,5 @@
 import useEventListener from "@/app/(with-navigation)/snippets/hooks/useEventListener";
-import { isServer } from "@/app/(with-navigation)/snippets/utils/checks";
+import { isServer } from "@/registry/utils/checks/checks";
 import type { RefObject } from "react";
 
 export default function useOnClickOutside(

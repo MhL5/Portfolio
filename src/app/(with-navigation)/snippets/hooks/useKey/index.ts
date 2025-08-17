@@ -1,7 +1,7 @@
 "use client";
 
 import useEventListener from "@/app/(with-navigation)/snippets/hooks/useEventListener";
-import { isServer } from "@/app/(with-navigation)/snippets/utils/checks";
+import { isServer } from "@/registry/utils/checks/checks";
 
 type useKeyProps = {
   key: KeyboardEvent["key"];

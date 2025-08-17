@@ -1,6 +1,6 @@
 "use server";
 
-import { isNode } from "@/app/(with-navigation)/snippets/utils/checks";
+import { isNode } from "@/registry/utils/checks/checks";
 import { randomUUID } from "crypto";
 import fs from "fs/promises";
 import path from "path";

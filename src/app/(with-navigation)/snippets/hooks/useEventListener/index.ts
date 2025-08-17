@@ -1,4 +1,4 @@
-import { isServer } from "@/app/(with-navigation)/snippets/utils/checks";
+import { isServer } from "@/registry/utils/checks/checks";
 import { useEffect, useRef } from "react";
 
 // Overload for Window events
