@@ -32,6 +32,7 @@ export const snippetsCategoryConfig: Record<
 export const snippetsPageLink =
   snippetsLinks?.[0]?.items && snippetsLinks[0].items[0]?.url;
 
+export type ShadcnRegistry = typeof shadcnRegistry;
 export const shadcnRegistry = await import("~/registry.json").then(
   (res) => res.default,
 );

@@ -1,4 +1,4 @@
-import SnippetPageLinks from "@/app/(with-navigation)/snippets2/_components/SnippetPageLinks";
+import SnippetPageLinks from "@/app/(with-navigation)/snippets/_components/SnippetPageLinks";
 import MDXRemoteComponent from "@/MDXRemote";
 import { fileReader } from "@/utils/fileReader";
 import type { Metadata } from "next";
