@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "AutoComplete",
+  "type": "registry:lib",
+  "title": "AutoComplete",
+  "description": "a generic type that allows you to autocomplete the string or number",
+  "files": [
+    {
+      "path": "src/registry/types/AutoComplete/AutoComplete.ts",
+      "content": "export type StringWithAutoComplete<TOptions extends string> =\r\n  | (string & {})\r\n  | TOptions;\r\n\r\nexport type NumberWithAutoComplete<TOptions extends number> =\r\n  | (number & {})\r\n  | TOptions;\r\n",
+      "type": "registry:lib",
+      "target": "src/types/mhl5-registry/AutoComplete.ts"
+    }
+  ]
+}

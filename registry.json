@@ -173,6 +173,58 @@
           "target": "src/types/mhl5-registry/AllOrNothing.ts"
         }
       ]
+    },
+    {
+      "name": "AutoComplete",
+      "type": "registry:lib",
+      "title": "AutoComplete",
+      "description": "a generic type that allows you to autocomplete the string or number",
+      "files": [
+        {
+          "path": "src/registry/types/AutoComplete/AutoComplete.ts",
+          "type": "registry:lib",
+          "target": "src/types/mhl5-registry/AutoComplete.ts"
+        }
+      ]
+    },
+    {
+      "name": "LaravelPaginatedResourceType",
+      "type": "registry:lib",
+      "title": "LaravelPaginatedResourceType",
+      "description": "a reusable type that represents the paginated resource type from **Laravel**",
+      "files": [
+        {
+          "path": "src/registry/types/LaravelPaginatedResourceType/LaravelPaginatedResourceType.ts",
+          "type": "registry:lib",
+          "target": "src/types/mhl5-registry/LaravelPaginatedResourceType.ts"
+        }
+      ]
+    },
+    {
+      "name": "PartialPick",
+      "type": "registry:lib",
+      "title": "PartialPick",
+      "description": "by default, the partial makes everything optional, but you can use this type to make a partial pick of a type.",
+      "files": [
+        {
+          "path": "src/registry/types/PartialPick/PartialPick.ts",
+          "type": "registry:lib",
+          "target": "src/types/mhl5-registry/PartialPick.ts"
+        }
+      ]
+    },
+    {
+      "name": "RequiredPick",
+      "type": "registry:lib",
+      "title": "RequiredPick",
+      "description": "by default, the required makes everything required, but you can use this type to make a required pick of a type.",
+      "files": [
+        {
+          "path": "src/registry/types/RequiredPick/RequiredPick.ts",
+          "type": "registry:lib",
+          "target": "src/types/mhl5-registry/RequiredPick.ts"
+        }
+      ]
     }
   ]
 }

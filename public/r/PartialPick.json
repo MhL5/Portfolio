@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "PartialPick",
+  "type": "registry:lib",
+  "title": "PartialPick",
+  "description": "by default, the partial makes everything optional, but you can use this type to make a partial pick of a type.",
+  "files": [
+    {
+      "path": "src/registry/types/PartialPick/PartialPick.ts",
+      "content": "export type PartialPick<T, key extends keyof T> = Partial<Pick<T, key>> &\r\n  Omit<T, key>;\r\n",
+      "type": "registry:lib",
+      "target": "src/types/mhl5-registry/PartialPick.ts"
+    }
+  ]
+}
