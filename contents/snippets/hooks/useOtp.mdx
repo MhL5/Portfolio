@@ -1,0 +1,19 @@
+<ComponentSource path="src/registry/hooks/useOtp/useOtp.ts" />
+
+## Installation
+
+<InstallationTabs name="useOtp" />
+
+## Usage
+
+```tsx
+import { useOtp } from "@/hooks/useOtp";
+```
+
+<br />
+
+```tsx
+useOtp((code) => {
+  form.setFieldValue("otp", code);
+});
+```

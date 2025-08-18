@@ -146,6 +146,19 @@
           "target": "src/utils/mhl5-registry/wait.ts"
         }
       ]
+    },
+
+    {
+      "name": "useOtp",
+      "type": "registry:hook",
+      "title": "useOtp",
+      "description": "A hook for grabbing OTP codes from the user device.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useOtp/useOtp.ts",
+          "type": "registry:hook"
+        }
+      ]
     }
   ]
 }
