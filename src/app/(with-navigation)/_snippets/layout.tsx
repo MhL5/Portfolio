@@ -11,7 +11,7 @@ export default function MdxLayout({ children }: { children: React.ReactNode }) {
         <Aside className="hidden lg:block" />
 
         <main
-          id="main"
+          id="#main"
           className="prose prose-headings:font-nunito dark:prose-invert mx-auto w-full max-w-4xl overflow-x-hidden px-4 pt-4 pb-10 md:px-6 md:pt-8"
         >
           {children}

@@ -1,0 +1,22 @@
+import StructuredDataScript from "@/app/(with-navigation)/_snippets/components/StructuredDataScript";
+import type { Article, WithContext } from "schema-dts";
+
+const articleData: WithContext<Article> = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "My Article Title",
+  author: {
+    "@type": "Person",
+    name: "John Doe",
+  },
+  datePublished: "2024-03-20",
+};
+
+export default function Example() {
+  return (
+    <>
+      <StructuredDataScript data={articleData} />
+      {/* Your page content */}
+    </>
+  );
+}

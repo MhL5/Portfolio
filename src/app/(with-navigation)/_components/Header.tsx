@@ -1,6 +1,6 @@
 "use client";
 
-import SkipLink from "@/app/(with-navigation)/snippets/components/SkipLink";
+import SkipLink from "@/app/(with-navigation)/_snippets/components/SkipLink";
 import LinkButton from "@/components/blocks/buttons/LinkButton";
 import { ThemeToggle } from "@/components/blocks/buttons/ThemeToggle";
 import {
