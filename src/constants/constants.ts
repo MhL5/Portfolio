@@ -1,5 +1,4 @@
 import { isProd } from "@/registry/utils/checks/checks";
-import { snippetsLinks } from "@/constants/snippetsLinks";
 import { Code2, Hammer, Package, Wrench, Zap } from "lucide-react";
 import type { JSX } from "react";
 
@@ -29,9 +28,6 @@ export const snippetsCategoryConfig: Record<
   },
 } as const;
 
-export const snippetsPageLink =
-  snippetsLinks?.[0]?.items && snippetsLinks[0].items[0]?.url;
-
 export type ShadcnRegistry = typeof shadcnRegistry;
 export const shadcnRegistry = await import("~/registry.json").then(
   (res) => res.default,
@@ -40,3 +36,64 @@ export const shadcnRegistry = await import("~/registry.json").then(
 export const frontendDomain = isProd()
   ? process.env.NEXT_PUBLIC_FRONTEND_DOMAIN
   : "http://localhost:7777";
+
+type Links = {
+  title: string;
+  url: string;
+  items?: {
+    title: string;
+    url: string;
+  }[];
+};
+
+function generateNavigationLinks(shadcnRegistry: ShadcnRegistry): Links[] {
+  type DefaultCategorizedItems = typeof defaultCategorizedItems;
+  const defaultCategorizedItems: Record<
+    "utils" | "actions" | "types" | "components" | "hooks",
+    Links[]
+  > = {
+    components: [],
+    hooks: [],
+    actions: [],
+    utils: [],
+    types: [],
+  } as const;
+  const categorizedItems = shadcnRegistry.items.reduce<DefaultCategorizedItems>(
+    (acc, item) => {
+      // Get the first file path to determine category
+      const firstFilePath = item.files?.[0]?.path || "";
+
+      let category: string = "components";
+
+      if (firstFilePath.includes("components/")) category = "components";
+      if (firstFilePath.includes("actions/")) category = "actions";
+      if (firstFilePath.includes("utils/")) category = "utils";
+      if (firstFilePath.includes("types/")) category = "types";
+      if (firstFilePath.includes("hooks/")) category = "hooks";
+
+      acc[category as keyof DefaultCategorizedItems].push({
+        title: item.title,
+        url: `/snippets/${category}/${item.name}`,
+      });
+
+      return acc;
+    },
+    defaultCategorizedItems,
+  );
+
+  return Object.entries(categorizedItems).reduce<Links[]>(
+    (acc, [category, items]) => {
+      if (items.length > 0)
+        acc.push({
+          title: category,
+          url: `/snippets/${category}`,
+          items: items,
+        });
+
+      return acc;
+    },
+    [],
+  );
+}
+
+export const navigationLinks = generateNavigationLinks(shadcnRegistry);

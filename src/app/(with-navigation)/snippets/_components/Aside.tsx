@@ -2,8 +2,7 @@
 
 import LinkButton from "@/components/blocks/buttons/LinkButton";
 import { Button } from "@/components/ui/button";
-import { snippetsCategoryConfig } from "@/constants/constants";
-import { snippetsLinks } from "@/constants/snippetsLinks";
+import { navigationLinks, snippetsCategoryConfig } from "@/constants/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -33,16 +32,20 @@ const NavItem = ({
   </Button>
 );
 
-export default function Aside({ className }: { className?: string }) {
+type AsideProps = {
+  className?: string;
+  navigationLinks: typeof navigationLinks;
+};
+
+export default function Aside({ className, navigationLinks }: AsideProps) {
   const pathname = usePathname();
 
   return (
     <aside className={cn("w-full", className)}>
       <nav className="no-visible-scrollbar || grid gap-6 px-3 pt-4 xl:sticky xl:top-16 xl:h-[calc(100svh-4rem)] xl:overflow-y-auto xl:px-5 xl:pb-8">
-        {snippetsLinks.map(({ title, url, items }) => {
+        {navigationLinks.map(({ title, url, items }) => {
           const config = snippetsCategoryConfig?.[`${title}`];
           if (!config) return null;
-
           const Icon = config.icon;
 
           return (

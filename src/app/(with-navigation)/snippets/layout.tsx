@@ -1,7 +1,7 @@
-import Aside from "@/app/(with-navigation)/_snippets/_components/Aside";
-import SnippetToc from "@/app/(with-navigation)/_snippets/_components/SnippetToc";
 import { ScrollToTopOnNavigation } from "@/app/(with-navigation)/_snippets/components/ScrollToTop";
-import { shadcnRegistry } from "@/constants/constants";
+import Aside from "@/app/(with-navigation)/snippets/_components/Aside";
+import SnippetToc from "@/app/(with-navigation)/snippets/_components/SnippetToc";
+import { navigationLinks } from "@/constants/constants";
 
 export default function MdxLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -9,7 +9,7 @@ export default function MdxLayout({ children }: { children: React.ReactNode }) {
       <ScrollToTopOnNavigation />
 
       <div className="mx-auto grid min-h-svh w-full lg:grid-cols-[14rem_1fr] xl:grid-cols-[17.875rem_1fr_15rem]">
-        <Aside shadcnRegistry={shadcnRegistry} className="hidden lg:block" />
+        <Aside navigationLinks={navigationLinks} className="hidden lg:block" />
 
         <main
           id="main"

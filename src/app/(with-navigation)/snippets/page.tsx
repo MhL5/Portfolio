@@ -1,4 +1,3 @@
-import SnippetPageLinks from "@/app/(with-navigation)/snippets/_components/SnippetPageLinks";
 import MDXRemoteComponent from "@/MDXRemote";
 import { fileReader } from "@/utils/fileReader";
 import type { Metadata } from "next";
@@ -17,7 +16,6 @@ export default async function Page() {
   return (
     <>
       <MDXRemoteComponent source={content} />
-      <SnippetPageLinks />
     </>
   );
 }

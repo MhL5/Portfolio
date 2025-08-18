@@ -1,7 +1,7 @@
 import LinkButton from "@/components/blocks/buttons/LinkButton";
 import BreadCrumb from "@/components/BreadCrumb";
 import { Button } from "@/components/ui/button";
-import { snippetsLinks } from "@/constants/snippetsLinks";
+import { navigationLinks } from "@/constants/constants";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
@@ -14,11 +14,14 @@ type SnippetH1Props = {
 export default function SnippetH1({ heading, slug }: SnippetH1Props) {
   let prevNext: { title: string; url: string }[] = [];
 
-  for (const category of snippetsLinks) {
+  for (const category of navigationLinks) {
     if (!category.items) continue;
 
     for (let i = 0; i < category.items.length; i++) {
-      if (category.items[i].title === (slug || heading)) {
+      if (
+        category.items[i].title.toLowerCase() ===
+        (slug?.toString().toLowerCase() || heading?.toString().toLowerCase())
+      ) {
         const prev = category.items[i - 1];
         const next = category.items[i + 1];
         prevNext = [prev, next];

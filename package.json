@@ -8,7 +8,6 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "next lint",
-    "generate-routes": "node --experimental-strip-types scripts/generate-routes.ts",
     "typecheck": "tsc --noEmit",
     "registry:build": "shadcn build"
   },
