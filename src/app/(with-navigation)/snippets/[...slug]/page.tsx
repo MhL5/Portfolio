@@ -33,7 +33,7 @@ export default async function Page({ params }: PageProps) {
 
   if (!slug || slug.length === 0) return notFound();
 
-  const content = await fileReader(`contents/snippets/${slug.join("/")}.mdx`);
+  const content = await fileReader(`contents/snippets/${slug.join("/")}.md`);
   const item = shadcnRegistry.items.find((item) => item.name === slug.at(-1));
 
   if (!item) {
