@@ -1,5 +1,17 @@
 "use client";
 
+import { useLocalStorage } from "@/registry/hooks/useStorage";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { CheckIcon, ClipboardIcon, TerminalIcon, XIcon } from "lucide-react";
+import { useState } from "react";
+
 const PackageManagersActions = {
   install: {
     pnpm: `pnpm add`,
@@ -37,18 +49,6 @@ export default function CliCommandCode({
     </>
   );
 }
-
-import { useLocalStorage } from "@/app/(with-navigation)/_snippets/hooks/useStorage";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { CheckIcon, ClipboardIcon, TerminalIcon, XIcon } from "lucide-react";
-import { useState } from "react";
 
 export function CliCommandCodeInternal({
   commands,
