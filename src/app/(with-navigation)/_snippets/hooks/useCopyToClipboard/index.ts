@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function useCopyToClipboard(contentToCopy: string) {
   const [hasCopied, setHasCopied] = useState(false);
@@ -16,6 +16,12 @@ export default function useCopyToClipboard(contentToCopy: string) {
       setHasCopied(false);
     }, 2000);
   }, [contentToCopy]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   return { hasCopied, handleCopy };
 }
