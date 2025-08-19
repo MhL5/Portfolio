@@ -1,6 +1,6 @@
 "use client";
 
-import useCopyToClipboard from "@/app/(with-navigation)/_snippets/hooks/useCopyToClipboard";
+import useCopyToClipboard from "@/registry/hooks/useCopyToClipboard";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 

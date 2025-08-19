@@ -1,6 +1,6 @@
 "use client";
 
-import DebouncedInput from "@/app/(with-navigation)/_snippets/components/DebouncedInput";
+import DebouncedInput from "@/registry/new-york/items/DebouncedInput/DebouncedInput";
 import useUrlState from "@/app/(with-navigation)/_snippets/hooks/useUrlState";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
