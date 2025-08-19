@@ -5,11 +5,14 @@ import { Loader2Icon } from "lucide-react";
 import { lazy, Suspense, type ComponentType } from "react";
 
 function lazyImportComponent(
-  path: `examples/${string}` | `mhl5-registry/${string}`,
+  path:
+    | `new-york/examples/${string}`
+    | `new-york/mhl5-registry/${string}`
+    | `hooks/${string}`,
 ) {
   return lazy(async () => {
     const mod: Record<string, ComponentType<unknown>> = await import(
-      `@/registry/new-york/${path}`
+      `@/registry/${path}`
     );
     const exportName =
       Object.keys(mod).find(
@@ -25,12 +28,12 @@ function lazyImportComponent(
 
 const COMPONENT_PREVIEWS = {
   alert: {
-    preview: lazyImportComponent("examples/alert-example"),
+    preview: lazyImportComponent("new-york/examples/alert-example"),
     source: "src/registry/new-york/items/alert/alert.tsx",
   },
-  alertExample: {
-    preview: lazyImportComponent("examples/alert-example"),
-    source: "src/registry/new-york/examples/alert-example.tsx",
+  useIsMountedExample: {
+    preview: lazyImportComponent("hooks/useIsMounted/Example"),
+    source: "src/registry/hooks/useIsMounted/Example.tsx",
   },
 };
 

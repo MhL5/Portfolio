@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useIsMounted",
+  "type": "registry:hook",
+  "title": "useIsMounted",
+  "description": "A hook for checking if the component is mounted.",
+  "files": [
+    {
+      "path": "src/registry/hooks/useIsMounted/useIsMounted.ts",
+      "content": "\"use client\";\r\n\r\nimport { useEffect, useState } from \"react\";\r\n\r\nexport function useIsMounted() {\r\n  const [isMounted, setIsMounted] = useState(false);\r\n\r\n  useEffect(() => {\r\n    setIsMounted(true);\r\n  }, []);\r\n\r\n  return isMounted;\r\n}\r\n",
+      "type": "registry:hook"
+    }
+  ]
+}

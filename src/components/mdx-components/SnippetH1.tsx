@@ -8,7 +8,7 @@ import type { ReactNode } from "react";
 
 type SnippetH1Props = {
   heading: ReactNode;
-  slug?: string;
+  slug: string;
 };
 
 export default function SnippetH1({ heading, slug }: SnippetH1Props) {
@@ -18,10 +18,10 @@ export default function SnippetH1({ heading, slug }: SnippetH1Props) {
     if (!category.items) continue;
 
     for (let i = 0; i < category.items.length; i++) {
-      if (
-        category.items[i].title.toLowerCase() ===
-        (slug?.toString().toLowerCase() || heading?.toString().toLowerCase())
-      ) {
+      const categoryItemTitle = category.items[i].title.trim().toLowerCase();
+      const slugLowerCase = slug.trim().toLowerCase();
+
+      if (categoryItemTitle === slugLowerCase) {
         const prev = category.items[i - 1];
         const next = category.items[i + 1];
         prevNext = [prev, next];

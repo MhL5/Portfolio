@@ -58,7 +58,7 @@ export default async function Page({ params }: PageProps) {
             )}
           </div>
         }
-        slug={slug.at(-1)}
+        slug={slug.at(-1) || ""}
       />
 
       <MDXRemoteComponent

@@ -1,6 +1,6 @@
 "use client";
 
-import { useIsMounted } from "@/app/(with-navigation)/_snippets/hooks/useIsMounted";
+import { useIsMounted } from "@/registry/hooks/useIsMounted/useIsMounted";
 import { type ReactNode } from "react";
 
 type ClientOnlyProps = {
