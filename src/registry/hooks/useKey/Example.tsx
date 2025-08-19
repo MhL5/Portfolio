@@ -1,6 +1,6 @@
 "use client";
 
-import { useKey } from "@/app/(with-navigation)/_snippets/hooks/useKey";
+import { useKey } from "@/registry/hooks/useKey";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 

@@ -1,4 +1,4 @@
-import useTimeout from "@/app/(with-navigation)/_snippets/hooks/useTimeout";
+import useTimeout from "@/registry/hooks/useTimeout";
 import { useEffect, useState } from "react";
 
 export function useDebounce(

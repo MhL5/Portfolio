@@ -3,7 +3,7 @@
 import {
   useMediaQuery,
   useMediaQueryBreakpoint,
-} from "@/app/(with-navigation)/_snippets/hooks/useMediaQuery";
+} from "@/registry/hooks/useMediaQuery";
 import type { ReactNode } from "react";
 
 type MatchMediaProps = {

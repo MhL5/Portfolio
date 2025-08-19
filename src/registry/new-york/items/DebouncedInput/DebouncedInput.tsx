@@ -1,4 +1,4 @@
-import { useDebounce } from "@/app/(with-navigation)/_snippets/hooks/useDebounce";
+import { useDebounce } from "@/registry/hooks/useDebounce";
 import { Input } from "@/components/ui/input";
 import { useState, type ComponentPropsWithoutRef } from "react";
 

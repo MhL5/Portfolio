@@ -1,4 +1,4 @@
-import useEventListener from "@/app/(with-navigation)/_snippets/hooks/useEventListener";
+import useEventListener from "@/registry/hooks/useEventListener";
 import { isServer } from "@/registry/utils/checks/checks";
 import type { RefObject } from "react";
 
