@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocalStorage } from "@/registry/hooks/useStorage";
+import { useLocalStorage } from "@/registry/hooks/useStorage/useStorage";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

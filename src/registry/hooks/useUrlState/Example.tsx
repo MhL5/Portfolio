@@ -1,7 +1,7 @@
 "use client";
 
 import DebouncedInput from "@/registry/new-york/DebouncedInput/DebouncedInput";
-import useUrlState from "@/registry/hooks/useUrlState";
+import useUrlState from "@/registry/hooks/useUrlState/useUrlState";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
