@@ -138,7 +138,8 @@
       "files": [
         {
           "path": "src/registry/new-york/ScrollToTop/ScrollToTop.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "src/components/utils/ScrollToTop.tsx"
         }
       ]
     },
