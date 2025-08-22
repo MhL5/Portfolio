@@ -1,16 +1,17 @@
-import Example from "../../../src/registry/new-york/examples/DebouncedInputExample";
+<ComponentPreview name="DebouncedInput" />
 
-<SnippetH1 heading="DebouncedInput" />
+## Installation
 
-a debounced input that debounces the input value.
+<InstallationTabs name="DebouncedInput" />
 
-<br />
+## Usage
 
-<CodePreview
-  preview={<Example />}
-  codePath="src/app/(with-navigation)/snippets/components/DebouncedInput/Example.tsx"
-/>
+```tsx
+import { DebouncedInput } from "@/components/mhl5-registry/DebouncedInput";
 
-## Code
-
-<ComponentSource path="src/app/(with-navigation)/snippets/components/DebouncedInput/index.tsx" />
+<DebouncedInput
+  placeholder="Search"
+  debounceTime={500}
+  onChange={(value) => console.log(value)}
+/>;
+```

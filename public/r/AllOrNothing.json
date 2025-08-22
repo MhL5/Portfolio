@@ -9,7 +9,7 @@
       "path": "src/registry/types/AllOrNothing/AllOrNothing.ts",
       "content": "export type AllOrNothing<T> = T | { [K in keyof T]?: never };\r\n",
       "type": "registry:lib",
-      "target": "src/types/mhl5-registry/AllOrNothing.ts"
+      "target": "src/types/AllOrNothing.ts"
     }
   ]
 }

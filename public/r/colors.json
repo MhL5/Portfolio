@@ -3,7 +3,7 @@
   "name": "colors",
   "type": "registry:component",
   "title": "Colors",
-  "description": "This is not a component, it is a collection of colors for the theme.",
+  "description": "This is not a component, it is a collection of colors that i use with shadcn ui.",
   "files": [],
   "cssVars": {
     "theme": {

@@ -61,6 +61,18 @@
       "files": []
     },
     {
+      "name": "DebouncedInput",
+      "type": "registry:component",
+      "title": "DebouncedInput",
+      "description": "An input that debounces the input value.",
+      "files": [
+        {
+          "path": "src/registry/new-york/DebouncedInput/DebouncedInput.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "ScrollToTop",
       "type": "registry:component",
       "title": "ScrollToTop",
@@ -68,8 +80,7 @@
       "files": [
         {
           "path": "src/registry/new-york/items/ScrollToTop/ScrollToTop.tsx",
-          "type": "registry:component",
-          "target": "src/components/mhl5-registry/utils/ScrollToTop.tsx"
+          "type": "registry:component"
         }
       ]
     },
@@ -83,7 +94,7 @@
         {
           "path": "src/registry/utils/checks/checks.ts",
           "type": "registry:lib",
-          "target": "src/utils/mhl5-registry/checks.ts"
+          "target": "src/utils/checks.ts"
         }
       ]
     },
@@ -96,7 +107,7 @@
         {
           "path": "src/registry/utils/groupByKey/groupByKey.ts",
           "type": "registry:lib",
-          "target": "src/utils/mhl5-registry/groupByKey.ts"
+          "target": "src/utils/groupByKey.ts"
         }
       ]
     },
@@ -109,7 +120,7 @@
         {
           "path": "src/registry/utils/ObjectKeysTyped/ObjectKeysTyped.ts",
           "type": "registry:lib",
-          "target": "src/utils/mhl5-registry/ObjectKeysTyped.ts"
+          "target": "src/utils/ObjectKeysTyped.ts"
         }
       ]
     },
@@ -122,7 +133,7 @@
         {
           "path": "src/registry/utils/stringFormatters/stringFormatters.ts",
           "type": "registry:lib",
-          "target": "src/utils/mhl5-registry/stringFormatters.ts"
+          "target": "src/utils/stringFormatters.ts"
         }
       ]
     },
@@ -135,7 +146,7 @@
         {
           "path": "src/registry/utils/wait/wait.ts",
           "type": "registry:lib",
-          "target": "src/utils/mhl5-registry/wait.ts"
+          "target": "src/utils/wait.ts"
         }
       ]
     },
@@ -174,7 +185,7 @@
         {
           "path": "src/registry/types/AllOrNothing/AllOrNothing.ts",
           "type": "registry:lib",
-          "target": "src/types/mhl5-registry/AllOrNothing.ts"
+          "target": "src/types/AllOrNothing.ts"
         }
       ]
     },
@@ -187,7 +198,7 @@
         {
           "path": "src/registry/types/AutoComplete/AutoComplete.ts",
           "type": "registry:lib",
-          "target": "src/types/mhl5-registry/AutoComplete.ts"
+          "target": "src/types/AutoComplete.ts"
         }
       ]
     },
@@ -200,7 +211,7 @@
         {
           "path": "src/registry/types/LaravelPaginatedResourceType/LaravelPaginatedResourceType.ts",
           "type": "registry:lib",
-          "target": "src/types/mhl5-registry/LaravelPaginatedResourceType.ts"
+          "target": "src/types/LaravelPaginatedResourceType.ts"
         }
       ]
     },
@@ -213,7 +224,7 @@
         {
           "path": "src/registry/types/PartialPick/PartialPick.ts",
           "type": "registry:lib",
-          "target": "src/types/mhl5-registry/PartialPick.ts"
+          "target": "src/types/PartialPick.ts"
         }
       ]
     },
@@ -226,7 +237,7 @@
         {
           "path": "src/registry/types/RequiredPick/RequiredPick.ts",
           "type": "registry:lib",
-          "target": "src/types/mhl5-registry/RequiredPick.ts"
+          "target": "src/types/RequiredPick.ts"
         }
       ]
     }

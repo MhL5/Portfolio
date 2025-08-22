@@ -31,6 +31,10 @@ const COMPONENT_PREVIEWS = {
     preview: lazyImportComponent("new-york/colors/example"),
     source: "src/registry/new-york/colors/example.tsx",
   },
+  DebouncedInput: {
+    preview: lazyImportComponent("new-york/DebouncedInput/example"),
+    source: "src/registry/new-york/DebouncedInput/Example.tsx",
+  },
 
   useIsMountedExample: {
     preview: lazyImportComponent("hooks/useIsMounted/Example"),

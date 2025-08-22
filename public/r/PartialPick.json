@@ -9,7 +9,7 @@
       "path": "src/registry/types/PartialPick/PartialPick.ts",
       "content": "export type PartialPick<T, key extends keyof T> = Partial<Pick<T, key>> &\r\n  Omit<T, key>;\r\n",
       "type": "registry:lib",
-      "target": "src/types/mhl5-registry/PartialPick.ts"
+      "target": "src/types/PartialPick.ts"
     }
   ]
 }
