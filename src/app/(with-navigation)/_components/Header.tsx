@@ -1,6 +1,6 @@
 "use client";
 
-import SkipLink from "@/registry/new-york/items/SkipLink/SkipLink";
+import SkipLink from "@/registry/new-york/SkipLink/SkipLink";
 import LinkButton from "@/components/buttons/LinkButton";
 import { ThemeToggle } from "@/components/buttons/ThemeToggle";
 import {
