@@ -1,6 +1,6 @@
 "use client";
 
-import useTimeout from "@/registry/hooks/useTimeout";
+import useTimeout from "@/registry/hooks/useTimeout/useTimeout";
 import { useEffect, useState } from "react";
 
 export function useDebounce(
