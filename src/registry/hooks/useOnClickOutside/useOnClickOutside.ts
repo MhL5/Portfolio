@@ -1,6 +1,6 @@
 "use client";
 
-import useEventListener from "@/registry/hooks/useEventListener";
+import useEventListener from "@/registry/hooks/useEventListener/useEventListener";
 import { isServer } from "@/registry/utils/checks/checks";
 import type { RefObject } from "react";
 

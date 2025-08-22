@@ -11,8 +11,7 @@
     {
       "path": "src/registry/new-york/StructuredDataScript/StructuredDataScript.tsx",
       "content": "import type { Thing, WithContext } from \"schema-dts\";\r\n\r\ntype StructuredDataScriptProps<T extends Thing> = {\r\n  data: WithContext<T>;\r\n  id?: string;\r\n};\r\n\r\nexport default function StructuredDataScript<T extends Thing>({\r\n  data,\r\n  id,\r\n}: StructuredDataScriptProps<T>) {\r\n  return (\r\n    <script\r\n      id={id}\r\n      type=\"application/ld+json\"\r\n      dangerouslySetInnerHTML={{\r\n        __html: JSON.stringify(data),\r\n      }}\r\n    />\r\n  );\r\n}\r\n",
-      "type": "registry:component",
-      "target": "src/components/utils/StructuredDataScript.tsx"
+      "type": "registry:component"
     }
   ]
 }
