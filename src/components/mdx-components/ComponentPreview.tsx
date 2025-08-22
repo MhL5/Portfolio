@@ -47,6 +47,10 @@ const COMPONENT_PREVIEWS = {
     preview: lazyImportComponent("new-york/Img/Example"),
     source: "src/registry/new-york/Img/Example.tsx",
   },
+  MatchMedia: {
+    preview: lazyImportComponent("new-york/MatchMedia/Example"),
+    source: "src/registry/new-york/MatchMedia/Example.tsx",
+  },
 
   useIsMountedExample: {
     preview: lazyImportComponent("hooks/useIsMounted/Example"),

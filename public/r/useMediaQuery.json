@@ -4,6 +4,9 @@
   "type": "registry:hook",
   "title": "useMediaQuery",
   "description": "the `useMediaQuery` module provides hooks for working with responsive breakpoints in React applications. its written using the `window.matchMedia` API and `facade` pattern.",
+  "registryDependencies": [
+    "http://localhost:7777/r/AutoComplete.json"
+  ],
   "files": [
     {
       "path": "src/registry/hooks/useMediaQuery/useMediaQuery.ts",

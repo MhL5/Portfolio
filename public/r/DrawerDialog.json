@@ -7,8 +7,7 @@
   "registryDependencies": [
     "dialog",
     "drawer",
-    "http://localhost:7777/r/useMediaQuery.json",
-    "http://localhost:7777/r/AutoComplete.json"
+    "http://localhost:7777/r/useMediaQuery.json"
   ],
   "files": [
     {
