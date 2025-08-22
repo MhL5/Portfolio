@@ -7,11 +7,15 @@
 ## Usage
 
 ```tsx
-import { DebouncedInput } from "@/components/mhl5-registry/DebouncedInput";
+import DebouncedInput from "@/components/DebouncedInput";
+```
 
+<br />
+
+```tsx
 <DebouncedInput
   placeholder="Search"
-  debounceTime={500}
-  onChange={(value) => console.log(value)}
-/>;
+  delay={500}
+  onDebouncedChange={(value) => console.log(value)}
+/>
 ```
