@@ -1,5 +1,4 @@
-import CodeBlockShell from "@/components/code-components/CodeBlock/ui/Shell";
-import CodePreview from "@/components/code-components/CodePreview";
+import CopyButton from "@/components/blocks/buttons/CopyButton";
 import CliCommandCode from "@/components/mdx-components/CliCommandCode";
 import ComponentPreview from "@/components/mdx-components/ComponentPreview";
 import ComponentSource from "@/components/mdx-components/ComponentSource";
@@ -115,12 +114,24 @@ export default function MDXRemoteComponent({ source }: MDXRemoteProps) {
             );
 
             return (
-              <CodeBlockShell
-                code={typeof children === "string" ? children : ""}
-                className={className}
+              <pre
+                className="not-prose relative h-fit max-w-full overflow-x-auto"
                 {...props}
-                codeHTML={codeHTML}
-              />
+              >
+                <CopyButton
+                  content={typeof children === "string" ? children : ""}
+                  className="absolute top-3 right-3"
+                />
+
+                <code
+                  dangerouslySetInnerHTML={{ __html: codeHTML }}
+                  className={cn(
+                    "max-h-96 max-w-full overflow-auto text-sm leading-relaxed",
+                    className,
+                  )}
+                  {...props}
+                />
+              </pre>
             );
           }
 
@@ -135,7 +146,6 @@ export default function MDXRemoteComponent({ source }: MDXRemoteProps) {
             </code>
           );
         },
-        CodePreview,
         SnippetH1,
         ComponentPreview,
         CliCommandCode,

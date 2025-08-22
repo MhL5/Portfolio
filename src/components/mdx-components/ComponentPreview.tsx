@@ -35,6 +35,46 @@ const COMPONENT_PREVIEWS = {
     preview: lazyImportComponent("hooks/useIsMounted/Example"),
     source: "src/registry/hooks/useIsMounted/Example.tsx",
   },
+  useDebouncedExample: {
+    preview: lazyImportComponent("hooks/useDebounce/Example"),
+    source: "src/registry/hooks/useDebounce/Example.tsx",
+  },
+  useCopyToClipboardExample: {
+    preview: lazyImportComponent("hooks/useCopyToClipboard/Example"),
+    source: "src/registry/hooks/useCopyToClipboard/Example.tsx",
+  },
+  useEventListenerExample: {
+    preview: lazyImportComponent("hooks/useEventListener/Example"),
+    source: "src/registry/hooks/useEventListener/Example.tsx",
+  },
+  useIsVisibleExample: {
+    preview: lazyImportComponent("hooks/useIsVisible/Example"),
+    source: "src/registry/hooks/useIsVisible/Example.tsx",
+  },
+  useMediaQueryExample: {
+    preview: lazyImportComponent("hooks/useMediaQuery/Example"),
+    source: "src/registry/hooks/useMediaQuery/Example.tsx",
+  },
+  useOnClickOutsideExample: {
+    preview: lazyImportComponent("hooks/useOnClickOutside/Example"),
+    source: "src/registry/hooks/useOnClickOutside/Example.tsx",
+  },
+  usePreviousExample: {
+    preview: lazyImportComponent("hooks/usePrevious/Example"),
+    source: "src/registry/hooks/usePrevious/Example.tsx",
+  },
+  useSizeExample: {
+    preview: lazyImportComponent("hooks/useSize/Example"),
+    source: "src/registry/hooks/useSize/Example.tsx",
+  },
+  useStateWithHistoryExample: {
+    preview: lazyImportComponent("hooks/useStateWithHistory/Example"),
+    source: "src/registry/hooks/useStateWithHistory/Example.tsx",
+  },
+  useStateWithValidationExample: {
+    preview: lazyImportComponent("hooks/useStateWithValidation/Example"),
+    source: "src/registry/hooks/useStateWithValidation/Example.tsx",
+  },
 };
 
 type ComponentPreviewProps = {
