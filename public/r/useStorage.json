@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "useStorage",
+  "type": "registry:hook",
+  "title": "useStorage",
+  "description": "Hooks for localStorage and sessionStorage with React state synchronization.",
+  "files": [
+    {
+      "path": "src/registry/hooks/useStorage/useStorage.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

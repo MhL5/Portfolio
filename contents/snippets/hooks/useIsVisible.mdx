@@ -1,5 +1,22 @@
-<SnippetH1 heading="useIsVisible" />
+## Installation
 
-Simple hook for checking if an element is visible in the viewport using the **Intersection Observer API**.
+<InstallationTabs name="useIsVisible" />
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useIsVisible/index.ts" />
+## Usage
+
+```tsx
+import useIsVisible from "@/hooks/useIsVisible";
+```
+
+<br />
+
+```tsx
+const elementRef = useRef<HTMLDivElement>(null);
+const isVisible = useIsVisible(elementRef);
+
+// With options
+const isVisible = useIsVisible(elementRef, {
+  rootMargin: "100px",
+  once: true,
+});
+```

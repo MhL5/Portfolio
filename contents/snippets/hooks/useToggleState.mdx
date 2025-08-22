@@ -1,7 +1,23 @@
-import Example from "./Example";
+## Installation
 
-<SnippetH1 heading="useToggleState" />
+<InstallationTabs name="useToggleState" />
 
-Simple hook for toggling a state.
+## Usage
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useToggleState/index.ts" />
+```tsx
+import { useToggleState } from "@/hooks/useToggleState";
+```
+
+<br />
+
+```tsx
+const [isOpen, setIsOpen, { toggle, activate, deactivate }] =
+  useToggleState(false);
+
+// Basic usage
+const handleToggle = () => toggle();
+
+// Direct control
+const openModal = () => activate();
+const closeModal = () => deactivate();
+```

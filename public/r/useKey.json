@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "useKey",
+  "type": "registry:hook",
+  "title": "useKey",
+  "description": "A hook that listens for a key press and calls a function when the key is pressed.",
+  "registryDependencies": [
+    "http://localhost:7777/r/useEventListener.json",
+    "http://localhost:7777/r/checks.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/useKey/useKey.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

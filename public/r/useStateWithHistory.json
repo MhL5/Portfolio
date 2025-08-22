@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "useStateWithHistory",
+  "type": "registry:hook",
+  "title": "useStateWithHistory",
+  "description": "A hook that extends useState with history functionality, allowing undo and redo operations.",
+  "files": [
+    {
+      "path": "src/registry/hooks/useStateWithHistory/useStateWithHistory.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

@@ -1,5 +1,23 @@
-<SnippetH1 heading="useTimeout" />
+## Installation
 
-its a Hook that returns a tuple with the reset, clear functions. the callback is called when the timeout is finished.
+<InstallationTabs name="useTimeout" />
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useTimeout/index.ts" />
+## Usage
+
+```tsx
+import useTimeout from "@/hooks/useTimeout";
+```
+
+<br />
+
+```tsx
+const [reset, clear] = useTimeout(() => {
+  console.log("Timeout finished!");
+}, 5000);
+
+// Reset the timeout
+const handleReset = () => reset();
+
+// Clear the timeout
+const handleClear = () => clear();
+```

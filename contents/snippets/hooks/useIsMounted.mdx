@@ -1,7 +1,22 @@
-Simple hook for checking if the component is mounted.
-
-<ComponentPreview name="useIsMountedExample" />
-
 ## Installation
 
 <InstallationTabs name="useIsMounted" />
+
+## Usage
+
+```tsx
+import { useIsMounted } from "@/hooks/useIsMounted";
+```
+
+<br />
+
+```tsx
+const isMounted = useIsMounted();
+
+// Use to prevent hydration errors
+if (!isMounted) {
+  return <div>Loading...</div>;
+}
+
+return <ClientOnlyComponent />;
+```

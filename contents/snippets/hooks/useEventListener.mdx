@@ -1,5 +1,22 @@
-<SnippetH1 heading="useEventListener" />
+## Installation
 
-Simple hook for adding an event listener.
+<InstallationTabs name="useEventListener" />
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useEventListener/index.ts" />
+## Usage
+
+```tsx
+import useEventListener from "@/hooks/useEventListener";
+```
+
+<br />
+
+```tsx
+// Listen to window events
+useEventListener("resize", handleResize);
+
+// Listen to document events
+useEventListener("click", handleClick, document);
+
+// Listen to element events
+useEventListener("scroll", handleScroll, elementRef.current);
+```

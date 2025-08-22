@@ -1,12 +1,27 @@
-import Example from "@/app/(with-navigation)/_snippets/components/DebouncedInput/Example";
+## Installation
 
-<SnippetH1 heading="useDebounce" />
+<InstallationTabs name="useDebounce" />
 
-Simple hook for debouncing a value. depending on the use case, you can use the `useDebounce` hook or the `useDebounceValue` hook.
+## Usage
 
-<CodePreview
-  preview={<Example />}
-  codePath="src/app/(with-navigation)/snippets/components/DebouncedInput/Example.tsx"
-/>
+```tsx
+import { useDebounce, useDebounceValue } from "@/hooks/useDebounce";
+```
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useDebounce/index.ts" />
+<br />
+
+```tsx
+// useDebounce - executes a function after delay
+useDebounce(
+  () => {
+    // This will run after 500ms of inactivity
+    console.log("Debounced function executed");
+  },
+  500,
+  [dependency],
+);
+
+// useDebounceValue - debounces a value
+const [search, setSearch] = useState("");
+const debouncedSearch = useDebounceValue(search, 300);
+```

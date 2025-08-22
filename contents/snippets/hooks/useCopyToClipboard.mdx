@@ -1,14 +1,15 @@
-import Example from "../../../src/registry/hooks/useCopyToClipboard/Example";
+## Installation
 
-<SnippetH1 heading="useCopyToClipboard" />
+<InstallationTabs name="useCopyToClipboard" />
 
-Simple hook for copying to clipboard.
+## Usage
 
-<CodePreview
-  preview={<Example />}
-  codePath="src/app/(with-navigation)/snippets/hooks/useCopyToClipboard/Example.tsx"
-/>
+```tsx
+import useCopyToClipboard from "@/hooks/useCopyToClipboard";
+```
 
-## Snippet
+<br />
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useCopyToClipboard/index.ts" />
+```tsx
+const { hasCopied, handleCopy } = useCopyToClipboard("Content to copy");
+```

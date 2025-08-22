@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "useStepper",
+  "type": "registry:hook",
+  "title": "useStepper",
+  "description": "A hook for managing step-based navigation logic.",
+  "files": [
+    {
+      "path": "src/registry/hooks/useStepper/useStepper.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

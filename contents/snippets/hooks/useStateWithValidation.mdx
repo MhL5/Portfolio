@@ -1,5 +1,20 @@
-<SnippetH1 heading="useStateWithValidation" />
+## Installation
 
-its a Hook with isValid state. returns a tuple with the state, the setStateWithValidation function and the isValid state.
+<InstallationTabs name="useStateWithValidation" />
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useStateWithValidation/index.ts" />
+## Usage
+
+```tsx
+import useStateWithValidation from "@/hooks/useStateWithValidation";
+```
+
+<br />
+
+```tsx
+const [email, setEmail, isValid] = useStateWithValidation(
+  (value: string) => value.includes("@"),
+  "",
+);
+
+// The isValid state will automatically update based on validation
+```

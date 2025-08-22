@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "useIsVisible",
+  "type": "registry:hook",
+  "title": "useIsVisible",
+  "description": "A hook for checking if an element is visible in the viewport using Intersection Observer API.",
+  "files": [
+    {
+      "path": "src/registry/hooks/useIsVisible/useIsVisible.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

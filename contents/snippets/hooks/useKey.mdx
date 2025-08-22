@@ -1,14 +1,21 @@
-import Example from "../../../src/registry/hooks/useKey/Example";
+## Installation
 
-<SnippetH1 heading="useKey" />
+<InstallationTabs name="useKey" />
 
-a hook that listens for a key press and calls a function when the key is pressed.
+## Usage
 
-<CodePreview
-  preview={<Example />}
-  codePath="src/app/(with-navigation)/snippets/hooks/useKey/Example.tsx"
-/>
+```tsx
+import { useKey } from "@/hooks/useKey";
+```
 
-## Snippet
+<br />
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useKey/index.ts" />
+```tsx
+useKey({
+  key: "Escape",
+  eventName: "keydown",
+  handler: () => {
+    console.log("Escape key pressed!");
+  },
+});
+```

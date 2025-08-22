@@ -1,5 +1,23 @@
-<SnippetH1 heading="useStepper" />
+## Installation
 
-`useStepper` makes it easy to implement step-based navigation logic with minimal code.
+<InstallationTabs name="useStepper" />
 
-<ComponentSource path="src/app/(with-navigation)/snippets/hooks/useStepper/index.ts" />
+## Usage
+
+```tsx
+import { useStepper } from "@/hooks/useStepper";
+```
+
+<br />
+
+```tsx
+// With number of steps
+const { currentStep, isFirstStep, isLastStep, goTo, next, back } = useStepper(
+  3,
+  { initialStep: 0, loop: false },
+);
+
+// With step components
+const steps = [<Step1 />, <Step2 />, <Step3 />];
+const { currentStep, step, next, back } = useStepper(steps);
+```

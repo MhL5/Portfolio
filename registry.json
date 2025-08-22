@@ -249,25 +249,13 @@
     },
 
     {
-      "name": "useOtp",
+      "name": "useCopyToClipboard",
       "type": "registry:hook",
-      "title": "useOtp",
-      "description": "A hook for grabbing OTP codes from the user device.",
+      "title": "useCopyToClipboard",
+      "description": "A hook for copying content to clipboard.",
       "files": [
         {
-          "path": "src/registry/hooks/useOtp/useOtp.ts",
-          "type": "registry:hook"
-        }
-      ]
-    },
-    {
-      "name": "useIsMounted",
-      "type": "registry:hook",
-      "title": "useIsMounted",
-      "description": "A hook for checking if the component is mounted.",
-      "files": [
-        {
-          "path": "src/registry/hooks/useIsMounted/useIsMounted.ts",
+          "path": "src/registry/hooks/useCopyToClipboard/useCopyToClipboard.ts",
           "type": "registry:hook"
         }
       ]
@@ -285,13 +273,54 @@
       ]
     },
     {
-      "name": "useTimeout",
+      "name": "useEventListener",
       "type": "registry:hook",
-      "title": "useTimeout",
-      "description": "A hook for debouncing a value.",
+      "title": "useEventListener",
+      "description": "A hook for adding event listeners with proper cleanup.",
+      "registryDependencies": ["http://localhost:7777/r/checks.json"],
       "files": [
         {
-          "path": "src/registry/hooks/useTimeout/useTimeout.ts",
+          "path": "src/registry/hooks/useEventListener/useEventListener.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useIsMounted",
+      "type": "registry:hook",
+      "title": "useIsMounted",
+      "description": "A hook for checking if the component is mounted.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useIsMounted/useIsMounted.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useIsVisible",
+      "type": "registry:hook",
+      "title": "useIsVisible",
+      "description": "A hook for checking if an element is visible in the viewport using Intersection Observer API.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useIsVisible/useIsVisible.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useKey",
+      "type": "registry:hook",
+      "title": "useKey",
+      "description": "A hook that listens for a key press and calls a function when the key is pressed.",
+      "registryDependencies": [
+        "http://localhost:7777/r/useEventListener.json",
+        "http://localhost:7777/r/checks.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/useKey/useKey.ts",
           "type": "registry:hook"
         }
       ]
@@ -305,6 +334,118 @@
       "files": [
         {
           "path": "src/registry/hooks/useMediaQuery/useMediaQuery.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useOnClickOutside",
+      "type": "registry:hook",
+      "title": "useOnClickOutside",
+      "description": "A hook to handle clicks outside of a component.",
+      "registryDependencies": [
+        "http://localhost:7777/r/useEventListener.json",
+        "http://localhost:7777/r/checks.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/useOnClickOutside/useOnClickOutside.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useOtp",
+      "type": "registry:hook",
+      "title": "useOtp",
+      "description": "A hook for grabbing OTP codes from the user device.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useOtp/useOtp.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useStateWithHistory",
+      "type": "registry:hook",
+      "title": "useStateWithHistory",
+      "description": "A hook that extends useState with history functionality, allowing undo and redo operations.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useStateWithHistory/useStateWithHistory.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useStateWithValidation",
+      "type": "registry:hook",
+      "title": "useStateWithValidation",
+      "description": "A hook with isValid state that validates the state value.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useStateWithValidation/useStateWithValidation.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useStepper",
+      "type": "registry:hook",
+      "title": "useStepper",
+      "description": "A hook for managing step-based navigation logic.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useStepper/useStepper.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useStorage",
+      "type": "registry:hook",
+      "title": "useStorage",
+      "description": "Hooks for localStorage and sessionStorage with React state synchronization.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useStorage/useStorage.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useTimeout",
+      "type": "registry:hook",
+      "title": "useTimeout",
+      "description": "A hook for debouncing a value.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useTimeout/useTimeout.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useToggleState",
+      "type": "registry:hook",
+      "title": "useToggleState",
+      "description": "A hook for toggling boolean state with additional helper functions.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useToggleState/useToggleState.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useUrlState",
+      "type": "registry:hook",
+      "title": "useUrlState",
+      "description": "A hook for managing state in the URL search parameters.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useUrlState/useUrlState.ts",
           "type": "registry:hook"
         }
       ]
