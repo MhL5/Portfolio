@@ -17,7 +17,7 @@ export default function Example() {
         <Button>trigger</Button>
       </DrawerDialogTrigger>
 
-      <DrawerDialogContent className="p-0">
+      <DrawerDialogContent>
         <DrawerDialogScrollArea>
           <div className="flex h-dvh w-full flex-col gap-4 p-6">
             <DrawerDialogTitle>DrawerDialog Example</DrawerDialogTitle>

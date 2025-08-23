@@ -25,7 +25,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/registry/hooks/useMediaQuery/useMediaQuery";
+import { useMediaQueryBreakpoint } from "@/registry/hooks/useMediaQuery/useMediaQuery";
 import {
   createContext,
   use,
@@ -35,7 +35,7 @@ import {
 } from "react";
 
 type DrawerDialogContextType = {
-  isMobile: boolean | undefined;
+  isSm: boolean | undefined;
 };
 
 const DrawerDialogContext = createContext<DrawerDialogContextType | null>(null);
@@ -51,11 +51,15 @@ function DrawerDialogProvider({
   isOpen,
   setIsOpen,
 }: DrawerDialogProviderProps) {
-  const isMobile = useIsMobile();
+  const isSm = useMediaQueryBreakpoint("sm");
 
   return (
-    <DrawerDialogContext value={{ isMobile }}>
-      {isMobile ? (
+    <DrawerDialogContext value={{ isSm }}>
+      {isSm ? (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          {children}
+        </Dialog>
+      ) : (
         <Drawer
           // autoFocus={open} fixes block aria hidden attribute accessibility bug
           // repositionInputs={true} prevents safari keyboard layout shift on dismissal
@@ -64,10 +68,6 @@ function DrawerDialogProvider({
         >
           {children}
         </Drawer>
-      ) : (
-        <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          {children}
-        </Dialog>
       )}
     </DrawerDialogContext>
   );
@@ -90,35 +90,52 @@ function DrawerDialog(props: DrawerDialogProps) {
 
 type DrawerDialogContentProps = ComponentPropsWithoutRef<typeof DialogContent>;
 
-function DrawerDialogContent(props: DrawerDialogContentProps) {
-  const { isMobile } = useDrawerDialogContext();
+function DrawerDialogContent({
+  className,
+  ...props
+}: DrawerDialogContentProps) {
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
-    return <DrawerContent data-slot="drawer-dialog-content" {...props} />;
-  return <DialogContent data-slot="dialog-dialog-content" {...props} />;
+  if (isSm)
+    return (
+      <DialogContent
+        data-slot="dialog-dialog-content"
+        className={cn(
+          "[&:has([data-slot='drawer-dialog-scroll-area'])]:p-0",
+          className,
+        )}
+        {...props}
+      />
+    );
+  return (
+    <DrawerContent
+      data-slot="drawer-dialog-content"
+      className={className}
+      {...props}
+    />
+  );
 }
 
 type DrawerDialogTriggerProps = ComponentPropsWithoutRef<typeof DialogTrigger>;
 
 function DrawerDialogTrigger({ onClick, ...props }: DrawerDialogTriggerProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
+  if (isSm)
     return (
-      <DrawerTrigger
-        data-slot="drawer-dialog-trigger"
-        onClick={(e) => {
-          e.currentTarget.blur(); // another fix for block aria hidden attribute accessibility bug
-          onClick?.(e);
-        }}
+      <DialogTrigger
+        data-slot="dialog-dialog-trigger"
+        onClick={onClick}
         {...props}
       />
     );
-
   return (
-    <DialogTrigger
-      data-slot="dialog-dialog-trigger"
-      onClick={onClick}
+    <DrawerTrigger
+      data-slot="drawer-dialog-trigger"
+      onClick={(e) => {
+        e.currentTarget.blur(); // another fix for block aria hidden attribute accessibility bug
+        onClick?.(e);
+      }}
       {...props}
     />
   );
@@ -127,11 +144,10 @@ function DrawerDialogTrigger({ onClick, ...props }: DrawerDialogTriggerProps) {
 type DrawerDialogCloseProps = ComponentPropsWithoutRef<typeof DialogClose>;
 
 function DrawerDialogClose(props: DrawerDialogCloseProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
-    return <DrawerClose data-slot="drawer-dialog-close" {...props} />;
-  return <DialogClose data-slot="dialog-dialog-close" {...props} />;
+  if (isSm) return <DialogClose data-slot="dialog-dialog-close" {...props} />;
+  return <DrawerClose data-slot="drawer-dialog-close" {...props} />;
 }
 
 type DrawerDialogDescriptionProps = ComponentPropsWithoutRef<
@@ -139,63 +155,59 @@ type DrawerDialogDescriptionProps = ComponentPropsWithoutRef<
 >;
 
 function DrawerDialogDescription(props: DrawerDialogDescriptionProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
+  if (isSm)
     return (
-      <DrawerDescription data-slot="drawer-dialog-description" {...props} />
+      <DialogDescription data-slot="dialog-dialog-description" {...props} />
     );
-  return <DialogDescription data-slot="dialog-dialog-description" {...props} />;
+  return <DrawerDescription data-slot="drawer-dialog-description" {...props} />;
 }
 
 type DrawerDialogTitleProps = ComponentPropsWithoutRef<typeof DialogTitle>;
 
 function DrawerDialogTitle(props: DrawerDialogTitleProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
-    return <DrawerTitle data-slot="drawer-dialog-title" {...props} />;
-  return <DialogTitle data-slot="dialog-dialog-title" {...props} />;
+  if (isSm) return <DialogTitle data-slot="dialog-dialog-title" {...props} />;
+  return <DrawerTitle data-slot="drawer-dialog-title" {...props} />;
 }
 
 type DrawerDialogFooterProps = ComponentPropsWithoutRef<typeof DialogFooter>;
 
 function DrawerDialogFooter(props: DrawerDialogFooterProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
-    return <DrawerFooter data-slot="drawer-dialog-footer" {...props} />;
-  return <DialogFooter data-slot="dialog-dialog-footer" {...props} />;
+  if (isSm) return <DialogFooter data-slot="dialog-dialog-footer" {...props} />;
+  return <DrawerFooter data-slot="drawer-dialog-footer" {...props} />;
 }
 
 type DrawerDialogHeaderProps = ComponentPropsWithoutRef<typeof DialogHeader>;
 
 function DrawerDialogHeader(props: DrawerDialogHeaderProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
-    return <DrawerHeader data-slot="drawer-dialog-header" {...props} />;
-  return <DialogHeader data-slot="dialog-dialog-header" {...props} />;
+  if (isSm) return <DialogHeader data-slot="dialog-dialog-header" {...props} />;
+  return <DrawerHeader data-slot="drawer-dialog-header" {...props} />;
 }
 
 type DrawerDialogOverlayProps = ComponentPropsWithoutRef<typeof DialogOverlay>;
 
 function DrawerDialogOverlay(props: DrawerDialogOverlayProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
-    return <DrawerOverlay data-slot="drawer-dialog-overlay" {...props} />;
-  return <DialogOverlay data-slot="dialog-dialog-overlay" {...props} />;
+  if (isSm)
+    return <DialogOverlay data-slot="dialog-dialog-overlay" {...props} />;
+  return <DrawerOverlay data-slot="drawer-dialog-overlay" {...props} />;
 }
 
 type DrawerDialogPortalProps = ComponentPropsWithoutRef<typeof DialogPortal>;
 
 function DrawerDialogPortal(props: DrawerDialogPortalProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
-  if (isMobile)
-    return <DrawerPortal data-slot="drawer-dialog-portal" {...props} />;
-  return <DialogPortal data-slot="dialog-dialog-portal" {...props} />;
+  if (isSm) return <DialogPortal data-slot="dialog-dialog-portal" {...props} />;
+  return <DrawerPortal data-slot="drawer-dialog-portal" {...props} />;
 }
 
 type DrawerDialogScrollAreaProps = ComponentPropsWithoutRef<"div">;
@@ -203,21 +215,21 @@ type DrawerDialogScrollAreaProps = ComponentPropsWithoutRef<"div">;
 const drawerContentScrollAreaClassNames =
   "max-h-[90dvh] overflow-y-auto p-0 sm:max-w-[80dvw]";
 const dialogContentScrollAreaClassNames =
-  "max-h-[90dvh] w-[auto] overflow-y-auto p-0 sm:max-w-[80dvw]";
+  "max-h-[90dvh] w-[auto] overflow-y-auto p-6 sm:max-w-[80dvw]";
 
 function DrawerDialogScrollArea({
   className,
   ...props
 }: DrawerDialogScrollAreaProps) {
-  const { isMobile } = useDrawerDialogContext();
+  const { isSm } = useDrawerDialogContext();
 
   return (
     <div
       data-slot="drawer-dialog-scroll-area"
       className={cn(
-        isMobile
-          ? drawerContentScrollAreaClassNames
-          : dialogContentScrollAreaClassNames,
+        isSm
+          ? dialogContentScrollAreaClassNames
+          : drawerContentScrollAreaClassNames,
         className,
       )}
       {...props}
