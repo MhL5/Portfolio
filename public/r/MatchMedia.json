@@ -5,7 +5,7 @@
   "title": "MatchMedia",
   "description": "a component that conditionally renders its children based on a media query.",
   "registryDependencies": [
-    "http://localhost:7777/r/useMediaQuery.json"
+    "https://mhl5.vercel.app/r/useMediaQuery.json"
   ],
   "files": [
     {

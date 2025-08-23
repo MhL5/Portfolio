@@ -5,8 +5,8 @@
   "title": "useKey",
   "description": "A hook that listens for a key press and calls a function when the key is pressed.",
   "registryDependencies": [
-    "http://localhost:7777/r/useEventListener.json",
-    "http://localhost:7777/r/checks.json"
+    "https://mhl5.vercel.app/r/useEventListener.json",
+    "https://mhl5.vercel.app/r/checks.json"
   ],
   "files": [
     {

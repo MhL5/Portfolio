@@ -5,7 +5,7 @@
   "title": "useDebounce",
   "description": "A hook for debouncing a value.",
   "registryDependencies": [
-    "http://localhost:7777/r/useTimeout.json"
+    "https://mhl5.vercel.app/r/useTimeout.json"
   ],
   "files": [
     {

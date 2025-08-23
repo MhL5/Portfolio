@@ -5,7 +5,7 @@
   "title": "useEventListener",
   "description": "A hook for adding event listeners with proper cleanup.",
   "registryDependencies": [
-    "http://localhost:7777/r/checks.json"
+    "https://mhl5.vercel.app/r/checks.json"
   ],
   "files": [
     {

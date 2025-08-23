@@ -5,8 +5,8 @@
   "title": "DebouncedInput",
   "description": "An input that debounces the input value.",
   "registryDependencies": [
-    "http://localhost:7777/r/useDebounce.json",
-    "http://localhost:7777/r/useTimeout.json"
+    "https://mhl5.vercel.app/r/useDebounce.json",
+    "https://mhl5.vercel.app/r/useTimeout.json"
   ],
   "files": [
     {

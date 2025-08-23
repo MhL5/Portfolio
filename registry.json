@@ -66,8 +66,8 @@
       "title": "DebouncedInput",
       "description": "An input that debounces the input value.",
       "registryDependencies": [
-        "http://localhost:7777/r/useDebounce.json",
-        "http://localhost:7777/r/useTimeout.json"
+        "https://mhl5.vercel.app/r/useDebounce.json",
+        "https://mhl5.vercel.app/r/useTimeout.json"
       ],
       "files": [
         {
@@ -84,7 +84,7 @@
       "registryDependencies": [
         "dialog",
         "drawer",
-        "http://localhost:7777/r/useMediaQuery.json"
+        "https://mhl5.vercel.app/r/useMediaQuery.json"
       ],
       "files": [
         {
@@ -122,7 +122,7 @@
       "type": "registry:ui",
       "title": "MatchMedia",
       "description": "a component that conditionally renders its children based on a media query.",
-      "registryDependencies": ["http://localhost:7777/r/useMediaQuery.json"],
+      "registryDependencies": ["https://mhl5.vercel.app/r/useMediaQuery.json"],
       "files": [
         {
           "path": "src/registry/new-york/MatchMedia/MatchMedia.tsx",
@@ -199,7 +199,7 @@
       "type": "registry:hook",
       "title": "useDebounce",
       "description": "A hook for debouncing a value.",
-      "registryDependencies": ["http://localhost:7777/r/useTimeout.json"],
+      "registryDependencies": ["https://mhl5.vercel.app/r/useTimeout.json"],
       "files": [
         {
           "path": "src/registry/hooks/useDebounce/useDebounce.ts",
@@ -212,7 +212,7 @@
       "type": "registry:hook",
       "title": "useEventListener",
       "description": "A hook for adding event listeners with proper cleanup.",
-      "registryDependencies": ["http://localhost:7777/r/checks.json"],
+      "registryDependencies": ["https://mhl5.vercel.app/r/checks.json"],
       "files": [
         {
           "path": "src/registry/hooks/useEventListener/useEventListener.ts",
@@ -250,8 +250,8 @@
       "title": "useKey",
       "description": "A hook that listens for a key press and calls a function when the key is pressed.",
       "registryDependencies": [
-        "http://localhost:7777/r/useEventListener.json",
-        "http://localhost:7777/r/checks.json"
+        "https://mhl5.vercel.app/r/useEventListener.json",
+        "https://mhl5.vercel.app/r/checks.json"
       ],
       "files": [
         {
@@ -265,7 +265,7 @@
       "type": "registry:hook",
       "title": "useMediaQuery",
       "description": "the `useMediaQuery` module provides hooks for working with responsive breakpoints in React applications. its written using the `window.matchMedia` API and `facade` pattern.",
-      "registryDependencies": ["http://localhost:7777/r/AutoComplete.json"],
+      "registryDependencies": ["https://mhl5.vercel.app/r/AutoComplete.json"],
       "files": [
         {
           "path": "src/registry/hooks/useMediaQuery/useMediaQuery.ts",
@@ -279,8 +279,8 @@
       "title": "useOnClickOutside",
       "description": "A hook to handle clicks outside of a component.",
       "registryDependencies": [
-        "http://localhost:7777/r/useEventListener.json",
-        "http://localhost:7777/r/checks.json"
+        "https://mhl5.vercel.app/r/useEventListener.json",
+        "https://mhl5.vercel.app/r/checks.json"
       ],
       "files": [
         {

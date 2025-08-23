@@ -7,7 +7,7 @@
   "registryDependencies": [
     "dialog",
     "drawer",
-    "http://localhost:7777/r/useMediaQuery.json"
+    "https://mhl5.vercel.app/r/useMediaQuery.json"
   ],
   "files": [
     {
