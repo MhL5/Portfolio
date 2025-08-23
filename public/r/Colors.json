@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "colors",
+  "name": "Colors",
   "type": "registry:component",
   "title": "Colors",
   "description": "a collection of colors I use with shadcn colors.",

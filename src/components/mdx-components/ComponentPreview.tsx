@@ -24,7 +24,7 @@ function lazyImportComponent(path: string) {
 
 // without @/registry/
 const CodePreviewSources = {
-  colors: "new-york/colors/example.tsx",
+  Colors: "new-york/Colors/example.tsx",
   DebouncedInput: "new-york/DebouncedInput/example.tsx",
   DrawerDialog: "new-york/DrawerDialog/example.tsx",
   FadeShadow: "new-york/FadeShadow/example.tsx",
