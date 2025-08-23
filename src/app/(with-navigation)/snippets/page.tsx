@@ -18,18 +18,7 @@ export default async function Page() {
     <>
       <MDXRemoteComponent source={content} />
 
-      <div className="mt-8 space-y-6">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Snippets Collection
-          </h2>
-          <p className="text-muted-foreground mt-2">
-            Browse through our categorized collection of React and Next.js code
-            snippets
-          </p>
-        </div>
-        <SnippetsList />
-      </div>
+      <SnippetsList />
     </>
   );
 }

@@ -7,7 +7,6 @@ type useIsVisibleOptions = {
   once?: boolean;
 };
 
-// todo: fails on initial mount
 export default function useIsVisible(
   ref: RefObject<HTMLElement | null>,
   { rootMargin = "0px", once = false }: useIsVisibleOptions = {},
