@@ -1,5 +1,5 @@
 import CliCommandCode from "@/components/mdx-components/CliCommandCode";
-import ComponentPreview from "@/components/mdx-components/ComponentPreview";
+import CodePreview from "@/components/mdx-components/CodePreview";
 import ComponentSource from "@/components/mdx-components/ComponentSource";
 import InstallationTabs from "@/components/mdx-components/InstallationTabs";
 import SnippetH1 from "@/components/mdx-components/SnippetH1";
@@ -117,7 +117,7 @@ export default function MDXRemoteComponent({ source }: MDXRemoteProps) {
           );
         },
         SnippetH1,
-        ComponentPreview,
+        CodePreview,
         CliCommandCode,
         InstallationTabs,
         ComponentSource,

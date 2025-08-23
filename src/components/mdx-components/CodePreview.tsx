@@ -44,11 +44,11 @@ const CODE_PREVIEWS = ObjectKeysTyped(CodePreviewSources).reduce(
   {} as Record<keyof typeof CodePreviewSources, ComponentType<unknown>>,
 );
 
-type ComponentPreviewProps = {
+type CodePreviewProps = {
   name: keyof typeof CODE_PREVIEWS;
 };
 
-export default function ComponentPreview({ name }: ComponentPreviewProps) {
+export default function CodePreview({ name }: CodePreviewProps) {
   const CodePreview = CODE_PREVIEWS?.[name];
   const CodePreviewSource = CodePreviewSources?.[name];
 
