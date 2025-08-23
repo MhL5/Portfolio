@@ -4,6 +4,9 @@
   "type": "registry:hook",
   "title": "useDebounce",
   "description": "A hook for debouncing a value.",
+  "registryDependencies": [
+    "http://localhost:7777/r/useTimeout.json"
+  ],
   "files": [
     {
       "path": "src/registry/hooks/useDebounce/useDebounce.ts",

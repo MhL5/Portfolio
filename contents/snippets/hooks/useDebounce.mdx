@@ -4,24 +4,36 @@
 
 ## Usage
 
+### useDebounce
+
 ```tsx
-import { useDebounce, useDebounceValue } from "@/hooks/useDebounce";
+import { useDebounce } from "@/hooks/useDebounce";
 ```
 
 <br />
 
 ```tsx
-// useDebounce - executes a function after delay
+const [value, setValue] = useState("");
+
 useDebounce(
   () => {
-    // This will run after 500ms of inactivity
-    console.log("Debounced function executed");
+    console.log(`debounced ${value}`);
   },
-  500,
-  [dependency],
+  2000,
+  // make sure to add the dependencies if you want to debounce a value
+  [value],
 );
+```
 
-// useDebounceValue - debounces a value
+### useDebounceValue
+
+```tsx
+import { useDebounceValue } from "@/hooks/useDebounce";
+```
+
+<br />
+
+```tsx
 const [search, setSearch] = useState("");
 const debouncedSearch = useDebounceValue(search, 300);
 ```
