@@ -1,9 +1,9 @@
-import LinkButton from "@/components/buttons/LinkButton";
 import BreadCrumb from "@/components/BreadCrumb";
 import { Button } from "@/components/ui/button";
 import { navigationLinks } from "@/constants/constants";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 type SnippetH1Props = {
@@ -65,18 +65,17 @@ export default function SnippetH1({ heading, slug }: SnippetH1Props) {
               );
 
             return (
-              <LinkButton
+              <Button
                 key={`h1-link-button${index}`}
-                href={item?.url || "#"}
-                buttonProps={{
-                  size: "icon",
-                  disabled: !item,
-                  variant: "secondary",
-                }}
-                className="size-8 xl:size-9"
+                size="icon"
+                disabled={!item}
+                variant="secondary"
+                asChild
               >
-                <H1PrevNextChildren index={index} />
-              </LinkButton>
+                <Link href={item?.url || "#"} className="size-8 xl:size-9">
+                  <H1PrevNextChildren index={index} />
+                </Link>
+              </Button>
             );
           })}
         </div>

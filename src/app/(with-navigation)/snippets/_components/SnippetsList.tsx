@@ -1,10 +1,11 @@
 "use client";
 
-import LinkButton from "@/components/buttons/LinkButton";
+import { Button } from "@/components/ui/button";
 import { navigationLinks, snippetsCategoryConfig } from "@/constants/constants";
 import { AutoGrid } from "@/registry/new-york/AutoGrid/AutoGrid";
 import DebouncedInput from "@/registry/new-york/DebouncedInput/DebouncedInput";
 import Typography from "@/registry/new-york/Typography/Typography";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function SnippetsList() {
@@ -54,14 +55,14 @@ export default function SnippetsList() {
               </div>
               <div className="space-y-2 pl-2">
                 {filteredItems?.map((item) => (
-                  <LinkButton
-                    key={item.title}
-                    href={item.url}
-                    buttonProps={{ variant: "ghost" }}
-                    className="h-10 w-full justify-start text-base"
-                  >
-                    {item.title}
-                  </LinkButton>
+                  <Button key={item.title} variant="ghost" asChild>
+                    <Link
+                      href={item.url}
+                      className="h-10 w-full justify-start text-base"
+                    >
+                      {item.title}
+                    </Link>
+                  </Button>
                 ))}
               </div>
             </div>
