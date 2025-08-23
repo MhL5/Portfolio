@@ -11,13 +11,5 @@ import { useToggleState } from "@/hooks/useToggleState";
 <br />
 
 ```tsx
-const [isOpen, setIsOpen, { toggle, activate, deactivate }] =
-  useToggleState(false);
-
-// Basic usage
-const handleToggle = () => toggle();
-
-// Direct control
-const openModal = () => activate();
-const closeModal = () => deactivate();
+const [isOpen, setIsOpen, { toggle, on, off }] = useToggleState(false);
 ```

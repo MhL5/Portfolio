@@ -52,7 +52,7 @@ function ExampleSuspended() {
           <DebouncedInput
             delay={500}
             className="min-w-xs"
-            placeholder="Enter a value to update url state with"
+            placeholder="Enter a value to update url state"
             initialValue={value}
             onDebouncedChange={(value) => setValue(value)}
           />

@@ -8,25 +8,32 @@ To prevent hydration errors, you can wrap your component in a ClientOnly compone
 
 ## Usage
 
+### useSessionStorage
+
 ```tsx
-import { useLocalStorage, useSessionStorage } from "@/hooks/useStorage";
+import { useSessionStorage } from "@/hooks/useStorage";
 ```
 
 <br />
 
 ```tsx
-// Local storage
-const [name, setName] = useLocalStorage("user-name", "");
+const [sessionStorageValue, setSessionStorageValue] = useSessionStorage(
+  "user-name",
+  "",
+);
+```
 
-// Session storage
-const [preferences, setPreferences] = useSessionStorage("user-prefs", {
-  theme: "light",
-  language: "en",
-});
+### useLocalStorage
 
-// With function as default value
-const [data, setData] = useLocalStorage("cache", () => ({
-  timestamp: Date.now(),
-  items: [],
-}));
+```tsx
+import { useLocalStorage } from "@/hooks/useStorage";
+```
+
+<br />
+
+```tsx
+const [localStorageValue, setLocalStorageValue] = useLocalStorage(
+  "user-name",
+  "",
+);
 ```

@@ -11,13 +11,7 @@ import useTimeout from "@/hooks/useTimeout";
 <br />
 
 ```tsx
-const [reset, clear] = useTimeout(() => {
+const { reset, clear } = useTimeout(() => {
   console.log("Timeout finished!");
 }, 5000);
-
-// Reset the timeout
-const handleReset = () => reset();
-
-// Clear the timeout
-const handleClear = () => clear();
 ```

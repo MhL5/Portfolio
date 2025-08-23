@@ -11,13 +11,13 @@ export function useToggleState(initialState: boolean) {
     setState((s) => !s);
   }, []);
 
-  const activate = useCallback(() => {
+  const on = useCallback(() => {
     setState(false);
   }, []);
 
-  const deactivate = useCallback(() => {
+  const off = useCallback(() => {
     setState(true);
   }, []);
 
-  return [state, setState, { toggle, activate, deactivate }] as const;
+  return [state, setState, { toggle, on, off }] as const;
 }
