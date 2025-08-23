@@ -1,15 +1,11 @@
 import ComponentSource from "@/components/mdx-components/ComponentSource";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ObjectKeysTyped } from "@/registry/utils/ObjectKeysTyped/ObjectKeysTyped";
 import { Loader2Icon } from "lucide-react";
 import { lazy, Suspense, type ComponentType } from "react";
 
-function lazyImportComponent(
-  path:
-    | `new-york/examples/${string}`
-    | `new-york/${string}`
-    | `hooks/${string}`,
-) {
+function lazyImportComponent(path: string) {
   return lazy(async () => {
     const mod: Record<string, ComponentType<unknown>> = await import(
       `@/registry/${path}`
@@ -26,58 +22,28 @@ function lazyImportComponent(
   });
 }
 
-const COMPONENT_PREVIEWS = {
-  colors: {
-    preview: lazyImportComponent("new-york/colors/example"),
-    source: "src/registry/new-york/colors/example.tsx",
-  },
-  DebouncedInput: {
-    preview: lazyImportComponent("new-york/DebouncedInput/example"),
-    source: "src/registry/new-york/DebouncedInput/Example.tsx",
-  },
-  DrawerDialog: {
-    preview: lazyImportComponent("new-york/DrawerDialog/Example"),
-    source: "src/registry/new-york/DrawerDialog/Example.tsx",
-  },
-  FadeShadow: {
-    preview: lazyImportComponent("new-york/FadeShadow/Example"),
-    source: "src/registry/new-york/FadeShadow/Example.tsx",
-  },
-  Img: {
-    preview: lazyImportComponent("new-york/Img/Example"),
-    source: "src/registry/new-york/Img/Example.tsx",
-  },
-  MatchMedia: {
-    preview: lazyImportComponent("new-york/MatchMedia/Example"),
-    source: "src/registry/new-york/MatchMedia/Example.tsx",
-  },
-  useCopyToClipboard: {
-    preview: lazyImportComponent("hooks/useCopyToClipboard/Example"),
-    source: "src/registry/hooks/useCopyToClipboard/Example.tsx",
-  },
-  useIsMounted: {
-    preview: lazyImportComponent("hooks/useIsMounted/Example"),
-    source: "src/registry/hooks/useIsMounted/Example.tsx",
-  },
-  useKey: {
-    preview: lazyImportComponent("hooks/useKey/Example"),
-    source: "src/registry/hooks/useKey/Example.tsx",
-  },
-  useUrlState: {
-    preview: lazyImportComponent("hooks/useUrlState/Example"),
-    source: "src/registry/hooks/useUrlState/Example.tsx",
-  },
+// without @/registry/
+const CodePreviewSources = {
+  colors: "new-york/colors/example.tsx",
 };
+const CODE_PREVIEWS = ObjectKeysTyped(CodePreviewSources).reduce(
+  (acc, key) => {
+    const source = CodePreviewSources[key];
+    acc[key] = lazyImportComponent(source);
+    return acc;
+  },
+  {} as Record<keyof typeof CodePreviewSources, ComponentType<unknown>>,
+);
 
 type ComponentPreviewProps = {
-  name: keyof typeof COMPONENT_PREVIEWS;
+  name: keyof typeof CODE_PREVIEWS;
 };
 
 export default function ComponentPreview({ name }: ComponentPreviewProps) {
-  const Component = COMPONENT_PREVIEWS?.[name]?.["preview"];
-  const componentSourcePath = COMPONENT_PREVIEWS?.[name]?.["source"];
+  const CodePreview = CODE_PREVIEWS?.[name];
+  const CodePreviewSource = CodePreviewSources?.[name];
 
-  if (!Component || !componentSourcePath)
+  if (!CodePreview || !CodePreviewSource)
     return (
       <p className="text-muted-foreground not-prose text-sm">
         Component{" "}
@@ -95,7 +61,6 @@ export default function ComponentPreview({ name }: ComponentPreviewProps) {
         <TabsTrigger value="code">Code</TabsTrigger>
       </TabsList>
 
-      {/*  */}
       <Card className="h-[450px] overflow-y-auto rounded-lg bg-transparent p-0 [scrollbar-color:var(--muted-foreground)_var(--code-background)]">
         <CardContent className="h-full p-0">
           <TabsContent
@@ -105,11 +70,11 @@ export default function ComponentPreview({ name }: ComponentPreviewProps) {
             <Suspense
               fallback={<Loader2Icon className="size-16 animate-spin" />}
             >
-              <Component />
+              <CodePreview />
             </Suspense>
           </TabsContent>
           <TabsContent value="code" className="h-full">
-            <ComponentSource path={componentSourcePath} />
+            <ComponentSource path={`src/registry/${CodePreviewSource}`} />
           </TabsContent>
         </CardContent>
       </Card>
