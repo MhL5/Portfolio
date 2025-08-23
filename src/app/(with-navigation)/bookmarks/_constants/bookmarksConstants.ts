@@ -1,13 +1,22 @@
 import { snippetsCategoryConfig } from "@/constants/constants";
-import { Code2, Globe, Palette } from "lucide-react";
+import { Book, Code2, Globe, Palette } from "lucide-react";
 
 export type Bookmark = {
   title: string;
   description: string;
   url: string;
-  category: "UI" | "Design" | "Tools" | "Development";
+  category: "UI" | "Design" | "Tools" | "Development" | "Learning-Resources";
   featured?: boolean;
 };
+
+const learningResourcesBookmarks: Bookmark[] = [
+  {
+    title: "Meaningful Git Commits",
+    description: "Meaningful Git Commits",
+    url: "https://www.conventionalcommits.org/en/v1.0.0/#summary",
+    category: "Learning-Resources",
+  },
+];
 
 const toolsBookmarks: Bookmark[] = [
   {
@@ -262,6 +271,7 @@ export const allBookmarks: Bookmark[] = [
   ...developmentBookmarks,
   ...designBookmarks,
   ...uiBookmarks,
+  ...learningResourcesBookmarks,
 ];
 
 export const bookmarkCategoryConfig = {
@@ -275,5 +285,9 @@ export const bookmarkCategoryConfig = {
   UI: {
     icon: snippetsCategoryConfig["components"].icon,
     color: snippetsCategoryConfig["components"].tailwindClass,
+  },
+  "Learning-Resources": {
+    icon: Book,
+    color: "text-green-600 dark:text-green-400",
   },
 };
