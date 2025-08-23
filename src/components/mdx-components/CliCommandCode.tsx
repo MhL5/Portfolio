@@ -1,16 +1,10 @@
 "use client";
 
-import { useLocalStorage } from "@/registry/hooks/useStorage/useStorage";
-import { Button } from "@/components/ui/button";
+import CopyButton from "@/components/buttons/CopyButton";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { CheckIcon, ClipboardIcon, TerminalIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useLocalStorage } from "@/registry/hooks/useStorage/useStorage";
+import { TerminalIcon } from "lucide-react";
 
 const PackageManagersActions = {
   install: {
@@ -62,20 +56,6 @@ export function CliCommandCodeInternal({
     "cli-method",
     commands[0].label,
   );
-  const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
-    "idle",
-  );
-
-  function handleCopy() {
-    const command = commands.find((cmd) => cmd.label === selectedTab);
-    if (command) {
-      navigator.clipboard
-        .writeText(command.code)
-        .then(() => setCopyState("copied"))
-        .catch(() => setCopyState("error"))
-        .finally(() => setTimeout(() => setCopyState("idle"), 2000));
-    }
-  }
 
   return (
     <Card className="not-prose bg-code-background p-0">
@@ -101,26 +81,12 @@ export function CliCommandCodeInternal({
               ))}
             </TabsList>
 
-            <Tooltip open={copyState !== "idle"}>
-              <TooltipTrigger asChild>
-                <Button
-                  onClick={handleCopy}
-                  variant="ghost"
-                  className="text-muted-foreground ml-auto size-8"
-                >
-                  {copyState === "idle" ? (
-                    <ClipboardIcon />
-                  ) : copyState === "copied" ? (
-                    <CheckIcon />
-                  ) : (
-                    <XIcon className="text-destructive" />
-                  )}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="left">
-                {copyState === "error" ? "Error!" : "Copied"}
-              </TooltipContent>
-            </Tooltip>
+            <CopyButton
+              content={
+                commands.find((cmd) => cmd.label === selectedTab)?.code || ""
+              }
+              className="ml-auto"
+            />
           </div>
           <div>
             {commands.map((command) => (

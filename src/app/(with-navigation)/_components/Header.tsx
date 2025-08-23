@@ -57,46 +57,46 @@ export default function Header() {
   return (
     <>
       <header className="bg-background/50 border-border/30 fixed top-0 z-50 h-13 w-dvw border-b backdrop-blur-md">
-        <nav className="mx-auto flex h-full w-full max-w-[2000px] items-center justify-between px-4">
-          <div className="flex items-center gap-6">
+        <nav className="mx-auto flex h-full w-full max-w-[2000px] items-center px-4">
+          <Sheet>
+            <SheetTrigger className="lg:hidden">
+              <span className="sr-only">Menu</span>
+              <MenuIcon className="h-5 w-5" />
+            </SheetTrigger>
+            <SheetContent side="left" className="max-w-xs sm:max-w-xs">
+              <SheetHeader>
+                <SheetTitle>
+                  <Button variant="link" asChild>
+                    <Link
+                      href="/"
+                      className="font-nunito px-0 text-xl font-bold md:px-4"
+                    >
+                      MhL
+                    </Link>
+                  </Button>
+                </SheetTitle>
+                <SheetDescription className="sr-only">
+                  main page navigation menu for mobile devices
+                </SheetDescription>
+              </SheetHeader>
+
+              {links.map(({ href, label }, i) => {
+                return (
+                  <SheetClose key={`${href}-${label}-${i}`} asChild>
+                    <Button variant="link" asChild>
+                      <Link className="justify-start font-medium" href={href}>
+                        {label}
+                      </Link>
+                    </Button>
+                  </SheetClose>
+                );
+              })}
+            </SheetContent>
+          </Sheet>
+          <div className="mr-auto flex items-center gap-6">
             {hasMainId && (
               <SkipLink href="#main">Skip to main content</SkipLink>
             )}
-            <Sheet>
-              <SheetTrigger className="lg:hidden">
-                <span className="sr-only">Menu</span>
-                <MenuIcon className="h-5 w-5" />
-              </SheetTrigger>
-              <SheetContent side="left" className="max-w-xs sm:max-w-xs">
-                <SheetHeader>
-                  <SheetTitle>
-                    <Button variant="link" asChild>
-                      <Link
-                        href="/"
-                        className="font-nunito px-0 text-xl font-bold md:px-4"
-                      >
-                        MhL
-                      </Link>
-                    </Button>
-                  </SheetTitle>
-                  <SheetDescription className="sr-only">
-                    main page navigation menu for mobile devices
-                  </SheetDescription>
-                </SheetHeader>
-
-                {links.map(({ href, label }, i) => {
-                  return (
-                    <SheetClose key={`${href}-${label}-${i}`} asChild>
-                      <Button variant="link" asChild>
-                        <Link className="justify-start font-medium" href={href}>
-                          {label}
-                        </Link>
-                      </Button>
-                    </SheetClose>
-                  );
-                })}
-              </SheetContent>
-            </Sheet>
 
             <Button variant="link" asChild>
               <Link
@@ -110,16 +110,16 @@ export default function Header() {
             {links.map(({ href, label }) => {
               const isActive = pathname === href;
               return (
-                <Button variant="link" key={href} asChild>
-                  <Link
-                    className={cn(
-                      "hidden w-fit px-0 font-medium lg:inline-block",
-                      isActive && "underline",
-                    )}
-                    href={href}
-                  >
-                    {label}
-                  </Link>
+                <Button
+                  variant="link"
+                  key={href}
+                  className={cn(
+                    "hidden w-fit px-0 font-medium lg:inline-block",
+                    isActive && "underline",
+                  )}
+                  asChild
+                >
+                  <Link href={href}>{label}</Link>
                 </Button>
               );
             })}

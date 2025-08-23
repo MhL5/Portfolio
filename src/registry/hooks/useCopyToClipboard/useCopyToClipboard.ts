@@ -2,21 +2,25 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+type CopyState = "idle" | "copied" | "error";
+
 export default function useCopyToClipboard(contentToCopy: string) {
-  const [hasCopied, setHasCopied] = useState(false);
+  const [copyState, setCopyState] = useState<CopyState>("idle");
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleCopy = useCallback(async () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    try {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-    await navigator.clipboard.writeText(contentToCopy);
-    setHasCopied(true);
-    // optional: you can use a toast library to show a success message
-    // toast.success("Copied to clipboard");
+      await navigator.clipboard.writeText(contentToCopy);
+      setCopyState("copied");
 
-    timeoutRef.current = setTimeout(() => {
-      setHasCopied(false);
-    }, 2000);
+      timeoutRef.current = setTimeout(() => {
+        setCopyState("idle");
+      }, 2000);
+    } catch {
+      setCopyState("error");
+    }
   }, [contentToCopy]);
 
   useEffect(() => {
@@ -25,5 +29,5 @@ export default function useCopyToClipboard(contentToCopy: string) {
     };
   }, []);
 
-  return { hasCopied, handleCopy };
+  return { copyState, handleCopy };
 }

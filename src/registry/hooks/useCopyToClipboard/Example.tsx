@@ -1,20 +1,22 @@
 "use client";
 
-import useCopyToClipboard from "@/registry/hooks/useCopyToClipboard/useCopyToClipboard";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import useCopyToClipboard from "@/registry/hooks/useCopyToClipboard/useCopyToClipboard";
 
 export default function Example() {
-  const { hasCopied, handleCopy } = useCopyToClipboard("Hello, world!");
+  const { copyState, handleCopy } = useCopyToClipboard("Hello, world!");
 
   return (
     <Button
       onClick={handleCopy}
       className={cn(
-        hasCopied ? "bg-green-500 text-green-100 hover:bg-green-500/90" : "",
+        copyState === "copied"
+          ? "bg-green-500 text-green-100 hover:bg-green-500/90"
+          : "",
       )}
     >
-      {hasCopied ? "Copied" : "Copy"}
+      {copyState === "copied" ? "Copied" : "Copy"}
     </Button>
   );
 }
