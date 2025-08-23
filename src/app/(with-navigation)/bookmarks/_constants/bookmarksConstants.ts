@@ -11,9 +11,16 @@ export type Bookmark = {
 
 const learningResourcesBookmarks: Bookmark[] = [
   {
-    title: "Meaningful Git Commits",
-    description: "Meaningful Git Commits",
+    title: "conventional Git Commits",
+    description:
+      "The Conventional Commits specification is a lightweight convention on top of commit messages. ",
     url: "https://www.conventionalcommits.org/en/v1.0.0/#summary",
+    category: "Learning-Resources",
+  },
+  {
+    title: "TkDodo's blog",
+    description: "TkDodo's blog, the maintainer of tanstack query",
+    url: "https://tkdodo.eu/blog",
     category: "Learning-Resources",
   },
 ];

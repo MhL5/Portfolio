@@ -39,14 +39,19 @@ export default function TailwindCssCalc({ className }: TailwindCssCalcProps) {
         }}
       />
       <Button
-        className="size-9"
+        className="size-8"
         onClick={() => {
           setType((t) => (t === "rem" ? "px" : "rem"));
         }}
       >
         {type}
       </Button>
-      <CopyButton content={result.toString()} className="size-9 shrink-0" />
+      <CopyButton
+        variant="secondary"
+        content={result.toString()}
+        className="size-9 shrink-0"
+        side="top"
+      />
 
       <p>{result}</p>
     </div>
