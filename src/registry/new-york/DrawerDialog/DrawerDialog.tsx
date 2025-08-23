@@ -99,7 +99,7 @@ function DrawerDialogContent({
   if (isSm)
     return (
       <DialogContent
-        data-slot="dialog-dialog-content"
+        data-slot="drawer-dialog-content"
         className={cn(
           "[&:has([data-slot='drawer-dialog-scroll-area'])]:p-0",
           className,
@@ -124,7 +124,7 @@ function DrawerDialogTrigger({ onClick, ...props }: DrawerDialogTriggerProps) {
   if (isSm)
     return (
       <DialogTrigger
-        data-slot="dialog-dialog-trigger"
+        data-slot="drawer-dialog-trigger"
         onClick={onClick}
         {...props}
       />
@@ -146,7 +146,7 @@ type DrawerDialogCloseProps = ComponentPropsWithoutRef<typeof DialogClose>;
 function DrawerDialogClose(props: DrawerDialogCloseProps) {
   const { isSm } = useDrawerDialogContext();
 
-  if (isSm) return <DialogClose data-slot="dialog-dialog-close" {...props} />;
+  if (isSm) return <DialogClose data-slot="drawer-dialog-close" {...props} />;
   return <DrawerClose data-slot="drawer-dialog-close" {...props} />;
 }
 
@@ -159,7 +159,7 @@ function DrawerDialogDescription(props: DrawerDialogDescriptionProps) {
 
   if (isSm)
     return (
-      <DialogDescription data-slot="dialog-dialog-description" {...props} />
+      <DialogDescription data-slot="drawer-dialog-description" {...props} />
     );
   return <DrawerDescription data-slot="drawer-dialog-description" {...props} />;
 }
@@ -169,7 +169,7 @@ type DrawerDialogTitleProps = ComponentPropsWithoutRef<typeof DialogTitle>;
 function DrawerDialogTitle(props: DrawerDialogTitleProps) {
   const { isSm } = useDrawerDialogContext();
 
-  if (isSm) return <DialogTitle data-slot="dialog-dialog-title" {...props} />;
+  if (isSm) return <DialogTitle data-slot="drawer-dialog-title" {...props} />;
   return <DrawerTitle data-slot="drawer-dialog-title" {...props} />;
 }
 
@@ -178,7 +178,7 @@ type DrawerDialogFooterProps = ComponentPropsWithoutRef<typeof DialogFooter>;
 function DrawerDialogFooter(props: DrawerDialogFooterProps) {
   const { isSm } = useDrawerDialogContext();
 
-  if (isSm) return <DialogFooter data-slot="dialog-dialog-footer" {...props} />;
+  if (isSm) return <DialogFooter data-slot="drawer-dialog-footer" {...props} />;
   return <DrawerFooter data-slot="drawer-dialog-footer" {...props} />;
 }
 
@@ -187,7 +187,7 @@ type DrawerDialogHeaderProps = ComponentPropsWithoutRef<typeof DialogHeader>;
 function DrawerDialogHeader(props: DrawerDialogHeaderProps) {
   const { isSm } = useDrawerDialogContext();
 
-  if (isSm) return <DialogHeader data-slot="dialog-dialog-header" {...props} />;
+  if (isSm) return <DialogHeader data-slot="drawer-dialog-header" {...props} />;
   return <DrawerHeader data-slot="drawer-dialog-header" {...props} />;
 }
 
@@ -197,7 +197,7 @@ function DrawerDialogOverlay(props: DrawerDialogOverlayProps) {
   const { isSm } = useDrawerDialogContext();
 
   if (isSm)
-    return <DialogOverlay data-slot="dialog-dialog-overlay" {...props} />;
+    return <DialogOverlay data-slot="drawer-dialog-overlay" {...props} />;
   return <DrawerOverlay data-slot="drawer-dialog-overlay" {...props} />;
 }
 
@@ -206,7 +206,7 @@ type DrawerDialogPortalProps = ComponentPropsWithoutRef<typeof DialogPortal>;
 function DrawerDialogPortal(props: DrawerDialogPortalProps) {
   const { isSm } = useDrawerDialogContext();
 
-  if (isSm) return <DialogPortal data-slot="dialog-dialog-portal" {...props} />;
+  if (isSm) return <DialogPortal data-slot="drawer-dialog-portal" {...props} />;
   return <DrawerPortal data-slot="drawer-dialog-portal" {...props} />;
 }
 
