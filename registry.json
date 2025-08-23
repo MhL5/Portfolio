@@ -80,7 +80,7 @@
       "name": "DrawerDialog",
       "type": "registry:ui",
       "title": "DrawerDialog",
-      "description": "a responsive dialog that renders a drawer on mobile (`max-width: 768px`) and a dialog on larger screens.",
+      "description": "a responsive dialog that renders a drawer (`max-width: 640px`) and a dialog on larger screens.",
       "registryDependencies": [
         "dialog",
         "drawer",
