@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { LoadingSwap } from "@/components/ui/loading-swap";
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Component, useTransition } from "react";
 
@@ -74,8 +74,8 @@ export function ErrorBoundaryFallback({
 }: ErrorBoundaryFallbackProps) {
   const [isPending, startTransition] = useTransition();
 
-  async function handleRetry() {
-    startTransition(async () => {
+  function handleRetry() {
+    startTransition(() => {
       onRetry();
     });
   }
@@ -105,7 +105,7 @@ export function ErrorBoundaryFallback({
         className="underline underline-offset-8"
         disabled={isPending}
       >
-        <LoadingSwap isLoading={isPending}>Retry</LoadingSwap>
+        {isPending ? <Loader2 className="animate-spin" /> : "Retry"}
       </Button>
     </div>
   );
