@@ -1,6 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { navigationLinks, snippetsCategoryConfig } from "@/constants/constants";
 import { cn } from "@/lib/utils";
 import useUrlState from "@/registry/hooks/useUrlState/useUrlState";
@@ -13,11 +20,17 @@ import { Fragment, useState } from "react";
 export default function SnippetsList() {
   const [categoryFiler, setCategoryFilter] = useUrlState("category", {
     history: "replace",
+    defaultValue: "all",
   });
   const [search, setSearch] = useState("");
 
+  const categoryClassName =
+    snippetsCategoryConfig?.[
+      categoryFiler as keyof typeof snippetsCategoryConfig
+    ]?.tailwindClass;
+
   return (
-    <section id="search" className="not-prose mt-8">
+    <section id="search" className="not-prose mt-8 min-h-svh">
       <header className="mb-4 flex flex-col items-start justify-between gap-5">
         <div className="flex w-full flex-wrap items-center justify-between gap-2">
           <Typography variant="h2" className="text-start">
@@ -25,36 +38,27 @@ export default function SnippetsList() {
           </Typography>
 
           <div className="flex flex-wrap items-center gap-2 capitalize">
-            {navigationLinks.map((link) => {
-              const isActive = categoryFiler === link.title;
-              const config =
-                snippetsCategoryConfig[
-                  link.title as keyof typeof snippetsCategoryConfig
-                ];
-              return (
-                <Button
-                  key={link.title}
-                  variant={isActive ? "default" : "secondary"}
-                  size="sm"
-                  className={cn(
-                    "capitalize",
-                    isActive ? "" : config?.tailwindClass || "text-gray-600",
-                  )}
-                  onClick={() => setCategoryFilter(link.title)}
-                >
-                  {link.title}
-                </Button>
-              );
-            })}
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => {
-                setCategoryFilter("");
-              }}
-            >
-              Clear filters
-            </Button>
+            <Select value={categoryFiler} onValueChange={setCategoryFilter}>
+              <SelectTrigger className={cn("capitalize", categoryClassName)}>
+                <SelectValue placeholder="all" />
+              </SelectTrigger>
+              <SelectContent>
+                {navigationLinks.map((link) => {
+                  return (
+                    <SelectItem
+                      key={link.title}
+                      value={link.title}
+                      className="capitalize"
+                    >
+                      {link.title}
+                    </SelectItem>
+                  );
+                })}
+                <SelectItem value="all" className="capitalize">
+                  All
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <DebouncedInput
@@ -76,7 +80,7 @@ export default function SnippetsList() {
       >
         {navigationLinks.map((link) => {
           if (
-            categoryFiler &&
+            categoryFiler !== "all" &&
             !link.title
               .trim()
               .toLowerCase()

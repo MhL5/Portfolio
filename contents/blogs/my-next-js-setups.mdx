@@ -99,6 +99,10 @@ const nextConfig: NextConfig = {
 /* 40px/2.5rem */
 --radius-7xl: calc(var(--radius) + 28px);
 
+html {
+  scrollbar-gutter: stable;
+}
+
 *:not(body, html) {
   scrollbar-width: thin;
   scrollbar-color: var(--muted-foreground) transparent;
