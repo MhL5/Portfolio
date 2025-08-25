@@ -20,7 +20,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${item.title} - Shadcn Registry`,
+    title: `${item.title} - MhL Shadcn Registry`,
     description: item.description,
   };
 }
