@@ -6,7 +6,7 @@
   "description": "An input that debounces the input value.",
   "registryDependencies": [
     "https://mhl5.vercel.app/r/useDebounce.json",
-    "https://mhl5.vercel.app/r/useTimeout.json"
+    "https://mhl5.vercel.app/r/useTimer.json"
   ],
   "files": [
     {

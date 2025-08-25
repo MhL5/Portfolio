@@ -1,0 +1,33 @@
+## Installation
+
+<InstallationTabs name="useTimer" />
+
+## Usage
+
+```tsx
+import useTimer from "@/hooks/useTimer";
+```
+
+### timeout
+
+```tsx
+const { reset, clear } = useTimer(
+  () => {
+    console.log("Timeout finished!");
+  },
+  5000,
+  "interval",
+);
+```
+
+### interval
+
+```tsx
+const { reset, clear } = useTimer(
+  () => {
+    console.log("Timeout finished!");
+  },
+  5000,
+  "interval",
+);
+```

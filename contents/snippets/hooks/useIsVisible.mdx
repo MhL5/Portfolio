@@ -11,11 +11,10 @@ import useIsVisible from "@/hooks/useIsVisible";
 <br />
 
 ```tsx
-const elementRef = useRef<HTMLDivElement>(null);
-const isVisible = useIsVisible(elementRef);
+const { isVisible, ref } = useIsVisible();
 
 // With options
-const isVisible = useIsVisible(elementRef, {
+const { isVisible, ref } = useIsVisible({
   rootMargin: "100px",
   once: true,
 });
