@@ -493,19 +493,6 @@
       ]
     },
     {
-      "name": "ObjectKeysTyped",
-      "type": "registry:lib",
-      "title": "ObjectKeysTyped",
-      "description": "Same as `Object.keys()` but type-safe, returns a typed array of keys instead of `string[]`.",
-      "files": [
-        {
-          "path": "src/registry/utils/ObjectKeysTyped/ObjectKeysTyped.ts",
-          "type": "registry:lib",
-          "target": "src/utils/ObjectKeysTyped.ts"
-        }
-      ]
-    },
-    {
       "name": "stringFormatters",
       "type": "registry:lib",
       "title": "stringFormatters",

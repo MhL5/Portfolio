@@ -1,7 +1,6 @@
 import ComponentSource from "@/components/mdx-components/ComponentSource";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ObjectKeysTyped } from "@/registry/utils/ObjectKeysTyped/ObjectKeysTyped";
 import { Loader2Icon } from "lucide-react";
 import { lazy, Suspense, type ComponentType } from "react";
 
@@ -36,10 +35,9 @@ const CodePreviewSources = {
   useKey: "hooks/useKey/example.tsx",
   useUrlState: "hooks/useUrlState/example.tsx",
 };
-const CODE_PREVIEWS = ObjectKeysTyped(CodePreviewSources).reduce(
-  (acc, key) => {
-    const source = CodePreviewSources[key];
-    acc[key] = lazyImportComponent(source);
+const CODE_PREVIEWS = Object.entries(CodePreviewSources).reduce(
+  (acc, [key, value]) => {
+    acc[key as keyof typeof CodePreviewSources] = lazyImportComponent(value);
     return acc;
   },
   {} as Record<keyof typeof CodePreviewSources, ComponentType<unknown>>,
@@ -50,7 +48,7 @@ type CodePreviewProps = {
 };
 
 export default function CodePreview({ name }: CodePreviewProps) {
-  const CodePreview = CODE_PREVIEWS?.[name];
+  const CodePreview = CODE_PREVIEWS[name];
   const CodePreviewSource = CodePreviewSources?.[name];
 
   if (!CodePreview || !CodePreviewSource)

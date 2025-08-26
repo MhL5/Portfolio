@@ -1,6 +1,5 @@
 "use client";
 
-import { ObjectKeysTyped } from "@/registry/utils/ObjectKeysTyped/ObjectKeysTyped";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useEffect, useState, type ReactNode } from "react";
@@ -52,12 +51,12 @@ export default function DeviceSpec() {
       <CardContent>
         <ul>
           {deviceInfo &&
-            ObjectKeysTyped(deviceInfo).map((key) => (
+            Object.entries(deviceInfo).map(([key, value]) => (
               <TitleValue
                 key={key}
                 title={key}
                 className="odd:bg-muted odd:text-foreground p-2"
-                value={deviceInfo?.[key] ?? null}
+                value={value ?? null}
               />
             ))}
         </ul>
