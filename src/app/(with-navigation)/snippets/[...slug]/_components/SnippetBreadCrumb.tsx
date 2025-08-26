@@ -25,7 +25,7 @@ export default function BreadCrumb() {
         <BreadcrumbSeparator />
 
         <BreadcrumbItem>
-          <BreadcrumbLink href={`/snippets#search?category=${links?.[2]}`}>
+          <BreadcrumbLink href={`/snippets?category=${links?.[2]}`}>
             {links?.[2]}
           </BreadcrumbLink>
         </BreadcrumbItem>
