@@ -5,6 +5,7 @@ import useUrlState from "@/registry/hooks/useUrlState/useUrlState";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
+import { Input } from "@/components/ui/input";
 
 export default function Example() {
   return (
@@ -16,10 +17,14 @@ export default function Example() {
 
 function ExampleSuspended() {
   const [value, setValue, isPending] = useUrlState("name");
+  const [shallow, setShallow] = useUrlState("shallow", {
+    shallow: true,
+    history: "push",
+  });
 
   return (
     <section className="grid w-full place-items-center">
-      <div>
+      <div className="max-w-sm">
         <div className="">
           <div>Current value: {value || ""}</div>
           <div>isPending: {isPending ? "true" : "false"}</div>
@@ -55,6 +60,20 @@ function ExampleSuspended() {
             placeholder="Enter a value to update url state"
             initialValue={value}
             onDebouncedChange={(value) => setValue(value)}
+          />
+        </div>
+
+        <div className="mt-5">
+          <div>Shallow mode:</div>
+          <p className="text-muted-foreground mb-1 text-sm">
+            Enabling shallow mode updates the URL in the browser without causing
+            a full server-side re-render.
+          </p>
+
+          <Input
+            placeholder="Enter a value to update url state"
+            value={shallow}
+            onChange={(e) => setShallow(e.target.value)}
           />
         </div>
       </div>

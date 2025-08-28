@@ -1,11 +1,16 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 
 type Options = {
   defaultValue?: string | (() => string);
   history?: "push" | "replace";
+  /**
+   * If true, updates the URL using window.history (pushState/replaceState) instead of Next.js router,
+   * preventing a server-side render. This keeps the update fully client-side.
+   */
+  shallow?: boolean;
 };
 
 export default function useUrlState(name: string, options: Options = {}) {
@@ -38,13 +43,22 @@ export default function useUrlState(name: string, options: Options = {}) {
       })}`;
 
       startTransition(() => {
-        router[optionsRef.current.history || "push"](newPath, {
+        const historyMethod = optionsRef.current.history || "push";
+        if (optionsRef.current.shallow)
+          return window.history[`${historyMethod}State`](null, "", newPath);
+
+        router[historyMethod](newPath, {
           scroll: false,
         });
       });
     },
     [name, pathname, router, searchParams, state],
   );
+
+  useEffect(() => {
+    const value = searchParams.get(name);
+    if (value) setState(value);
+  }, [name, searchParams]);
 
   return [state, handleSetState, isPending] as const;
 }

@@ -21,6 +21,7 @@ export default function SnippetsList() {
   const [categoryFiler, setCategoryFilter] = useUrlState("category", {
     history: "replace",
     defaultValue: "all",
+    shallow: true,
   });
   const [search, setSearch] = useState("");
 
