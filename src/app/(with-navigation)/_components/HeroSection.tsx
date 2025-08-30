@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentProps } from "react";
 
 export default function HeroSection({
   className,
   ...props
-}: ComponentPropsWithoutRef<"section">) {
+}: ComponentProps<"section">) {
   return (
     <section
       className={cn(

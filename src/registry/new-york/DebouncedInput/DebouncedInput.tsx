@@ -2,13 +2,13 @@
 
 import { useDebounce } from "@/registry/hooks/useDebounce/useDebounce";
 import { Input } from "@/components/ui/input";
-import { useState, type ComponentPropsWithoutRef } from "react";
+import { useState, type ComponentProps } from "react";
 
 type DebouncedInputProps = {
   initialValue?: string;
   onDebouncedChange: (value: string) => void;
   delay?: number;
-} & ComponentPropsWithoutRef<typeof Input>;
+} & ComponentProps<typeof Input>;
 
 export default function DebouncedInput({
   initialValue,

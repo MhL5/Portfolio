@@ -5,7 +5,7 @@ import type { DataTableProps } from "@/components/blocks/table/DataTable";
 import { cn } from "@/utils/cn";
 import type { Table } from "@tanstack/react-table";
 import { Loader2 } from "lucide-react";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentProps } from "react";
 
 export type DataTableSearchProps<TData> = DataTableProps<
   TData,
@@ -52,7 +52,7 @@ export default function DataTableSearch<TData>(
   );
 }
 
-function Container({ className, ...props }: ComponentPropsWithoutRef<"div">) {
+function Container({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       className={cn("relative h-8 w-full sm:max-w-sm", className)}

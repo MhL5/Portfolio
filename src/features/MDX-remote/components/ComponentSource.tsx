@@ -1,13 +1,13 @@
 import CopyButton from "@/components/buttons/CopyButton";
 import { cn } from "@/lib/utils";
 import { fileReader } from "@/utils/fileReader";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentProps } from "react";
 import { codeToHtml } from "shiki";
 
 type ComponentSourceProps = {
   lang?: string;
   className?: string;
-} & ComponentPropsWithoutRef<"code"> &
+} & ComponentProps<"code"> &
   (
     | {
         path: string;

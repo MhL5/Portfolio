@@ -1,7 +1,7 @@
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentProps } from "react";
 
 const links = {
   telegram: "https://t.me/mhl_5",
@@ -11,7 +11,7 @@ const links = {
 export default function ContactMe({
   className,
   ...props
-}: ComponentPropsWithoutRef<"section">) {
+}: ComponentProps<"section">) {
   return (
     <section id="contact" className={cn("", className)} {...props}>
       <div className="container mx-auto px-4">

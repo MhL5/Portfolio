@@ -26,13 +26,7 @@ import {
 } from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import { useMediaQueryBreakpoint } from "@/registry/hooks/useMediaQuery/useMediaQuery";
-import {
-  createContext,
-  use,
-  type ComponentProps,
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-} from "react";
+import { createContext, use, type ComponentProps, type ReactNode } from "react";
 
 type DrawerDialogContextType = {
   isSm: boolean | undefined;
@@ -88,7 +82,7 @@ function DrawerDialog(props: DrawerDialogProps) {
   return <DrawerDialogProvider {...props} />;
 }
 
-type DrawerDialogContentProps = ComponentPropsWithoutRef<typeof DialogContent>;
+type DrawerDialogContentProps = ComponentProps<typeof DialogContent>;
 
 function DrawerDialogContent({
   className,
@@ -116,7 +110,7 @@ function DrawerDialogContent({
   );
 }
 
-type DrawerDialogTriggerProps = ComponentPropsWithoutRef<typeof DialogTrigger>;
+type DrawerDialogTriggerProps = ComponentProps<typeof DialogTrigger>;
 
 function DrawerDialogTrigger({ onClick, ...props }: DrawerDialogTriggerProps) {
   const { isSm } = useDrawerDialogContext();
@@ -141,7 +135,7 @@ function DrawerDialogTrigger({ onClick, ...props }: DrawerDialogTriggerProps) {
   );
 }
 
-type DrawerDialogCloseProps = ComponentPropsWithoutRef<typeof DialogClose>;
+type DrawerDialogCloseProps = ComponentProps<typeof DialogClose>;
 
 function DrawerDialogClose(props: DrawerDialogCloseProps) {
   const { isSm } = useDrawerDialogContext();
@@ -150,9 +144,7 @@ function DrawerDialogClose(props: DrawerDialogCloseProps) {
   return <DrawerClose data-slot="drawer-dialog-close" {...props} />;
 }
 
-type DrawerDialogDescriptionProps = ComponentPropsWithoutRef<
-  typeof DialogDescription
->;
+type DrawerDialogDescriptionProps = ComponentProps<typeof DialogDescription>;
 
 function DrawerDialogDescription(props: DrawerDialogDescriptionProps) {
   const { isSm } = useDrawerDialogContext();
@@ -164,7 +156,7 @@ function DrawerDialogDescription(props: DrawerDialogDescriptionProps) {
   return <DrawerDescription data-slot="drawer-dialog-description" {...props} />;
 }
 
-type DrawerDialogTitleProps = ComponentPropsWithoutRef<typeof DialogTitle>;
+type DrawerDialogTitleProps = ComponentProps<typeof DialogTitle>;
 
 function DrawerDialogTitle(props: DrawerDialogTitleProps) {
   const { isSm } = useDrawerDialogContext();
@@ -173,7 +165,7 @@ function DrawerDialogTitle(props: DrawerDialogTitleProps) {
   return <DrawerTitle data-slot="drawer-dialog-title" {...props} />;
 }
 
-type DrawerDialogFooterProps = ComponentPropsWithoutRef<typeof DialogFooter>;
+type DrawerDialogFooterProps = ComponentProps<typeof DialogFooter>;
 
 function DrawerDialogFooter(props: DrawerDialogFooterProps) {
   const { isSm } = useDrawerDialogContext();
@@ -182,7 +174,7 @@ function DrawerDialogFooter(props: DrawerDialogFooterProps) {
   return <DrawerFooter data-slot="drawer-dialog-footer" {...props} />;
 }
 
-type DrawerDialogHeaderProps = ComponentPropsWithoutRef<typeof DialogHeader>;
+type DrawerDialogHeaderProps = ComponentProps<typeof DialogHeader>;
 
 function DrawerDialogHeader(props: DrawerDialogHeaderProps) {
   const { isSm } = useDrawerDialogContext();
@@ -191,7 +183,7 @@ function DrawerDialogHeader(props: DrawerDialogHeaderProps) {
   return <DrawerHeader data-slot="drawer-dialog-header" {...props} />;
 }
 
-type DrawerDialogOverlayProps = ComponentPropsWithoutRef<typeof DialogOverlay>;
+type DrawerDialogOverlayProps = ComponentProps<typeof DialogOverlay>;
 
 function DrawerDialogOverlay(props: DrawerDialogOverlayProps) {
   const { isSm } = useDrawerDialogContext();
@@ -201,7 +193,7 @@ function DrawerDialogOverlay(props: DrawerDialogOverlayProps) {
   return <DrawerOverlay data-slot="drawer-dialog-overlay" {...props} />;
 }
 
-type DrawerDialogPortalProps = ComponentPropsWithoutRef<typeof DialogPortal>;
+type DrawerDialogPortalProps = ComponentProps<typeof DialogPortal>;
 
 function DrawerDialogPortal(props: DrawerDialogPortalProps) {
   const { isSm } = useDrawerDialogContext();
@@ -210,7 +202,7 @@ function DrawerDialogPortal(props: DrawerDialogPortalProps) {
   return <DrawerPortal data-slot="drawer-dialog-portal" {...props} />;
 }
 
-type DrawerDialogScrollAreaProps = ComponentPropsWithoutRef<"div">;
+type DrawerDialogScrollAreaProps = ComponentProps<"div">;
 
 const drawerContentScrollAreaClassNames =
   "max-h-[90dvh] overflow-y-auto sm:max-w-[80dvw]";

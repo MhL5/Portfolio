@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentProps } from "react";
 
-type MarqueeProps = ComponentPropsWithoutRef<"div"> & {
+type MarqueeProps = ComponentProps<"div"> & {
   /**
    * Whether to reverse the animation direction
    * @default false

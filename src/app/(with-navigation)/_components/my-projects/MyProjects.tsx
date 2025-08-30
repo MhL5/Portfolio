@@ -6,7 +6,7 @@ import ProjectCard, {
   type ProjectCardProps,
 } from "@/app/(with-navigation)/_components/my-projects/ProjectCard";
 import { cn } from "@/lib/utils";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentProps } from "react";
 
 const projects: ProjectCardProps[] = [
   {
@@ -84,7 +84,7 @@ const projects: ProjectCardProps[] = [
 export default function MyProjects({
   className,
   ...props
-}: ComponentPropsWithoutRef<"section">) {
+}: ComponentProps<"section">) {
   return (
     <section
       className={cn("mx-auto w-full max-w-7xl px-5", className)}
