@@ -7,6 +7,7 @@ export type Bookmark = {
   url: `https://${string}`;
   category: "UI" | "Design" | "Tools" | "Development" | "Learning-Resources";
   featured?: boolean;
+  tags?: string[];
 };
 
 const learningResourcesBookmarks: Bookmark[] = [
