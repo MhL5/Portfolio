@@ -40,6 +40,12 @@ const toolsBookmarks: Bookmark[] = [
     url: "https://patterncraft.fun",
     category: "Tools",
   },
+  {
+    title: "QuickPic",
+    description: "A bunch of simple tools for images. All free. No BS.",
+    url: "https://quickpic.t3.gg/",
+    category: "Tools",
+  },
 ];
 const developmentBookmarks: Bookmark[] = [
   {
