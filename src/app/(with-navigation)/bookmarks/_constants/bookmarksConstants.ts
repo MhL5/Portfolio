@@ -46,6 +46,12 @@ const toolsBookmarks: Bookmark[] = [
     url: "https://quickpic.t3.gg/",
     category: "Tools",
   },
+  {
+    title: "tweakcn",
+    description: "Design Your Perfect shadcn/ui Theme",
+    url: "https://tweakcn.com/",
+    category: "Tools",
+  },
 ];
 const developmentBookmarks: Bookmark[] = [
   {
@@ -282,6 +288,19 @@ const uiBookmarks: Bookmark[] = [
     title: "shadcn blocks",
     description: "The ultimate block set for Shadcn UI & Tailwind.",
     url: "https://www.shadcnblocks.com",
+    category: "UI",
+  },
+  {
+    title: "shadcn tip tap",
+    description:
+      "Collection of custom extensions and toolbars for Tiptap editor.",
+    url: "https://tiptap.niazmorshed.dev",
+    category: "UI",
+  },
+  {
+    title: "evil charts",
+    description: "Beautiful, responsive, customizable charts for your website.",
+    url: "https://evilcharts.com/",
     category: "UI",
   },
 ];
