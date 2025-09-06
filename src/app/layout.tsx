@@ -28,11 +28,7 @@ export const metadata: Metadata = {
     "a Software engineer passionate about building user-friendly and efficient web applications.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body

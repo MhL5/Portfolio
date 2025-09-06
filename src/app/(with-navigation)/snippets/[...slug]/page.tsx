@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: PageProps<"/snippets/[...slug]">): Promise<Metadata> {
   const { slug = [] } = await params;
   if (!slug || slug.length === 0) return notFound();
 
@@ -40,11 +40,9 @@ export async function generateStaticParams() {
   });
 }
 
-type PageProps = {
-  params: Promise<{ slug: string[] }>;
-};
-
-export default async function Page({ params }: PageProps) {
+export default async function Page({
+  params,
+}: PageProps<"/snippets/[...slug]">) {
   const { slug = [] } = await params;
 
   if (!slug || slug.length === 0) return notFound();

@@ -3,7 +3,7 @@ import SnippetToc from "@/app/(with-navigation)/snippets/_components/SnippetToc"
 import { navigationLinks } from "@/constants/constants";
 import ScrollToTop from "@/registry/new-york/ScrollToTop/ScrollToTop";
 
-export default function MdxLayout({ children }: { children: React.ReactNode }) {
+export default function MdxLayout({ children }: LayoutProps<"/snippets">) {
   return (
     <>
       <ScrollToTop variant="on-navigation" />
