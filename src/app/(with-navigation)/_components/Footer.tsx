@@ -8,7 +8,7 @@ export default function Footer() {
         Built by
         <Button asChild variant="link" className="h-fit px-1 underline">
           <Link href="https://github.com/MhL5">Mohammad Lashani</Link>
-        </Button>{" "}
+        </Button>
       </div>
     </footer>
   );

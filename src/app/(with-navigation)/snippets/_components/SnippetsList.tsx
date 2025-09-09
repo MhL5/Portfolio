@@ -40,11 +40,18 @@ export default function SnippetsList() {
           </Typography>
 
           <div className="flex flex-wrap items-center gap-2 capitalize">
-            <Select value={categoryFiler} onValueChange={setCategoryFilter}>
+            <Select
+              defaultValue="all"
+              value={categoryFiler}
+              onValueChange={setCategoryFilter}
+            >
               <SelectTrigger className={cn("capitalize", categoryClassName)}>
                 <SelectValue placeholder="all" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="all" className="capitalize">
+                  All
+                </SelectItem>
                 {navigationLinks.map((link) => {
                   return (
                     <SelectItem
@@ -56,9 +63,6 @@ export default function SnippetsList() {
                     </SelectItem>
                   );
                 })}
-                <SelectItem value="all" className="capitalize">
-                  All
-                </SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -107,7 +111,7 @@ export default function SnippetsList() {
                 <Button key={item.title} variant="ghost" asChild>
                   <Link
                     href={item.url as Route}
-                    className={`${config?.tailwindClass || "text-gray-600"} h-10 w-full justify-start text-base`}
+                    className={`${config?.tailwindClass || "text-muted-foreground"} h-10 w-full justify-start text-base`}
                   >
                     {Icon && <Icon className="size-5" />}
                     {item.title}

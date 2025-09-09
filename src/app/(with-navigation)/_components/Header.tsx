@@ -57,7 +57,7 @@ export default function Header() {
   return (
     <>
       <header className="bg-background/50 border-border/30 fixed top-0 z-50 h-13 w-full border-b backdrop-blur-md">
-        <nav className="mx-auto flex h-full w-full max-w-[2000px] items-center px-4">
+        <nav className="max-w-8xl mx-auto flex h-full w-full items-center px-4">
           <Sheet>
             <SheetTrigger className="lg:hidden">
               <span className="sr-only">Menu</span>
