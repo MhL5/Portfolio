@@ -28,6 +28,10 @@ const links = [
     href: "/bookmarks",
   },
   {
+    label: "Blogs",
+    href: "/blogs",
+  },
+  {
     label: "Tools",
     href: "/tools",
   },

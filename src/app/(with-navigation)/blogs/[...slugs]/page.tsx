@@ -11,5 +11,9 @@ export default async function Page({ params }: PageProps<"/blogs/[...slugs]">) {
 
   const content = await fileReader(`contents/blogs/${slugs.join("/")}.mdx`);
 
-  return <MDXRemoteComponent source={content} />;
+  return (
+    <main className="prose prose-headings:font-nunito dark:prose-invert mx-auto w-full max-w-4xl overflow-x-hidden px-4 pt-4 pb-10 md:px-6 md:pt-8">
+      <MDXRemoteComponent source={content} />
+    </main>
+  );
 }
