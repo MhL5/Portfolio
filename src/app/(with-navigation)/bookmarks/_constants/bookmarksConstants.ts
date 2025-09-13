@@ -303,6 +303,12 @@ const uiBookmarks: Bookmark[] = [
     url: "https://evilcharts.com/",
     category: "UI",
   },
+  {
+    title: "uiverse",
+    description: "The Largest Library of Open-Source UI",
+    url: "https://uiverse.io/",
+    category: "UI",
+  },
 ];
 
 export const allBookmarks: Bookmark[] = [
