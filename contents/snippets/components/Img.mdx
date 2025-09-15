@@ -4,6 +4,24 @@
 
 <InstallationTabs name="Img" />
 
+### eslint
+
+You can use the following eslint rule to prevent the use of next/image
+
+```json
+{
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "name": "next/image",
+        "message": "Please import from `@/components/ui/Img` instead."
+      }
+    ]
+  }
+}
+```
+
 ## Usage
 
 ```tsx

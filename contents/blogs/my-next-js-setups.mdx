@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
       dynamic: 10,
     },
   },
-};
+  typedRoutes: true,
 ```
 
 ## Package.json useful scripts
@@ -56,8 +56,39 @@ const nextConfig: NextConfig = {
 ```ts
  {
   rules: {
-    "no-console":"warn"
-  }
+      "no-console": "warn",
+      "react/jsx-no-literals": "warn", // for i18n
+      // Consistently import navigation APIs from `@/i18n/navigation`
+      "no-restricted-imports": [
+        "error",
+        {
+          name: "next/link",
+          message: "Please import from `@/i18n/navigation` instead.",
+        },
+        {
+          name: "next/navigation",
+          importNames: [
+            "redirect",
+            "permanentRedirect",
+            "useRouter",
+            "usePathname",
+          ],
+          message: "Please import from `@/i18n/navigation` instead.",
+        },
+        {
+          name: "next/image",
+          message: "Please import from `@/components/ui/Img` instead.",
+        },
+      ],
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          selector: "typeLike",
+          format: ["PascalCase"],
+        },
+      ],
+    },
+  },
  }
 ```
 

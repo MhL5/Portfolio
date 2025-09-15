@@ -23,6 +23,13 @@ const eslintConfig = [
   {
     rules: {
       "no-console": "warn",
+      "no-restricted-imports": [
+        "error",
+        {
+          name: "next/image",
+          message: "Please import from `@/components/ui/Img` instead.",
+        },
+      ],
     },
   },
 ];
