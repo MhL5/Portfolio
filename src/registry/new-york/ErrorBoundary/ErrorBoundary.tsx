@@ -2,13 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { isDev } from "@/registry/utils/checks/checks";
 import { Loader2 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Component, useTransition } from "react";
 
 type ErrorBoundaryProps = {
   children: ReactNode;
-  fallback?: (props: ErrorBoundaryFallbackProps) => ReactNode;
+  fallback?: ((props: ErrorBoundaryFallbackProps) => ReactNode) | ReactNode;
 };
 
 type ErrorBoundaryState = {
@@ -32,6 +33,19 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     };
   }
 
+  componentDidCatch(_error: Error, _errorInfo: React.ErrorInfo) {
+    // log errors here
+    // this is an example of how to log errors in here
+    if (!isDev()) return;
+
+    console.groupCollapsed("ErrorBoundary caught an error");
+    console.log("\x1b[35m" + `Error:` + "\x1b[0m");
+    console.dir(_error, { depth: Infinity });
+    console.log("\x1b[35m" + `ErrorInfo:` + "\x1b[0m");
+    console.dir(_errorInfo, { depth: Infinity });
+    console.groupEnd();
+  }
+
   handleRetry() {
     this.setState({ hasError: false, error: null });
   }
@@ -39,10 +53,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render() {
     if (this.state.hasError && this.state.error) {
       if ("fallback" in this.props && this.props.fallback)
-        return this.props.fallback({
-          error: this.state.error,
-          onRetry: this.handleRetry,
-        });
+        return this.props.fallback instanceof Function
+          ? this.props.fallback({
+              error: this.state.error,
+              onRetry: this.handleRetry,
+            })
+          : this.props.fallback;
 
       return (
         <ErrorBoundaryFallback
