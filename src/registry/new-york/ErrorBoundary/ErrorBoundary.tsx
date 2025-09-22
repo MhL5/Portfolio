@@ -38,11 +38,17 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     // this is an example of how to log errors in here
     if (!isDev()) return;
 
+    // eslint-disable-next-line no-console
     console.groupCollapsed("ErrorBoundary caught an error");
+    // eslint-disable-next-line no-console
     console.log("\x1b[35m" + `Error:` + "\x1b[0m");
+    // eslint-disable-next-line no-console
     console.dir(_error, { depth: Infinity });
+    // eslint-disable-next-line no-console
     console.log("\x1b[35m" + `ErrorInfo:` + "\x1b[0m");
+    // eslint-disable-next-line no-console
     console.dir(_errorInfo, { depth: Infinity });
+    // eslint-disable-next-line no-console
     console.groupEnd();
   }
 
