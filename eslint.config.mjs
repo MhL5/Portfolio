@@ -31,6 +31,13 @@ const eslintConfig = [
           importNames: ["default"],
         },
       ],
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          selector: "typeLike",
+          format: ["PascalCase"],
+        },
+      ],
     },
   },
 ];
