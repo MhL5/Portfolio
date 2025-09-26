@@ -1,5 +1,3 @@
-import { discordLog } from "@/features/discord-logs/discordLogs";
-
 /**
  * Formats a date string to the format "12 شهریور 1394" using Intl.DateTimeFormat.
  *
@@ -7,27 +5,13 @@ import { discordLog } from "@/features/discord-logs/discordLogs";
  * const formattedDate = formatDate("2023-10-05"); // returns "13 مهر 1402"
  */
 export function formatDate(date: string) {
-  try {
-    const d = new Date(date);
-    const formatter = new Intl.DateTimeFormat("fa-IR", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-    return formatter.format(d);
-  } catch (error) {
-    discordLog({
-      title: "formatDate",
-      description: `\n
-      formatDate util failed to format ${date}.
-      \n \`${error}\`
-      \n \`\`\`ts\n${JSON.stringify(error, null, 2)}\`\`\` 
-      \n
-      `,
-      variant: "error",
-    });
-    return date;
-  }
+  const d = new Date(date);
+  const formatter = new Intl.DateTimeFormat("fa-IR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  return formatter.format(d);
 }
 
 /**
@@ -69,16 +53,6 @@ export function formatSecondsToHMS(
   const formattedTime = `${hoursString === "00:" ? "" : hoursString}${minutesString}:${remainingSeconds.toString().padStart(2, "0")}`;
 
   return days > 0 ? `${days}${labels?.day} ${formattedTime}` : formattedTime;
-}
-
-/**
- * formats a date into YYYY-MM-DD
- */
-export function formatDateYMD(date: Date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Month is 0-indexed
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`; // YYYY-MM-DD format
 }
 
 export function getSecondsLeft({
