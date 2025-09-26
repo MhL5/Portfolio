@@ -76,7 +76,6 @@ export default function SnippetsList() {
       </header>
 
       <AutoGrid
-        uniqueId={`SnippetsList`}
         grid={{
           maxColCount: 3,
           minColSize: 10,
