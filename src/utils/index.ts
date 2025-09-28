@@ -1,2 +1,3 @@
-export const absoluteUrl = (path: `/${string}`) =>
-  `${process.env.NEXT_PUBLIC_FRONTEND_DOMAIN}${path}`;
+import { frontendDomain } from "@/constants/constants";
+
+export const absoluteUrl = (path: `/${string}`) => `${frontendDomain}${path}`;
