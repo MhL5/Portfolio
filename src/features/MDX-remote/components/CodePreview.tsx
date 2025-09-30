@@ -36,6 +36,9 @@ const CodePreviewSources = {
   useKey: "hooks/useKey/example.tsx",
   useUrlState: "hooks/useUrlState/example.tsx",
   AutoGrid: "new-york/AutoGrid/example.tsx",
+  FallbackPagesError: "new-york/FallbackPages/ErrorExample.tsx",
+  FallbackPagesNotFound: "new-york/FallbackPages/NotFoundExample.tsx",
+  FallbackPagesLoading: "new-york/FallbackPages/LoadingExample.tsx",
 };
 const CODE_PREVIEWS = Object.entries(CodePreviewSources).reduce(
   (acc, [key, value]) => {

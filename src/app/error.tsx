@@ -1,6 +1,6 @@
 "use client";
 
-import { ErrorPage } from "@/registry/new-york/FallbackPage/FallbackPages";
+import { ErrorPage } from "@/registry/new-york/FallbackPages/FallbackPages";
 
 type ErrorProps = {
   error: Error & { digest?: string };

@@ -26,7 +26,7 @@ const ErrorNotfoundPageData = {
   buttonsClassName: "w-full basis-[calc(50%-0.375rem)] capitalize",
   errorTitleId: "error-title",
   contactSupportLink: (text: string) =>
-    `https://t.me/mhl_5?text=${encodeURIComponent(text)}`,
+    `${process.env.NEXT_PUBLIC_CONTACT_US_SUPPORT_LINK}?text=${encodeURIComponent(text)}`,
 };
 
 type NotFoundPageProps = {
@@ -159,4 +159,4 @@ function LoadingPage() {
   );
 }
 
-export { ErrorPage, NotFoundPage, LoadingPage };
+export { ErrorPage, LoadingPage, NotFoundPage };

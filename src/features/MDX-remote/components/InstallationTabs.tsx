@@ -105,11 +105,9 @@ async function getCodeModuleData(registryItem: string) {
   const cssVars = registryJson?.cssVars || null;
 
   const filesToCopy = registryJson.files?.map((file) => {
-    const pathFromType = getFileLocationFromType(file.type);
+    const pathFromType = file.target ?? getFileLocationFromType(file.type);
     return {
-      path:
-        file.target ??
-        `${pathFromType}/${registryItem}.${file.path.split(".").pop()}`,
+      path: `${pathFromType}/${registryItem}.${file.path.split(".").pop()}`,
       // TODO: In what cases is content undefined?
       content: file.content ?? "",
     };

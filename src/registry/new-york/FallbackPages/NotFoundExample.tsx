@@ -1,5 +1,5 @@
 import { NotFoundPage } from "@/registry/new-york/FallbackPages/FallbackPages";
 
-export default function NotFound() {
+export default function NotFoundExample() {
   return <NotFoundPage />;
 }
