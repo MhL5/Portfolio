@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ComponentSource from "@/features/MDX-remote/components/ComponentSource";
 import { Loader2Icon } from "lucide-react";
-import { lazy, Suspense, type ComponentType } from "react";
+import { type ComponentType, Suspense, lazy } from "react";
 
 function lazyImportComponent(path: string) {
   return lazy(async () => {
@@ -35,6 +35,7 @@ const CodePreviewSources = {
   useIsMounted: "hooks/useIsMounted/example.tsx",
   useKey: "hooks/useKey/example.tsx",
   useUrlState: "hooks/useUrlState/example.tsx",
+  AutoGrid: "new-york/AutoGrid/example.tsx",
 };
 const CODE_PREVIEWS = Object.entries(CodePreviewSources).reduce(
   (acc, [key, value]) => {
@@ -54,9 +55,9 @@ export default function CodePreview({ name }: CodePreviewProps) {
 
   if (!CodePreview || !CodePreviewSource)
     return (
-      <p className="text-muted-foreground not-prose text-sm">
+      <p className="not-prose text-sm text-muted-foreground">
         Component{" "}
-        <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
+        <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
           {name}
         </code>{" "}
         not found in registry.

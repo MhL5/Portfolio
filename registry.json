@@ -4,6 +4,18 @@
   "homepage": "https://mhl5.vercel.app",
   "items": [
     {
+      "name": "AutoGrid",
+      "type": "registry:component",
+      "title": "AutoGrid",
+      "description": "a component that automatically adjusts the grid columns without relying on breakpoints.",
+      "files": [
+        {
+          "path": "src/registry/new-york/AutoGrid/AutoGrid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "Colors",
       "type": "registry:component",
       "title": "Colors",

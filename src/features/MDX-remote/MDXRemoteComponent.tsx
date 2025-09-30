@@ -1,3 +1,7 @@
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import Iframe from "@/features/MDX-remote/components/Iframe";
+import { MDXRemote } from "next-mdx-remote/rsc";
+
 import CliCommandCode from "./components/CliCommandCode";
 import CodePreview from "./components/CodePreview";
 import ComponentSource from "./components/ComponentSource";
@@ -6,9 +10,6 @@ import MdxCode from "./components/MdxCode";
 import MdxHeading from "./components/MdxHeading";
 import MdxLink from "./components/MdxLink";
 import MdxPre from "./components/MdxPre";
-
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { MDXRemote } from "next-mdx-remote/rsc";
 
 type MDXRemoteComponentProps = {
   source: string;
@@ -37,6 +38,7 @@ export default function MDXRemoteComponent({
         Alert,
         AlertDescription,
         AlertTitle,
+        Iframe: Iframe,
       }}
     />
   );

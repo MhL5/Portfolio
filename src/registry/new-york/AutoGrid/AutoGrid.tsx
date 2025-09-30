@@ -8,6 +8,8 @@ type AutoGridProps = {
   sm?: Options;
   md?: Options;
   lg?: Options;
+
+  uniqueId: string;
 } & ComponentProps<"div">;
 
 type Options = {
@@ -50,6 +52,7 @@ function generateCssVariables(options: Options): string {
  */
 export default function AutoGrid({
   gap,
+  uniqueId,
   maxColCount,
   minColSize,
   sm,
@@ -58,7 +61,6 @@ export default function AutoGrid({
   ...props
 }: AutoGridProps) {
   const baseVariables = generateCssVariables({ maxColCount, minColSize, gap });
-  const uniqueId = useMemo(() => `AutoGrid-${crypto.randomUUID()}`, []);
   const generateMediaQueries = useCallback(
     () =>
       [sm, md, lg]
