@@ -34,7 +34,7 @@ export const shadcnRegistry = await import("~/registry.json").then(
 );
 
 export const frontendDomain = isProd()
-  ? process.env.NEXT_PUBLIC_FRONTEND_DOMAIN
+  ? `${process.env.NEXT_PUBLIC_FRONTEND_DOMAIN}`
   : `http://localhost:${process.env.PORT || 7777}`;
 
 type Links = {

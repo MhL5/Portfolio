@@ -45,7 +45,10 @@ export default function SnippetsList() {
               value={categoryFiler}
               onValueChange={setCategoryFilter}
             >
-              <SelectTrigger className={cn("capitalize", categoryClassName)}>
+              <SelectTrigger
+                aria-label="Select a category"
+                className={cn("capitalize", categoryClassName)}
+              >
                 <SelectValue placeholder="all" />
               </SelectTrigger>
               <SelectContent>

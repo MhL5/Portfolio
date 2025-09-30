@@ -1,16 +1,7 @@
 import SnippetsList from "@/app/(with-navigation)/snippets/_components/SnippetsList";
 import MDXRemoteComponent from "@/features/MDX-remote/MDXRemoteComponent";
 import { fileReader } from "@/utils/fileReader";
-import type { Metadata } from "next";
 import { Suspense } from "react";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Code Snippets Collection",
-    description:
-      "React snippets collections, built on top of shadcn/ui for use inside React and Next.js projects.",
-  };
-}
 
 export default async function Page() {
   const content = await fileReader("contents/snippets/snippets.mdx");

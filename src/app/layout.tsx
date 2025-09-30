@@ -1,3 +1,4 @@
+import { frontendDomain } from "@/constants/constants";
 import Providers from "@/providers/Providers";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
@@ -16,28 +17,49 @@ const spaceGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mhl5.vercel.app/"),
+  metadataBase: new URL(frontendDomain),
   alternates: {
     canonical: "/",
   },
   title: {
-    default: "MhL",
+    default: "MhL - Software Engineer Portfolio",
     template: "%s | MhL",
   },
   description:
-    "a Software engineer passionate about building user-friendly and efficient web applications.",
-  authors: [{ name: "Mohammad Lashani", url: "https://mhl5.vercel.app/" }],
+    "Mohammad Lashani - Software engineer passionate about building user-friendly and efficient web applications. Explore my portfolio, code snippets, and technical insights.",
+  keywords: [
+    "Mohammad Lashani",
+    "React",
+    "Next.js",
+    "MhL5",
+    "MhL5 portfolio",
+    "MhL5 snippets",
+    "Mohammad lashani portfolio",
+    "Mohammad lashani snippets",
+    "Mohammad lashani code snippets",
+    "Mohammad lashani code snippets collection",
+    "محمد لشنی",
+    "محمد حسین لشنی",
+    "کدهای MhL5",
+  ],
+  authors: [
+    { name: "Mohammad Lashani", url: frontendDomain },
+    {
+      name: "محمد لشنی",
+      url: frontendDomain,
+    },
+  ],
   creator: "Mohammad Lashani",
   publisher: "Mohammad Lashani",
+  verification: {
+    google: "g7HzkDJ_qyLAOSKx-K1cerilM6AQwiMrEgROLkMDyLA",
+  },
+  category: "technology",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <meta
-        name="google-site-verification"
-        content="g7HzkDJ_qyLAOSKx-K1cerilM6AQwiMrEgROLkMDyLA"
-      />
       <body
         className={`${spaceGrotesk.variable} ${figtree.variable} min-w-xs font-figtree antialiased`}
       >
