@@ -5,9 +5,36 @@ import ScrollToTop from "@/registry/new-york/ScrollToTop/ScrollToTop";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Code Snippets Collection",
-  description:
-    "React snippets collections, built on top of shadcn/ui for use inside React and Next.js projects.",
+  title: {
+    default: "Code Snippets Collection",
+    template: "%s | MhL",
+  },
+  description: "A collection of reusable React and Next.js code snippets",
+  keywords: [
+    "React snippets",
+    "Next.js snippets",
+    "shadcn/ui",
+    "code snippets",
+    "MhL5 snippets",
+    "React code examples",
+    "Next.js code examples",
+    "UI components",
+    "web development",
+    "Mohammad Lashani",
+    "MhL portfolio",
+    "کدهای MhL5",
+    "محمد لشنی",
+  ],
+  alternates: {
+    canonical: "/snippets",
+  },
+  authors: [
+    { name: "Mohammad Lashani", url: "https://mhl5.dev" },
+    { name: "محمد لشنی", url: "https://mhl5.dev" },
+  ],
+  creator: "Mohammad Lashani",
+  publisher: "Mohammad Lashani",
+  category: "technology",
 };
 
 export default function MdxLayout({ children }: LayoutProps<"/snippets">) {

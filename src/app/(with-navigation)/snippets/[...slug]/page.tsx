@@ -20,8 +20,15 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${item.title} - MhL Shadcn Registry`,
+    title: item.title,
     description: item.description,
+    alternates: {
+      canonical: `/snippets/${slug.join("/")}`,
+    },
+    authors: [{ name: "Mohammad Lashani", url: "https://mhl5.dev" }],
+    creator: "Mohammad Lashani",
+    publisher: "Mohammad Lashani",
+    category: "technology",
   };
 }
 
