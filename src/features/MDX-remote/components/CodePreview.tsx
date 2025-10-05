@@ -33,7 +33,6 @@ const CodePreviewSources = {
   MatchMedia: "new-york/MatchMedia/example.tsx",
   useCopyToClipboard: "hooks/useCopyToClipboard/example.tsx",
   useIsMounted: "hooks/useIsMounted/example.tsx",
-  useKey: "hooks/useKey/example.tsx",
   useUrlState: "hooks/useUrlState/example.tsx",
   AutoGrid: "new-york/AutoGrid/example.tsx",
   FallbackPagesError: "new-york/FallbackPages/ErrorExample.tsx",
