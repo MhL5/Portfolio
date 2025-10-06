@@ -1,5 +1,5 @@
 import SnippetsList from "@/app/(with-navigation)/snippets/_components/SnippetsList";
-import MDXRemoteComponent from "@/features/MDX-remote/MDXRemoteComponent";
+import MDXRemoteServer from "@/features/MDX-remote/MDXRemoteServer";
 import { fileReader } from "@/utils/fileReader";
 import { Suspense } from "react";
 
@@ -8,7 +8,7 @@ export default async function Page() {
 
   return (
     <>
-      <MDXRemoteComponent source={content} />
+      <MDXRemoteServer source={content} />
 
       <Suspense>
         <SnippetsList />

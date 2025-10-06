@@ -21,7 +21,7 @@ export default function MdxCode({
   return (
     <code
       {...props}
-      className="prose-code:after:content-none bg-secondary text-secondary-foreground rounded-sm px-1.5 py-0.5 tracking-wide text-nowrap before:content-none after:content-none"
+      className="rounded-sm bg-secondary px-1.5 py-0.5 tracking-wide text-nowrap text-secondary-foreground before:content-none after:content-none prose-code:after:content-none"
     >
       {typeof children === "string" ? children.replaceAll("`", "") : children}
     </code>

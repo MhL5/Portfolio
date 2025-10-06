@@ -1,7 +1,7 @@
 import SnippetH1 from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetH1";
 import { Badge } from "@/components/ui/badge";
 import { shadcnRegistry } from "@/constants/constants";
-import MDXRemoteComponent from "@/features/MDX-remote/MDXRemoteComponent";
+import MDXRemoteServer from "@/features/MDX-remote/MDXRemoteServer";
 import { isDev } from "@/registry/utils/checks/checks";
 import { fileReader } from "@/utils/fileReader";
 import type { Metadata } from "next";
@@ -81,7 +81,7 @@ export default async function Page({
         slug={slug.at(-1) || ""}
       />
 
-      <MDXRemoteComponent
+      <MDXRemoteServer
         source={`
         ${item?.description}\n
         ${content}
