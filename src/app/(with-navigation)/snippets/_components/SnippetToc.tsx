@@ -4,6 +4,14 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+const headingDepthMap = {
+  h2: 2,
+  h3: 3,
+  h4: 4,
+  h5: 5,
+  h6: 6,
+} as const;
+
 function useActiveItem(itemIds: string[]) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -34,24 +42,32 @@ function useActiveItem(itemIds: string[]) {
 
 type SnippetTocProps = {
   className?: string;
+  tocDepth?: number;
 };
 
 type TocItem = { title: string; id: string; depth: number };
 
-export default function SnippetToc({ className }: SnippetTocProps) {
+export default function SnippetToc({ className, tocDepth }: SnippetTocProps) {
   const [toc, setToc] = useState<TocItem[]>([]);
   const pathname = usePathname();
   const activeHeading = useActiveItem(toc.map((item) => item.id));
 
   useEffect(() => {
-    const headings = document.querySelectorAll("h2, h3");
+    const headings = document.querySelectorAll(
+      tocDepth
+        ? Array.from({ length: tocDepth }, (_, i) => `h${i + 2}`).join(", ")
+        : "h2, h3",
+    );
 
     const overview = document.getElementById("overview");
     if (headings) {
       const tocHeadings = Array.from(headings).map((heading) => ({
         title: heading.textContent ?? "",
         id: heading.id,
-        depth: heading.tagName.toLowerCase() === "h2" ? 2 : 3,
+        depth:
+          headingDepthMap[
+            heading.tagName.toLowerCase() as keyof typeof headingDepthMap
+          ],
       }));
       setToc(
         overview
@@ -59,7 +75,7 @@ export default function SnippetToc({ className }: SnippetTocProps) {
           : tocHeadings,
       );
     }
-  }, [pathname]);
+  }, [pathname, tocDepth]);
 
   if (toc.length <= 1) return null;
   return (
@@ -69,7 +85,7 @@ export default function SnippetToc({ className }: SnippetTocProps) {
         className,
       )}
     >
-      <p className="text-muted-foreground bg-background sticky top-0 h-6 text-xs">
+      <p className="sticky top-0 h-6 bg-background text-xs text-muted-foreground">
         On This Page
       </p>
 
@@ -77,7 +93,7 @@ export default function SnippetToc({ className }: SnippetTocProps) {
         <a
           key={item.id}
           href={`#${item.id}`}
-          className="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+          className="text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[active=true]:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[depth=5]:pl-8 data-[depth=6]:pl-10"
           data-active={item.id === `${activeHeading}`}
           data-depth={item.depth}
         >
