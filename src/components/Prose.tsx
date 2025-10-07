@@ -15,7 +15,7 @@ export default function Prose<T extends keyof JSX.IntrinsicElements>({
   return (
     <Component
       className={cn(
-        "prose-headings:font-nunito mx-auto prose w-full max-w-4xl overflow-x-hidden px-4 pt-4 pb-10 md:px-6 md:pt-8 dark:prose-invert",
+        "prose dark:prose-invert mx-auto w-full max-w-4xl overflow-x-hidden px-4 pt-4 pb-10 prose-headings:font-nunito md:px-6 md:pt-8",
         className,
       )}
       {...props}

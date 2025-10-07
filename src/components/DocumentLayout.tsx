@@ -1,6 +1,6 @@
 import SnippetToc from "@/app/(with-navigation)/snippets/_components/SnippetToc";
 import Prose from "@/components/Prose";
-import MDXRemoteServer from "@/features/MDX-remote/MDXRemoteServer";
+import MdxRemoteServer from "@/features/MDX-remote/MDXRemoteServer";
 
 type DocumentLayoutProps = {
   source: string;
@@ -14,7 +14,7 @@ export default function DocumentLayout({ source }: DocumentLayoutProps) {
   return (
     <section className="mx-auto grid min-h-dvh w-full max-w-8xl grid-cols-[1fr_15rem] pt-8">
       <Prose As="div" className="mx-auto w-full max-w-4xl">
-        <MDXRemoteServer source={source} />
+        <MdxRemoteServer source={source} />
       </Prose>
       <div>
         <SnippetToc tocDepth={6} />

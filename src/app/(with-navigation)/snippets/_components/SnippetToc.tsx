@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const headingDepthMap = {
   h2: 2,
@@ -52,6 +52,8 @@ export default function SnippetToc({ className, tocDepth }: SnippetTocProps) {
   const pathname = usePathname();
   const activeHeading = useActiveItem(toc.map((item) => item.id));
 
+  // todo: we should fix this by moving this component to the snippet page
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we need to re run this effect when pathname changes, since this component is render inside the layout and not the snippet page,
   useEffect(() => {
     const headings = document.querySelectorAll(
       tocDepth
@@ -85,7 +87,7 @@ export default function SnippetToc({ className, tocDepth }: SnippetTocProps) {
         className,
       )}
     >
-      <p className="sticky top-0 h-6 bg-background text-xs text-muted-foreground">
+      <p className="sticky top-0 h-6 bg-background text-muted-foreground text-xs">
         On This Page
       </p>
 
@@ -93,7 +95,7 @@ export default function SnippetToc({ className, tocDepth }: SnippetTocProps) {
         <a
           key={item.id}
           href={`#${item.id}`}
-          className="text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[active=true]:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[depth=5]:pl-8 data-[depth=6]:pl-10"
+          className="text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[depth=5]:pl-8 data-[depth=6]:pl-10 data-[active=true]:text-foreground"
           data-active={item.id === `${activeHeading}`}
           data-depth={item.depth}
         >

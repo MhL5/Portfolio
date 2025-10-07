@@ -1,9 +1,9 @@
 "use client";
 
+import { Monitor, Search } from "lucide-react";
+import { type JSX, type ReactNode, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Monitor, Search } from "lucide-react";
-import { useMemo, useState, type JSX, type ReactNode } from "react";
 
 type SearchableLayoutProps<T> = {
   title: ReactNode;
@@ -27,7 +27,7 @@ export default function SearchableLayout<T>(props: SearchableLayoutProps<T>) {
       <div className="mb-8">
         <h1
           className={cn(
-            "text-foreground flex items-center gap-3 text-4xl font-bold tracking-tight capitalize sm:gap-4 sm:text-5xl",
+            "flex items-center gap-3 font-bold text-4xl text-foreground capitalize tracking-tight sm:gap-4 sm:text-5xl",
             props.titleClassName,
           )}
         >
@@ -38,7 +38,7 @@ export default function SearchableLayout<T>(props: SearchableLayoutProps<T>) {
         </h1>
 
         {props?.description ? (
-          <p className="text-muted-foreground mt-4 max-w-2xl text-lg">
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
             {props.description}
           </p>
         ) : null}
@@ -74,14 +74,13 @@ function SearchableLayoutGrid<T>({
     <>
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className={cn("relative flex-1", hasCategories ? "max-w-md" : "")}>
-          <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+          <Search className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
-            autoFocus
             placeholder={`Search ${title}...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-background focus:ring-ring w-full rounded-lg border py-2 pr-4 pl-10 text-sm focus:border-transparent focus:ring-2 focus:outline-none"
+            className="w-full rounded-lg border bg-background py-2 pr-4 pl-10 text-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
 
@@ -109,9 +108,9 @@ function SearchableLayoutGrid<T>({
 
       <section className="min-h-[50svh]">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-foreground text-xl font-semibold capitalize">
+          <h2 className="font-semibold text-foreground text-xl capitalize">
             All <span className={titleClassName}>{title}</span>
-            <span className="text-muted-foreground ml-2 text-sm font-normal">
+            <span className="ml-2 font-normal text-muted-foreground text-sm">
               ({filteredItems.length})
             </span>
           </h2>
@@ -123,11 +122,11 @@ function SearchableLayoutGrid<T>({
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <Monitor className="text-muted-foreground/50 mb-4 h-12 w-12" />
-            <h3 className="text-foreground mb-2 text-lg font-medium">
+            <Monitor className="mb-4 h-12 w-12 text-muted-foreground/50" />
+            <h3 className="mb-2 font-medium text-foreground text-lg">
               No items found
             </h3>
-            <p className="text-muted-foreground max-w-md">
+            <p className="max-w-md text-muted-foreground">
               Try adjusting your search query or selected category to find what
               you&apos;re looking for.
             </p>

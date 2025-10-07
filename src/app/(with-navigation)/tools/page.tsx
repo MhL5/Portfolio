@@ -5,10 +5,10 @@ export default function ToolsPage() {
   return (
     <section className="mx-auto min-h-dvh max-w-7xl px-4 py-8 md:px-6">
       <div className="mb-8">
-        <h1 className="text-foreground flex items-center gap-3 text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="flex items-center gap-3 font-bold text-4xl text-foreground tracking-tight sm:text-5xl">
           🛠️ Tools
         </h1>
-        <p className="text-muted-foreground mt-4 max-w-2xl text-lg">
+        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           A Personal collection of custom tools that i find useful.
         </p>
       </div>

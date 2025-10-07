@@ -55,7 +55,7 @@ export default function DeviceSpec() {
               <TitleValue
                 key={key}
                 title={key}
-                className="odd:bg-muted odd:text-foreground p-2"
+                className="p-2 odd:bg-muted odd:text-foreground"
                 value={value ?? null}
               />
             ))}
@@ -81,7 +81,7 @@ function TitleValue({
         className,
       )}
     >
-      <span className="text-sm font-medium capitalize">{title}</span>
+      <span className="font-medium text-sm capitalize">{title}</span>
       <p className="text-sm">{value}</p>
     </li>
   );

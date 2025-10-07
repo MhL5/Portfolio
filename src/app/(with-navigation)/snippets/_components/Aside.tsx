@@ -1,20 +1,23 @@
 "use client";
 
-import LinkIndicator from "@/components/LinkIndicator";
-import { Button } from "@/components/ui/button";
-import { navigationLinks, snippetsCategoryConfig } from "@/constants/constants";
-import { cn } from "@/lib/utils";
 import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LinkIndicator from "@/components/LinkIndicator";
+import { Button } from "@/components/ui/button";
+import {
+  type navigationLinks,
+  snippetsCategoryConfig,
+} from "@/constants/constants";
+import { cn } from "@/lib/utils";
 
-interface NavItemProps {
+type NavItemProps = {
   title: string;
   url: string;
   isActive: boolean;
   className?: string;
   isSubItem?: boolean;
-}
+};
 
 const NavItem = ({
   title,
@@ -58,7 +61,7 @@ export default function Aside({ className, navigationLinks }: AsideProps) {
               className={title === "components" ? "capitalize" : ""}
             >
               <div
-                className={`${config.tailwindClass} || mb-2 flex h-8 w-full items-center justify-start gap-2 px-2 text-sm font-semibold tracking-wider capitalize`}
+                className={`${config.tailwindClass} || mb-2 flex h-8 w-full items-center justify-start gap-2 px-2 font-semibold text-sm capitalize tracking-wider`}
               >
                 {Icon ? <Icon className="size-4" /> : null}
                 {title}

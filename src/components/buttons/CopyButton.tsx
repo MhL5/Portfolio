@@ -1,5 +1,7 @@
 "use client";
 
+import { CheckIcon, ClipboardIcon, XIcon } from "lucide-react";
+import type { ComponentProps } from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 import {
   Tooltip,
@@ -8,8 +10,6 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import useCopyToClipboard from "@/registry/hooks/useCopyToClipboard/useCopyToClipboard";
-import { CheckIcon, ClipboardIcon, XIcon } from "lucide-react";
-import type { ComponentProps } from "react";
 
 type CopyButtonProps = {
   content: string;
@@ -30,7 +30,7 @@ export default function CopyButton({
         <Button
           onClick={handleCopy}
           variant="ghost"
-          className={cn("text-muted-foreground size-8", className)}
+          className={cn("size-8 text-muted-foreground", className)}
           {...props}
         >
           {copyState === "copied" ? (
@@ -44,9 +44,9 @@ export default function CopyButton({
       </TooltipTrigger>
       <TooltipContent
         className={cn(
-          "text-success-foreground bg-success-background border-success-border [&_svg]:bg-success-background [&_svg]:fill-success-background",
+          "border-success-border bg-success-background text-success-foreground [&_svg]:bg-success-background [&_svg]:fill-success-background",
           copyState === "error" &&
-            "text-error-foreground bg-error-background border-error-border [&_svg]:bg-error-background [&_svg]:fill-error-background",
+            "border-error-border bg-error-background text-error-foreground [&_svg]:bg-error-background [&_svg]:fill-error-background",
         )}
         side={side}
       >

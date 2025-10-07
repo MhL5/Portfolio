@@ -50,7 +50,7 @@ export default function MdxLayout({ children }: LayoutProps<"/snippets">) {
           {children}
         </Prose>
 
-        <aside className="hidden flex-col gap-1 pt-8 pb-2 text-sm text-muted-foreground xl:flex">
+        <aside className="hidden flex-col gap-1 pt-8 pb-2 text-muted-foreground text-sm xl:flex">
           <SnippetToc />
         </aside>
       </div>

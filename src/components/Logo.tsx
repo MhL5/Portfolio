@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
 import type { ComponentProps } from "react";
+import { cn } from "@/lib/utils";
 
-const MhLSvgLogo = ({ className }: { className?: string }) => (
+const MhlSvgLogo = ({ className }: { className?: string }) => (
   <svg
     width="36"
     height="36"
@@ -9,9 +9,11 @@ const MhLSvgLogo = ({ className }: { className?: string }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
+    role="img"
+    aria-label="Mhl Logo"
   >
     {/* Simple white MHL letters */}
-    <g className="fill-primary-foreground font-space-grotesk text-xs font-bold tracking-tighter">
+    <g className="fill-primary-foreground font-bold font-space-grotesk text-xs tracking-tighter">
       <text x="18" y="18" textAnchor="middle" dominantBaseline="middle">
         MhL
       </text>
@@ -28,7 +30,7 @@ export default function Logo({ className, ...props }: ComponentProps<"div">) {
       )}
       {...props}
     >
-      <MhLSvgLogo className="size-full text-primary-foreground" />
+      <MhlSvgLogo className="size-full text-primary-foreground" />
     </div>
   );
 }

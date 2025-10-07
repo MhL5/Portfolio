@@ -1,11 +1,11 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import SnippetH1 from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetH1";
 import { Badge } from "@/components/ui/badge";
 import { shadcnRegistry } from "@/constants/constants";
-import MDXRemoteServer from "@/features/MDX-remote/MDXRemoteServer";
+import MdxRemoteServer from "@/features/MDX-remote/MDXRemoteServer";
 import { isDev } from "@/registry/utils/checks/checks";
 import { fileReader } from "@/utils/fileReader";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -81,7 +81,7 @@ export default async function Page({
         slug={slug.at(-1) || ""}
       />
 
-      <MDXRemoteServer
+      <MdxRemoteServer
         source={`
         ${item?.description}\n
         ${content}
