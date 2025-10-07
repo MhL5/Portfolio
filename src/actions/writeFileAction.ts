@@ -1,9 +1,9 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { isNode } from "@/registry/utils/checks/checks";
-import { randomUUID } from "crypto";
-import fs from "fs/promises";
-import path from "path";
 
 const getDirPath = (...paths: string[]) => path.join(process.cwd(), ...paths);
 

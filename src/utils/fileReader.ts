@@ -1,5 +1,5 @@
-import type { StringWithAutoComplete } from "@/registry/types/AutoComplete/AutoComplete";
 import fs from "node:fs/promises";
+import type { StringWithAutoComplete } from "@/registry/types/AutoComplete/AutoComplete";
 
 type FileReaderParamsPath = StringWithAutoComplete<
   | "src/app/(with-navigation)/snippets/components/"
