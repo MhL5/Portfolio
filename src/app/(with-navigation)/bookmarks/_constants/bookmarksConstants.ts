@@ -320,18 +320,18 @@ export const allBookmarks: Bookmark[] = [
 ];
 
 export const bookmarkCategoryConfig = {
-  Development: { icon: Code2, color: "text-blue-600 dark:text-blue-400" },
-  Design: { icon: Palette, color: "text-purple-600 dark:text-purple-400" },
-  Tools: {
-    icon: snippetsCategoryConfig["utils"].icon,
-    color: snippetsCategoryConfig["utils"].tailwindClass,
+  development: { icon: Code2, color: "text-blue-600 dark:text-blue-400" },
+  design: { icon: Palette, color: "text-purple-600 dark:text-purple-400" },
+  tools: {
+    icon: snippetsCategoryConfig.utils.icon,
+    color: snippetsCategoryConfig.utils.tailwindClass,
   },
-  General: { icon: Globe, color: "text-gray-600 dark:text-gray-400" },
-  UI: {
-    icon: snippetsCategoryConfig["components"].icon,
-    color: snippetsCategoryConfig["components"].tailwindClass,
+  general: { icon: Globe, color: "text-gray-600 dark:text-gray-400" },
+  ui: {
+    icon: snippetsCategoryConfig.components.icon,
+    color: snippetsCategoryConfig.components.tailwindClass,
   },
-  "Learning-Resources": {
+  learningResources: {
     icon: Book,
     color: "text-green-600 dark:text-green-400",
   },

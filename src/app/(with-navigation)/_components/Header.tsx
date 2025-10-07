@@ -1,5 +1,9 @@
 "use client";
 
+import { MenuIcon } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/buttons/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,10 +17,6 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import SkipLink from "@/registry/new-york/SkipLink/SkipLink";
-import { MenuIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const links = [
   {
@@ -34,6 +34,7 @@ function usePageWithMainId() {
   const [hasMainId, setHasMainId] = useState(false);
   const pathname = usePathname();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we need to re run this effect when pathname changes
   useEffect(() => {
     const mainId = document.getElementById("main");
     if (mainId) setHasMainId(true);
@@ -78,9 +79,9 @@ export default function Header() {
               </SheetHeader>
 
               <div className="flex flex-col gap-1">
-                {links.map(({ href, label }, i) => {
+                {links.map(({ href, label }) => {
                   return (
-                    <SheetClose key={`${href}-${label}-${i}`} asChild>
+                    <SheetClose key={`${href}-${label}`} asChild>
                       <Button variant="link" asChild>
                         <Link className="justify-start font-medium" href={href}>
                           {label}
