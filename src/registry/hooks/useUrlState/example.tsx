@@ -1,11 +1,11 @@
 "use client";
 
-import DebouncedInput from "@/registry/new-york/DebouncedInput/DebouncedInput";
-import useUrlState from "@/registry/hooks/useUrlState/useUrlState";
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import useUrlState from "@/registry/hooks/useUrlState/useUrlState";
+import DebouncedInput from "@/registry/new-york/DebouncedInput/DebouncedInput";
 
 export default function Example() {
   return (
@@ -35,7 +35,7 @@ function ExampleSuspended() {
             size="sm"
             variant="secondary"
             className="w-37 justify-start"
-            onClick={() => setValue((prev) => prev + "test")}
+            onClick={() => setValue(() => `test`)}
           >
             Set value to test
             {isPending && <Loader2 className="h-4 w-4 animate-spin" />}

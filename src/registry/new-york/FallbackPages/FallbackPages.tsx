@@ -1,8 +1,5 @@
 "use client";
 
-import Logo from "@/components/Logo";
-import { Button } from "@/components/ui/button";
-import { isDev } from "@/registry/utils/checks/checks";
 import {
   AlertTriangle,
   ArrowLeft,
@@ -12,6 +9,9 @@ import {
   RotateCcw,
 } from "lucide-react";
 import Link from "next/link";
+import Logo from "@/components/Logo";
+import { Button } from "@/components/ui/button";
+import { isDev } from "@/registry/utils/checks/checks";
 
 const fallbackPagesData = {
   "not-found": {
@@ -47,13 +47,11 @@ type FallbackPagesProps = NotFoundPageProps | ErrorPageProps | LoadingPageProps;
 function FallbackPages(props: FallbackPagesProps) {
   if (props.variant === "loading")
     return (
-      <section className="grid min-h-svh w-full place-items-center">
-        <div
-          role="status"
-          aria-label="Loading..."
-          aria-busy="true"
-          className="isolate grid grid-cols-1 grid-rows-1 place-items-center"
-        >
+      <section
+        aria-label="Loading..."
+        className="grid min-h-svh w-full place-items-center"
+      >
+        <div className="isolate grid grid-cols-1 grid-rows-1 place-items-center">
           <Circle className="z-10 col-start-1 row-start-1 size-22 animate-circleSvgGrow bg-transparent stroke-1 text-primary [--circumference:572px]" />
 
           <Logo className="z-10 col-start-1 row-start-1 size-19 animate-loadingFadeIn rounded-full bg-primary p-1 opacity-0 starting:opacity-0" />

@@ -406,7 +406,8 @@ html.dark .shiki span {
 }
 
 html .shiki,
-html .shiki span {
+/* biome-ignore lint/style/noDescendingSpecificity: we need to use span to override the shiki styles */
+html .shiki  span {
   /* biome-ignore lint/complexity/noImportantStyles: we need to use important to override the shiki styles */
   background-color: var(--code-background) !important;
 }

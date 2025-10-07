@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "src/registry/hooks/useOnClickOutside/useOnClickOutside.ts",
-      "content": "\"use client\";\r\n\r\nimport useEventListener from \"@/registry/hooks/useEventListener/useEventListener\";\r\nimport { isDocumentAvailable } from \"@/registry/utils/checks/checks\";\r\nimport type { RefObject } from \"react\";\r\n\r\nexport default function useOnClickOutside(\r\n  ref: RefObject<HTMLElement | null>,\r\n  cb: (e: MouseEvent) => void,\r\n) {\r\n  const element = isDocumentAvailable() ? document : undefined;\r\n\r\n  useEventListener(\r\n    \"click\",\r\n    (e) => {\r\n      if (ref.current && !ref.current.contains(e.target as HTMLElement)) cb(e);\r\n    },\r\n    element,\r\n  );\r\n}\r\n",
+      "content": "\"use client\";\n\nimport useEventListener from \"@/registry/hooks/useEventListener/useEventListener\";\nimport { isDocumentAvailable } from \"@/registry/utils/checks/checks\";\nimport type { RefObject } from \"react\";\n\nexport default function useOnClickOutside(\n  ref: RefObject<HTMLElement | null>,\n  cb: (e: MouseEvent) => void,\n) {\n  const element = isDocumentAvailable() ? document : undefined;\n\n  useEventListener(\n    \"click\",\n    (e) => {\n      if (ref.current && !ref.current.contains(e.target as HTMLElement)) cb(e);\n    },\n    element,\n  );\n}\n",
       "type": "registry:hook"
     }
   ]

@@ -14,6 +14,7 @@ export default function ScrollToTop({ variant }: ScrollToTopProps) {
 function ScrollToTopOnNavigation() {
   const pathname = usePathname();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we need to run this on pathname change
   useEffect(() => {
     handleScroll();
   }, [pathname]);

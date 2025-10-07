@@ -4,11 +4,13 @@
   "type": "registry:ui",
   "title": "MatchMedia",
   "description": "a component that conditionally renders its children based on a media query.",
-  "registryDependencies": ["https://mhl5.vercel.app/r/useMediaQuery.json"],
+  "registryDependencies": [
+    "https://mhl5.vercel.app/r/useMediaQuery.json"
+  ],
   "files": [
     {
       "path": "src/registry/new-york/MatchMedia/MatchMedia.tsx",
-      "content": "\"use client\";\r\n\r\nimport {\r\n  useMediaQuery,\r\n  useMediaQueryBreakpoint,\r\n} from \"@/registry/hooks/useMediaQuery/useMediaQuery\";\r\nimport type { ReactNode } from \"react\";\r\n\r\ntype MatchMediaProps = {\r\n  query: Parameters<typeof useMediaQuery>[0];\r\n  children: ReactNode;\r\n  fallback?: ReactNode;\r\n};\r\n\r\nexport function MatchMedia({ fallback, children, query }: MatchMediaProps) {\r\n  const matches = useMediaQuery(query);\r\n\r\n  if (matches === undefined) {\r\n    if (!fallback) return children;\r\n    return fallback;\r\n  }\r\n\r\n  if (!matches) return null;\r\n  return children;\r\n}\r\n\r\ntype MatchMediaBreakpointProps = {\r\n  direction?: Parameters<typeof useMediaQueryBreakpoint>[1];\r\n  breakpoint: Parameters<typeof useMediaQueryBreakpoint>[0];\r\n  children: ReactNode;\r\n  fallback?: ReactNode;\r\n};\r\n\r\nexport function MatchMediaBreakpoint({\r\n  fallback,\r\n  children,\r\n  direction = \"min\",\r\n  breakpoint,\r\n}: MatchMediaBreakpointProps) {\r\n  const matches = useMediaQueryBreakpoint(breakpoint, direction);\r\n\r\n  if (matches === undefined) {\r\n    if (!fallback) return children;\r\n    return fallback;\r\n  }\r\n\r\n  if (!matches) return null;\r\n  return children;\r\n}\r\n",
+      "content": "\"use client\";\n\nimport {\n  useMediaQuery,\n  useMediaQueryBreakpoint,\n} from \"@/registry/hooks/useMediaQuery/useMediaQuery\";\nimport type { ReactNode } from \"react\";\n\ntype MatchMediaProps = {\n  query: Parameters<typeof useMediaQuery>[0];\n  children: ReactNode;\n  fallback?: ReactNode;\n};\n\nexport function MatchMedia({ fallback, children, query }: MatchMediaProps) {\n  const matches = useMediaQuery(query);\n\n  if (matches === undefined) {\n    if (!fallback) return children;\n    return fallback;\n  }\n\n  if (!matches) return null;\n  return children;\n}\n\ntype MatchMediaBreakpointProps = {\n  direction?: Parameters<typeof useMediaQueryBreakpoint>[1];\n  breakpoint: Parameters<typeof useMediaQueryBreakpoint>[0];\n  children: ReactNode;\n  fallback?: ReactNode;\n};\n\nexport function MatchMediaBreakpoint({\n  fallback,\n  children,\n  direction = \"min\",\n  breakpoint,\n}: MatchMediaBreakpointProps) {\n  const matches = useMediaQueryBreakpoint(breakpoint, direction);\n\n  if (matches === undefined) {\n    if (!fallback) return children;\n    return fallback;\n  }\n\n  if (!matches) return null;\n  return children;\n}\n",
       "type": "registry:ui"
     }
   ]

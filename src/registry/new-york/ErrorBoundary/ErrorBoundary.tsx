@@ -1,11 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { isDev } from "@/registry/utils/checks/checks";
 import { Loader2 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Component, useTransition } from "react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { isDev } from "@/registry/utils/checks/checks";
 
 type ErrorBoundaryProps = {
   children: ReactNode;
@@ -38,17 +38,17 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     // this is an example of how to log errors in here
     if (!isDev()) return;
 
-    // eslint-disable-next-line no-console
+    // biome-ignore lint/suspicious/noConsole: we need to log errors in here
     console.groupCollapsed("ErrorBoundary caught an error");
-    // eslint-disable-next-line no-console
+    // biome-ignore lint/suspicious/noConsole: we need to log errors in here
     console.log("\x1b[35m" + `Error:` + "\x1b[0m");
-    // eslint-disable-next-line no-console
+    // biome-ignore lint/suspicious/noConsole: we need to log errors in here
     console.dir(_error, { depth: Infinity });
-    // eslint-disable-next-line no-console
+    // biome-ignore lint/suspicious/noConsole: we need to log errors in here
     console.log("\x1b[35m" + `ErrorInfo:` + "\x1b[0m");
-    // eslint-disable-next-line no-console
+    // biome-ignore lint/suspicious/noConsole: we need to log errors in here
     console.dir(_errorInfo, { depth: Infinity });
-    // eslint-disable-next-line no-console
+    // biome-ignore lint/suspicious/noConsole: we need to log errors in here
     console.groupEnd();
   }
 

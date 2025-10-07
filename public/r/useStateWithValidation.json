@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "src/registry/hooks/useStateWithValidation/useStateWithValidation.ts",
-      "content": "\"use client\";\r\n\r\nimport { useCallback, useState, type SetStateAction } from \"react\";\r\n\r\nexport default function useStateWithValidation<T>(\r\n  validationFunc: (value: T) => boolean,\r\n  initialValue: T,\r\n) {\r\n  const [state, setState] = useState<T>(initialValue);\r\n  const [isValid, setIsValid] = useState(() => validationFunc(state));\r\n\r\n  const setStateWithValidation = useCallback(\r\n    (nextState: SetStateAction<T>) => {\r\n      const value =\r\n        nextState instanceof Function ? nextState(state) : nextState;\r\n\r\n      setState(value);\r\n      setIsValid(validationFunc(value));\r\n    },\r\n    [validationFunc, state],\r\n  );\r\n\r\n  return [state, setStateWithValidation, isValid] as const;\r\n}\r\n",
+      "content": "\"use client\";\n\nimport { useCallback, useState, type SetStateAction } from \"react\";\n\nexport default function useStateWithValidation<T>(\n  validationFunc: (value: T) => boolean,\n  initialValue: T,\n) {\n  const [state, setState] = useState<T>(initialValue);\n  const [isValid, setIsValid] = useState(() => validationFunc(state));\n\n  const setStateWithValidation = useCallback(\n    (nextState: SetStateAction<T>) => {\n      const value =\n        nextState instanceof Function ? nextState(state) : nextState;\n\n      setState(value);\n      setIsValid(validationFunc(value));\n    },\n    [validationFunc, state],\n  );\n\n  return [state, setStateWithValidation, isValid] as const;\n}\n",
       "type": "registry:hook"
     }
   ]
