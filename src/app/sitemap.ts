@@ -1,6 +1,8 @@
+import type { MetadataRoute } from "next";
 import { shadcnRegistry } from "@/constants/constants";
 import { absoluteUrl } from "@/utils";
-import type { MetadataRoute } from "next";
+
+export const revalidate = 259200; // 3 days
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const snippetPages: MetadataRoute.Sitemap = shadcnRegistry.items.map(
