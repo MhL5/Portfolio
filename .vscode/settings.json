@@ -17,5 +17,6 @@
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
-  }
+  },
+  "cSpell.words": ["Tabler"]
 }

@@ -89,6 +89,19 @@ const designBookmarks: Bookmark[] = [
     url: "https://heroicons.com/",
     category: "design",
   },
+  {
+    title: "lucide",
+    description: "Beautiful & consistent icons",
+    url: "https://lucide.dev/",
+    category: "design",
+  },
+  {
+    title: "Tabler Icons",
+    description:
+      "A complete icon set with perfect line weights and spacing - ready for Figma, apps, and design systems.",
+    url: "https://tabler.io/icons",
+    category: "design",
+  },
 ];
 const uiBookmarks: Bookmark[] = [
   {
@@ -307,6 +320,12 @@ const uiBookmarks: Bookmark[] = [
     title: "uiverse",
     description: "The Largest Library of Open-Source UI",
     url: "https://uiverse.io/",
+    category: "ui",
+  },
+  {
+    title: "Build UI Recipes",
+    description: "Recipes for building UI ",
+    url: "https://buildui.com/recipes",
     category: "ui",
   },
 ];

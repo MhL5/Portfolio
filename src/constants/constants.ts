@@ -1,6 +1,7 @@
-import { isDev, isProd } from "@/registry/utils/checks/checks";
-import { Code2, Hammer, Package, Wrench, Zap } from "lucide-react";
+import { Code2, Hammer, Package, Wrench } from "lucide-react";
 import type { JSX } from "react";
+import HookSvg from "@/components/icons/HookSvg";
+import { isDev, isProd } from "@/registry/utils/checks/checks";
 
 export const snippetsCategoryConfig: Record<
   string,
@@ -15,7 +16,7 @@ export const snippetsCategoryConfig: Record<
     tailwindClass: "text-orange-600 dark:text-orange-400",
   },
   hooks: {
-    icon: Zap,
+    icon: HookSvg,
     tailwindClass: "text-purple-600 dark:text-purple-400",
   },
   utils: {

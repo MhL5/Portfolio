@@ -4,6 +4,7 @@ import { Monitor, Search } from "lucide-react";
 import { type JSX, type ReactNode, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { toSentenceCase } from "@/registry/utils/formatters/formatters";
 
 type SearchableLayoutProps<T> = {
   title: ReactNode;
@@ -98,7 +99,7 @@ function SearchableLayoutGrid<T>({
                   onClick={() => setSelectedCategory(category)}
                   className="text-xs"
                 >
-                  {category}
+                  {toSentenceCase(category)}
                 </Button>
               );
             })}
