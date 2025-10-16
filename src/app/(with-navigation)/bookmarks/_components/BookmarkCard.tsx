@@ -43,7 +43,7 @@ export default function BookmarkCard({ item }: { item: Bookmark }) {
             <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
           </div>
 
-          <p className="mt-1 line-clamp-2 text-muted-foreground text-sm">
+          <p className="mt-1 line-clamp-1 text-muted-foreground text-sm">
             {item.description}
           </p>
         </div>
