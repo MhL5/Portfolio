@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "lucide-react";
+import { InfoIcon, Plus, X } from "lucide-react";
 import {
   type ChangeEvent,
   type ClipboardEvent,
@@ -15,6 +15,12 @@ import {
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Kbd } from "@/components/ui/kbd";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 type TagsInputContextType = {
@@ -190,15 +196,31 @@ function TagsInputInput({
   }
 
   return (
-    <Input
-      {...props}
-      disabled={disabled || disabledProp}
-      value={inputValue}
-      onChange={handleChange}
-      onKeyDown={handleKeyDown}
-      onBlur={handleBlur}
-      onPaste={handlePaste}
-    />
+    <div className="flex items-center gap-2">
+      <Input
+        {...props}
+        disabled={disabled || disabledProp}
+        value={inputValue}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
+        onPaste={handlePaste}
+      />
+
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button size="sm" type="button" onClick={() => addTag(inputValue)}>
+            <Plus />
+          </Button>
+        </TooltipTrigger>
+
+        {inputValue && (
+          <TooltipContent>
+            <p>Click to add tag "{inputValue}"</p>
+          </TooltipContent>
+        )}
+      </Tooltip>
+    </div>
   );
 }
 
@@ -259,4 +281,30 @@ function TagsInputTag({
   );
 }
 
-export { TagsInput, TagsInputInput, TagsInputList, TagsInputTag };
+function TagsInputInfo() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button variant="ghost" className="m-0 size-fit p-0" size="icon">
+          <InfoIcon />
+          <span className="sr-only">Info</span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>
+          You can add tags by typing and pressing{" "}
+          <Kbd className="mx-1">Enter</Kbd>, <Kbd className="mx-1">,</Kbd>, or
+          by clicking the add button.
+        </p>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+export {
+  TagsInput,
+  TagsInputInput,
+  TagsInputList,
+  TagsInputTag,
+  TagsInputInfo,
+};
