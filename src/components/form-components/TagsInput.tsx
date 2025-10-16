@@ -284,11 +284,8 @@ function TagsInputTag({
 function TagsInputInfo() {
   return (
     <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="ghost" className="m-0 size-fit p-0" size="icon">
-          <InfoIcon />
-          <span className="sr-only">Info</span>
-        </Button>
+      <TooltipTrigger aria-label="Info">
+        <InfoIcon className="size-4" />
       </TooltipTrigger>
       <TooltipContent>
         <p>
