@@ -328,6 +328,26 @@ const uiBookmarks: Bookmark[] = [
     url: "https://buildui.com/recipes",
     category: "ui",
   },
+  {
+    title: "intent ui",
+    description:
+      "Accessible React component library to copy, customize, and own your UI.",
+    url: "https://intentui.com/",
+    category: "ui",
+  },
+  {
+    title: "shadcn design pro blocks",
+    description: "The ultimate block set for Shadcn UI & Tailwind.",
+    url: "https://www.shadcndesign.com/pro-blocks",
+    category: "ui",
+  },
+  {
+    description:
+      "New 🎉 Dashboard & Marketing UI Blocks, AI Theme Generator, Shadcn MCP & more... 🪄 Build Futuristic UIs with Shadcn Blocks at Warp Speed",
+    url: "https://shadcnstudio.com/",
+    category: "ui",
+    title: "Shadcn Studio",
+  },
 ];
 
 export const allBookmarks: Bookmark[] = [
