@@ -136,6 +136,7 @@ function TagsInput({
       ...value.slice(0, indexToRemove),
       ...value.slice(indexToRemove + 1),
     ]);
+    setError(null);
   };
 
   return (
@@ -316,9 +317,8 @@ function TagsInputInfo() {
       </TooltipTrigger>
       <TooltipContent>
         <p>
-          You can add tags by typing and pressing{" "}
-          <Kbd className="mx-1">Enter</Kbd>, <Kbd className="mx-1">,</Kbd>, or
-          by clicking the add button.
+          Press <Kbd className="mx-1">Enter</Kbd> or{" "}
+          <Kbd className="mx-1">,</Kbd> to add a tag, or click the add button.
         </p>
       </TooltipContent>
     </Tooltip>
