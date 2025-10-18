@@ -23,7 +23,7 @@ function lazyImportComponent(path: string) {
 }
 
 // without @/registry/
-const CodePreviewSources = {
+const previewSourceCodes = {
   Colors: "new-york/Colors/example.tsx",
   DebouncedInput: "new-york/DebouncedInput/example.tsx",
   DrawerDialog: "new-york/DrawerDialog/example.tsx",
@@ -40,12 +40,12 @@ const CodePreviewSources = {
   FallbackPagesLoading: "new-york/FallbackPages/LoadingExample.tsx",
   TagsInput: "new-york/TagsInput/example.tsx",
 };
-const CODE_PREVIEWS = Object.entries(CodePreviewSources).reduce(
+const CODE_PREVIEWS = Object.entries(previewSourceCodes).reduce(
   (acc, [key, value]) => {
-    acc[key as keyof typeof CodePreviewSources] = lazyImportComponent(value);
+    acc[key as keyof typeof previewSourceCodes] = lazyImportComponent(value);
     return acc;
   },
-  {} as Record<keyof typeof CodePreviewSources, ComponentType<unknown>>,
+  {} as Record<keyof typeof previewSourceCodes, ComponentType<unknown>>,
 );
 
 type CodePreviewProps = {
@@ -53,10 +53,10 @@ type CodePreviewProps = {
 };
 
 export default function CodePreview({ name }: CodePreviewProps) {
-  const CodePreview = CODE_PREVIEWS[name];
-  const CodePreviewSource = CodePreviewSources?.[name];
+  const PreviewComponent = CODE_PREVIEWS[name];
+  const previewSourceCode = previewSourceCodes?.[name];
 
-  if (!CodePreview || !CodePreviewSource)
+  if (!PreviewComponent || !previewSourceCode)
     return (
       <p className="not-prose text-muted-foreground text-sm">
         Component{" "}
@@ -87,11 +87,11 @@ export default function CodePreview({ name }: CodePreviewProps) {
             <Suspense
               fallback={<Loader2Icon className="size-16 animate-spin" />}
             >
-              <CodePreview />
+              <PreviewComponent />
             </Suspense>
           </TabsContent>
           <TabsContent value="code" className="h-full">
-            <ComponentSource path={`src/registry/${CodePreviewSource}`} />
+            <ComponentSource path={`src/registry/${previewSourceCode}`} />
           </TabsContent>
         </CardContent>
       </Card>
