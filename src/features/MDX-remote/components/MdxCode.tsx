@@ -1,4 +1,5 @@
 import type { ComponentProps } from "react";
+import Code from "@/features/MDX-remote/components/Code";
 import ComponentSource from "@/features/MDX-remote/components/ComponentSource";
 
 export default function MdxCode({
@@ -19,11 +20,8 @@ export default function MdxCode({
   }
 
   return (
-    <code
-      {...props}
-      className="text-nowrap rounded-sm bg-secondary px-1.5 py-0.5 text-secondary-foreground tracking-wide before:content-none after:content-none prose-code:after:content-none"
-    >
-      {typeof children === "string" ? children.replaceAll("`", "") : children}
-    </code>
+    <Code {...props} className={className}>
+      {children}
+    </Code>
   );
 }

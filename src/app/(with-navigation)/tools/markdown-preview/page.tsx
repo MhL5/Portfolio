@@ -31,11 +31,11 @@ export default function MarkdownRenderer() {
           disabled={false}
         />
       ) : (
-        <section className="mx-auto grid min-h-dvh w-full max-w-8xl grid-cols-[1fr_15rem] pt-8">
+        <section className="mx-auto grid min-h-dvh w-full max-w-8xl overflow-x-hidden pt-8 2xl:grid-cols-[1fr_15rem]">
           <Prose as="div">
             <ReactMarkdown markdown={md} />
           </Prose>
-          <div>
+          <div className="hidden 2xl:block">
             <SnippetToc tocDepth={6} />
           </div>
         </section>
