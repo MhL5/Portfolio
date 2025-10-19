@@ -1,5 +1,8 @@
 "use client";
 
+import type { Route } from "next";
+import Link from "next/link";
+import { Fragment, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -14,9 +17,6 @@ import useUrlState from "@/registry/hooks/useUrlState/useUrlState";
 import AutoGrid from "@/registry/new-york/AutoGrid/AutoGrid";
 import DebouncedInput from "@/registry/new-york/DebouncedInput/DebouncedInput";
 import Typography from "@/registry/new-york/Typography/Typography";
-import type { Route } from "next";
-import Link from "next/link";
-import { Fragment, useState } from "react";
 
 export default function SnippetsList() {
   const [categoryFiler, setCategoryFilter] = useUrlState("category", {
