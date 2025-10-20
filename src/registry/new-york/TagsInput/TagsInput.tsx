@@ -6,10 +6,13 @@ import {
   type ClipboardEvent,
   type ComponentProps,
   createContext,
+  type Dispatch,
   type FocusEvent,
   type KeyboardEvent,
   type ReactNode,
+  type SetStateAction,
   use,
+  useId,
   useState,
 } from "react";
 import { Button } from "@/components/ui/button";
@@ -22,13 +25,26 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
+const COMMA_CHARS = [",", "،"] as const;
+
+const errorMessages = {
+  maxTags: (maxTags: number) =>
+    `You can add up to ${maxTags} tag${maxTags === 1 ? "" : "s"} only`,
+  duplicate: (tag: string) => `"${tag}" already exists`,
+  invalid: (tag: string) => `"${tag}" is invalid`,
+  noValidTagsToAdd: "No valid tags to add",
+  reachedMaximumNumberOfTags: (maxTags: number) =>
+    `You have reached the maximum number of tags (${maxTags})`,
+} as const;
+
 type TagsInputContextType = {
   value: string[];
   onChange: (tags: string[]) => void;
 
   inputValue: string;
-  setInputValue: (value: string) => void;
+  setInputValue: Dispatch<SetStateAction<string>>;
   error: string | null;
+  errorMessageId: string;
 
   addTag: (tag: string) => void;
   addTags: (tags: string[]) => void;
@@ -61,6 +77,7 @@ function TagsInput({
 }: TagsInputProviderProps) {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const errorMessageId = useId();
 
   const addTag: TagsInputContextType["addTag"] = (tag) => {
     const trimmedTag = tag.trim();
@@ -68,16 +85,16 @@ function TagsInput({
 
     // Check max tags limit
     if (maxTags && value.length >= maxTags) {
-      setError(
-        `You can add up to ${maxTags} tag${maxTags === 1 ? "" : "s"} only`,
-      );
-      return setInputValue("");
+      setError(errorMessages.maxTags(maxTags));
+      setInputValue("");
+      return;
     }
 
     // Check for duplicates
     if (value.includes(trimmedTag)) {
-      setError(`"${trimmedTag}" already exists`);
-      return setInputValue("");
+      setError(errorMessages.duplicate(trimmedTag));
+      setInputValue("");
+      return;
     }
 
     // Validate tag if validate function is provided
@@ -85,9 +102,10 @@ function TagsInput({
       setError(
         validateMessage
           ? validateMessage(trimmedTag)
-          : `"${trimmedTag}" is invalid`,
+          : errorMessages.invalid(trimmedTag),
       );
-      return setInputValue("");
+      setInputValue("");
+      return;
     }
 
     setError(null);
@@ -114,16 +132,16 @@ function TagsInput({
 
     if (!newTags.length)
       return setError(
-        validateMessage ? validateMessage(invalidTags) : "No valid tags to add",
+        validateMessage
+          ? validateMessage(invalidTags)
+          : errorMessages.noValidTagsToAdd,
       );
 
     if (maxTags) {
       const remainingSlots = maxTags - value.length;
       newTags = newTags.slice(0, remainingSlots);
       if (!newTags.length)
-        return setError(
-          `You have reached the maximum number of tags (${maxTags})`,
-        );
+        return setError(errorMessages.reachedMaximumNumberOfTags(maxTags));
     }
 
     onChange?.([...newTags, ...value]);
@@ -142,6 +160,7 @@ function TagsInput({
   return (
     <TagsInputContext
       value={{
+        errorMessageId,
         value,
         onChange,
         inputValue,
@@ -180,7 +199,9 @@ function TagsInputInput({
     addTags,
     removeTag,
     value,
+    error,
     disabled,
+    errorMessageId,
   } = useTagsInput();
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -189,33 +210,40 @@ function TagsInputInput({
   }
 
   function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+    onKeyDown?.(e);
+
     if (e.key === "Backspace" && !inputValue && value.length > 0) {
       removeTag(value.length - 1);
     }
-
-    if (e.key === "Enter" || e.key === ",") {
+    if (
+      e.key === "Enter" ||
+      COMMA_CHARS.includes(e.key as (typeof COMMA_CHARS)[number])
+    ) {
       e.preventDefault();
       addTag(inputValue);
     }
-
-    onKeyDown?.(e);
   }
 
   function handleBlur(e: FocusEvent<HTMLInputElement>) {
+    onBlur?.(e);
+
     if (!inputValue.trim()) return;
     addTag(inputValue);
-    onBlur?.(e);
   }
 
   function handlePaste(e: ClipboardEvent<HTMLInputElement>) {
+    onPaste?.(e);
+
     e.preventDefault();
     e.stopPropagation();
 
-    const text = e.clipboardData.getData("text");
-    if (!text) return;
+    const text = e.clipboardData.getData("text").trim();
+    const commaToSplitBy = COMMA_CHARS.find((comma) => text.includes(comma));
 
-    addTags(text.split(","));
-    onPaste?.(e);
+    if (!text) return;
+    if (!commaToSplitBy) return setInputValue((prev) => prev + text);
+
+    addTags(text.split(commaToSplitBy));
   }
 
   return (
@@ -228,19 +256,22 @@ function TagsInputInput({
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
         onPaste={handlePaste}
+        aria-describedby={errorMessageId}
+        aria-invalid={!!error}
       />
 
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button size="sm" type="button" onClick={() => addTag(inputValue)}>
-            <Plus />
-          </Button>
-        </TooltipTrigger>
-
-        <TooltipContent>
-          <p>Click to add tag &quot;{inputValue}&quot;</p>
-        </TooltipContent>
-      </Tooltip>
+      <Button
+        size="sm"
+        title={
+          inputValue
+            ? `click to add the tag "${inputValue}"`
+            : "click to add a tag"
+        }
+        type="button"
+        onClick={() => addTag(inputValue)}
+      >
+        <Plus />
+      </Button>
     </div>
   );
 }
@@ -287,24 +318,17 @@ function TagsInputTag({
     >
       {children}
 
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            variant="destructive"
-            size="icon"
-            disabled={disabled}
-            type="button"
-            onClick={handleClick}
-            className="size-5"
-            aria-label="click to remove the tag"
-          >
-            <X />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Click to remove the tag &quot;{value}&quot;</p>
-        </TooltipContent>
-      </Tooltip>
+      <Button
+        variant="destructive"
+        size="icon"
+        disabled={disabled}
+        type="button"
+        onClick={handleClick}
+        className="size-5"
+        title={`click to remove the tag "${value}"`}
+      >
+        <X />
+      </Button>
     </li>
   );
 }
@@ -326,11 +350,12 @@ function TagsInputInfo() {
 }
 
 function TagsInputErrorMessage() {
-  const { error } = useTagsInput();
+  const { error, errorMessageId } = useTagsInput();
 
   if (!error) return null;
   return (
     <p
+      id={errorMessageId}
       className="font-medium text-destructive text-sm"
       role="alert"
       aria-live="polite"
