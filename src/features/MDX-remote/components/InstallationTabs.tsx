@@ -1,7 +1,7 @@
 import type { Route } from "next";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { frontendDomain } from "@/constants/constants";
+import { frontendDomain, shadcnRegistry } from "@/constants/constants";
 import CliCommandCode from "@/features/MDX-remote/components/CliCommandCode";
 import CollapsibleCodeCard from "@/features/MDX-remote/components/CollapsibleCodeCard";
 import ComponentSource from "@/features/MDX-remote/components/ComponentSource";
@@ -10,6 +10,7 @@ import type {
   RegistryFileType,
   RegistryItemSchema,
 } from "@/types/shadcn-registry";
+import { absoluteUrl } from "@/utils";
 
 const tabs = {
   cli: "cli",
@@ -121,18 +122,16 @@ async function getCodeModuleData(registryItem: string) {
         // This is a non-shadcn/ui dependency that is hosted on our registry.
         // Currently other registry dependencies are not supported.
         const name = dep.split("/").pop()?.split(".")[0]?.replace("-", " ");
+        const depRegistry = shadcnRegistry.items.find((item) => {
+          return `https://mhl5.vercel.app/r/${item.name}.json` === dep;
+        });
 
-        const firstFilePath = registryJson.files?.[0]?.path || "";
-        let category: string = "components";
-        if (firstFilePath.includes("components/")) category = "components";
-        if (firstFilePath.includes("actions/")) category = "actions";
-        if (firstFilePath.includes("utils/")) category = "utils";
-        if (firstFilePath.includes("types/")) category = "types";
-        if (firstFilePath.includes("hooks/")) category = "hooks";
+        let type = depRegistry?.type.split(":")[1];
+        if (type === "lib") type = "util";
 
         return {
           name,
-          href: `${frontendDomain}/snippets/${category}/${name}`,
+          href: absoluteUrl(`/snippets/${type}s/${name}`),
         };
       } else {
         // This is a shadcn/ui dependency.

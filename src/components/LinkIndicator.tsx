@@ -1,7 +1,6 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
-// @ts-expect-error todo: this is valid but typescript throws an error,Module '"next/link"' has no exported member 'useLinkStatus'
 import { useLinkStatus } from "next/link";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
