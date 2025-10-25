@@ -42,12 +42,11 @@ type Links = {
 function generateNavigationLinks(shadcnRegistry: ShadcnRegistry): Links[] {
   type DefaultCategorizedItems = typeof defaultCategorizedItems;
   const defaultCategorizedItems: Record<
-    "utils" | "actions" | "types" | "components" | "hooks",
+    "utils" | "types" | "components" | "hooks",
     Links[]
   > = {
     components: [],
     hooks: [],
-    actions: [],
     utils: [],
     types: [],
   } as const;
