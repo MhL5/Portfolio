@@ -1,5 +1,6 @@
 "use client";
 
+import { type ComponentProps, createContext, type ReactNode, use } from "react";
 import {
   Dialog,
   DialogClose,
@@ -26,7 +27,6 @@ import {
 } from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import { useMediaQueryBreakpoint } from "@/registry/hooks/useMediaQuery/useMediaQuery";
-import { createContext, use, type ComponentProps, type ReactNode } from "react";
 
 type DrawerDialogContextType = {
   isSm: boolean | undefined;
@@ -112,27 +112,12 @@ function DrawerDialogContent({
 
 type DrawerDialogTriggerProps = ComponentProps<typeof DialogTrigger>;
 
-function DrawerDialogTrigger({ onClick, ...props }: DrawerDialogTriggerProps) {
+function DrawerDialogTrigger(props: DrawerDialogTriggerProps) {
   const { isSm } = useDrawerDialogContext();
 
   if (isSm)
-    return (
-      <DialogTrigger
-        data-slot="drawer-dialog-trigger"
-        onClick={onClick}
-        {...props}
-      />
-    );
-  return (
-    <DrawerTrigger
-      data-slot="drawer-dialog-trigger"
-      onClick={(e) => {
-        e.currentTarget.blur(); // another fix for block aria hidden attribute accessibility bug
-        onClick?.(e);
-      }}
-      {...props}
-    />
-  );
+    return <DialogTrigger data-slot="drawer-dialog-trigger" {...props} />;
+  return <DrawerTrigger data-slot="drawer-dialog-trigger" {...props} />;
 }
 
 type DrawerDialogCloseProps = ComponentProps<typeof DialogClose>;
@@ -204,10 +189,9 @@ function DrawerDialogPortal(props: DrawerDialogPortalProps) {
 
 type DrawerDialogScrollAreaProps = ComponentProps<"div">;
 
-const drawerContentScrollAreaClassNames =
-  "max-h-[90dvh] overflow-y-auto sm:max-w-[80dvw]";
+const drawerContentScrollAreaClassNames = "max-h-[90dvh] overflow-y-auto";
 const dialogContentScrollAreaClassNames =
-  "max-h-[90dvh] w-[auto] overflow-y-auto p-6 sm:max-w-[80dvw]";
+  "max-h-[90dvh] w-[auto] overflow-y-auto p-6 sm:max-w-[80svw]";
 
 function DrawerDialogScrollArea({
   className,
