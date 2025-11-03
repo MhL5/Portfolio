@@ -23,22 +23,20 @@ export default function Example() {
       </div>
 
       <AutoGrid
+        as="ul"
         uniqueId="auto-grid-example-1234"
         maxColCount={4}
-        minColSize={7}
-        gap={1}
+        minColSize="7rem"
+        gap="1rem"
         className="w-full rounded-sm border border-dashed p-3"
         style={{
           width: `${size}px`,
         }}
       >
         {Array.from({ length: 4 }).map((_, index) => (
-          <div
-            className="w-full rounded border p-2"
-            key={`Column-${index + 1}`}
-          >
+          <li className="w-full rounded border p-2" key={`Column-${index + 1}`}>
             Column {index + 1}
-          </div>
+          </li>
         ))}
       </AutoGrid>
     </div>

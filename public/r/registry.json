@@ -459,7 +459,7 @@
       "name": "useTimer",
       "type": "registry:hook",
       "title": "useTimer",
-      "description": "A hook for setting timers with timeout or interval.",
+      "description": "Using `facade` pattern, this module exports a `useTimer` and a `useInterval` hook.",
       "files": [
         {
           "path": "src/registry/hooks/useTimer/useTimer.ts",

@@ -1,116 +1,58 @@
-import { type ComponentProps, useCallback, useMemo } from "react";
+import type { ComponentProps } from "react";
 
-type AutoGridProps = {
-  maxColCount: Options["maxColCount"];
-  minColSize: Options["minColSize"];
-  gap: Options["gap"];
+// Do not touch
+const cssCalculations = `
+--grid-col-size-calc: calc(
+  (100% - var(--grid-gap) * var(--grid-max-col-count)) /
+    var(--grid-max-col-count)
+);
+--grid-col-min-size-calc: min(
+  100%,
+  max(var(--grid-min-col-size), var(--grid-col-size-calc))
+);
+display: grid;
+gap: var(--grid-gap);
+grid-template-columns: repeat(
+  auto-fit,
+  minmax(var(--grid-col-min-size-calc), 1fr)
+);
+`;
 
-  sm?: Options;
-  md?: Options;
-  lg?: Options;
+type AutoGridProps<T extends keyof HTMLElementTagNameMap> = {
+  maxColCount: number;
+  minColSize: `${number}rem` | `${number}px`;
+  gap: `${number}rem` | `${number}px`;
 
   uniqueId: string;
-} & ComponentProps<"div">;
-
-type Options = {
-  maxColCount?: number;
-  minColSize?: number;
-  gap?: number;
-};
-
-const defaultOptions: Required<Options> = {
-  maxColCount: 5,
-  minColSize: 5,
-  gap: 1,
-};
-
-const breakpoints = {
-  sm: "40rem",
-  md: "48rem",
-  lg: "64rem",
-};
-
-function generateCssVariables(options: Options): string {
-  return `
-    --grid-max-col-count: ${options.maxColCount || defaultOptions.maxColCount};
-    --grid-min-col-size: ${options.minColSize || defaultOptions.minColSize}rem;
-    --grid-gap: ${options.gap || defaultOptions.gap}rem;
-  `;
-}
+  as: T;
+} & ComponentProps<T>;
 
 /**
  * AutoGrid is a component that automatically adjusts the grid columns based on the screen size.
- *
- * @param maxColCount - The maximum number of columns the grid can have.
- * @param minColSize - The minimum size of each column in **rem**.
- * @param gap - The gap between each column in **rem**.
- * @param sm - The options for the small screen size.
- * @param md - The options for the medium screen size.
- * @param lg - The options for the large screen size.
- * @param props - Also accepts the HTML div props for the component.
- *
  */
-export default function AutoGrid({
+export default function AutoGrid<T extends keyof HTMLElementTagNameMap>({
   gap,
   uniqueId,
   maxColCount,
   minColSize,
-  sm,
-  md,
-  lg,
+  as,
   ...props
-}: AutoGridProps) {
-  const baseVariables = generateCssVariables({ maxColCount, minColSize, gap });
-  const generateMediaQueries = useCallback(
-    () =>
-      [sm, md, lg]
-        .map((options, index) => {
-          if (!options) return "";
-          const breakpoint = Object.values(breakpoints)[index];
-          return `
-          @media (width >= ${breakpoint}) {
-            #${uniqueId} {
-              --grid-max-col-count: ${options.maxColCount || maxColCount};
-              --grid-min-col-size: ${options.minColSize || minColSize}rem;
-              --grid-gap: ${options.gap || gap}rem;
-            }
-          }
-        `;
-        })
-        .join("\n"),
-    [gap, maxColCount, minColSize, uniqueId, sm, md, lg],
-  );
-  const mediaQueries = useMemo(
-    () => generateMediaQueries(),
-    [generateMediaQueries],
-  );
+}: AutoGridProps<T>) {
+  const Component = as || "div";
 
   return (
     <>
       <style>
         {`
           #${uniqueId} {
-            ${baseVariables}
-            
-            /* calculations, do not touch */
-            --grid-col-size-calc: calc(
-              (100% - var(--grid-gap) * var(--grid-max-col-count)) /
-                var(--grid-max-col-count)
-            );
-            --grid-col-min-size-calc: min(
-              100%,
-              max(var(--grid-min-col-size), var(--grid-col-size-calc))
-            );
-            display: grid;
-            gap: var(--grid-gap);
-            grid-template-columns: repeat(
-              auto-fit,
-              minmax(var(--grid-col-min-size-calc), 1fr)
-            );
-            ${mediaQueries || ""}`}
+            --grid-max-col-count: ${maxColCount || 5};
+            --grid-min-col-size: ${minColSize || `5rem`};
+            --grid-gap: ${gap || `1rem`};
+            ${cssCalculations}
+        `}
       </style>
-
-      <div id={uniqueId} {...props} />
+      {/* @ts-expect-error todo: temp solution */}
+      <Component id={uniqueId} {...props} />
     </>
   );
 }
