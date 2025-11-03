@@ -91,7 +91,10 @@ export default function CodePreview({ name }: CodePreviewProps) {
             </Suspense>
           </TabsContent>
           <TabsContent value="code" className="h-full">
-            <ComponentSource path={`src/registry/${previewSourceCode}`} />
+            <ComponentSource
+              className="[&_pre]:h-[448px]"
+              path={`src/registry/${previewSourceCode}`}
+            />
           </TabsContent>
         </CardContent>
       </Card>
