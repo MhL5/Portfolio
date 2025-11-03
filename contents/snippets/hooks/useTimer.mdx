@@ -5,13 +5,13 @@
 ## Usage
 
 ```tsx
-import useTimer from "@/hooks/useTimer";
+import { useTimeout, useInterval } from "@/registry/hooks/useTimer/useTimer";
 ```
 
 ### timeout
 
 ```tsx
-const { reset, clear } = useTimer(
+const { reset, clear } = useTimeout(
   () => {
     console.log("Timeout finished!");
   },
@@ -23,7 +23,7 @@ const { reset, clear } = useTimer(
 ### interval
 
 ```tsx
-const { reset, clear } = useTimer(
+const { reset, clear } = useInterval(
   () => {
     console.log("Timeout finished!");
   },
