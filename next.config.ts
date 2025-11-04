@@ -3,12 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   transpilePackages: ["next-mdx-remote"],
-  experimental: {
-    staleTimes: {
-      dynamic: 10,
-    },
-  },
+  cacheComponents: true,
+  reactCompiler: true,
   typedRoutes: true,
+
+  experimental: {
+    turbopackFileSystemCacheForDev: true,
+  },
 };
 
 export default nextConfig;
