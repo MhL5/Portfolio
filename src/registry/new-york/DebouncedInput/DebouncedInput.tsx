@@ -1,22 +1,23 @@
 "use client";
 
-import { useDebounce } from "@/registry/hooks/useDebounce/useDebounce";
+import { type ComponentProps, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { useState, type ComponentProps } from "react";
+import { useDebounce } from "@/registry/hooks/useDebounce/useDebounce";
 
 type DebouncedInputProps = {
-  initialValue?: string;
   onDebouncedChange: (value: string) => void;
+  value?: string;
   delay?: number;
-} & ComponentProps<typeof Input>;
+} & Omit<ComponentProps<typeof Input>, "value">;
 
 export default function DebouncedInput({
-  initialValue,
+  value,
   onDebouncedChange,
   delay = 200,
+  onChange,
   ...props
 }: DebouncedInputProps) {
-  const [inputValue, setInputValue] = useState(initialValue || "");
+  const [inputValue, setInputValue] = useState(value || "");
 
   useDebounce(
     () => {
@@ -26,10 +27,18 @@ export default function DebouncedInput({
     [inputValue],
   );
 
+  // keeps internal state in sync with the value prop
+  useEffect(() => {
+    setInputValue(value || "");
+  }, [value]);
+
   return (
     <Input
       value={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
+      onChange={(e) => {
+        onChange?.(e);
+        setInputValue(e.target.value);
+      }}
       {...props}
     />
   );

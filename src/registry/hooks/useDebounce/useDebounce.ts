@@ -15,15 +15,15 @@ export function useDebounce(
   useEffect(clear, [clear]);
 }
 
-export function useDebouncedValue<T>(inputValue: T, delay: number) {
-  const [debouncedValue, setDebouncedValue] = useState(inputValue);
+export function useDebouncedValue<T>(value: T, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
   useDebounce(
     () => {
-      setDebouncedValue(inputValue);
+      setDebouncedValue(value);
     },
     delay,
-    [inputValue],
+    [value],
   );
 
   return debouncedValue;
