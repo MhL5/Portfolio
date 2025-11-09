@@ -10,23 +10,57 @@ const fallbackSvgBase64 =
 
 type ImgProps = ComponentProps<typeof Image>;
 
-export default function Img({ src, alt, ...props }: ImgProps) {
-  const [isError, setIsError] = useState(false);
+export default function Img({
+  src,
+  alt,
+  placeholder: placeholderProp,
+  ...props
+}: ImgProps) {
+  const [imgState, setImageState] = useState<
+    "unoptimized-fallback" | "fallback-svg" | "default"
+  >("default");
+  // if src is valid allow custom placeholders else use "empty"
+  const placeholder = src ? placeholderProp : "empty";
 
-  // biome-ignore lint: when src changes, reset the error state
+  // biome-ignore lint: when src changes, reset the state
   useEffect(() => {
-    setIsError(false);
+    setImageState("default");
   }, [src]);
 
-  if (isError) return <Image src={fallbackSvgBase64} alt={alt} {...props} />;
+  if (imgState === "fallback-svg")
+    return (
+      <Image
+        src={fallbackSvgBase64}
+        placeholder={placeholder}
+        alt={alt}
+        {...props}
+      />
+    );
+
+  // prevents the application from crashing if the image type is falsy
+  const safeSrc = src || fallbackSvgBase64;
+
+  // its possible for optimization to timeout so we fallback to unoptimized version
+  if (imgState === "unoptimized-fallback")
+    return (
+      <Image
+        src={safeSrc}
+        placeholder={placeholder}
+        onError={() => setImageState("fallback-svg")}
+        alt={alt}
+        unoptimized
+        {...props}
+        loading="lazy"
+      />
+    );
 
   return (
     <Image
-      // prevents the application from crashing if the image type is falsy
-      src={src || fallbackSvgBase64}
+      src={safeSrc}
       alt={alt}
+      placeholder={placeholder}
       onError={() => {
-        if (!isError) setIsError(true);
+        if (imgState === "default") setImageState("unoptimized-fallback");
       }}
       {...props}
     />

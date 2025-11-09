@@ -28,6 +28,7 @@ function CopyButton({
   contentToCopy,
   side,
   children,
+  onClick,
   ...props
 }: CopyButtonProps) {
   const copyToClipboard = useCopyToClipboard(contentToCopy);
@@ -35,7 +36,14 @@ function CopyButton({
 
   return (
     <CopyButtonContext value={{ contentToCopy, side, ...copyToClipboard }}>
-      <Button onClick={handleCopy} variant="ghost" {...props}>
+      <Button
+        onClick={(e) => {
+          onClick?.(e);
+          handleCopy();
+        }}
+        variant="ghost"
+        {...props}
+      >
         {children === undefined ? <CopyButtonIcon /> : children}
       </Button>
     </CopyButtonContext>
