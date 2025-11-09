@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SnippetH1 from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetH1";
+import SnippetToc from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetToc";
+import { extractHeadings } from "@/app/(with-navigation)/snippets/[...slug]/_utils/extractHeadings";
+import Prose from "@/components/Prose";
 import { Badge } from "@/components/ui/badge";
 import { shadcnRegistry } from "@/constants/constants";
 import MdxRemoteServer from "@/features/MDX-remote/MdxRemoteServer";
@@ -66,27 +69,33 @@ export default async function Page({
   if (isNotPublished && !isDev()) return notFound();
 
   return (
-    <div id="main">
-      <SnippetH1
-        heading={
-          <div className="flex flex-wrap items-center gap-2">
-            {item.title}{" "}
-            {isNotPublished && (
-              <Badge className="text-base" variant="error">
-                not published
-              </Badge>
-            )}
-          </div>
-        }
-        slug={slug.at(-1) || ""}
-      />
+    <div className="grid xl:grid-cols-[1fr_15rem] xl:items-start xl:justify-between xl:gap-5">
+      <Prose as="main" id="main" className="w-full overflow-hidden">
+        <SnippetH1
+          heading={
+            <div className="flex flex-wrap items-center gap-2">
+              {item.title}{" "}
+              {isNotPublished && (
+                <Badge className="text-base" variant="error">
+                  not published
+                </Badge>
+              )}
+            </div>
+          }
+          slug={slug.at(-1) || ""}
+        />
 
-      <MdxRemoteServer
-        source={`
-        ${item?.description}\n
-        ${content}
-        `}
-      />
+        <MdxRemoteServer
+          source={`
+          ${item?.description}\n
+          ${content}
+          `}
+        />
+      </Prose>
+
+      <aside className="hidden xl:flex xl:h-full xl:flex-col xl:gap-1 xl:pt-6 xl:pb-2 xl:text-muted-foreground xl:text-sm">
+        <SnippetToc toc={extractHeadings(content)} />
+      </aside>
     </div>
   );
 }

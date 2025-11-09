@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Aside from "@/app/(with-navigation)/snippets/_components/Aside";
-import SnippetToc from "@/app/(with-navigation)/snippets/_components/SnippetToc";
-import Prose from "@/components/Prose";
 import { navigationLinks } from "@/constants/constants";
 import ScrollToTop from "@/registry/new-york/ScrollToTop/ScrollToTop";
 
@@ -40,16 +38,10 @@ export default function MdxLayout({ children }: LayoutProps<"/snippets">) {
     <>
       <ScrollToTop variant="on-navigation" />
 
-      <div className="mx-auto grid min-h-svh w-full max-w-8xl lg:grid-cols-[14rem_1fr] xl:grid-cols-[17.875rem_1fr_15rem]">
+      <div className="mx-auto grid min-h-svh w-full max-w-8xl lg:grid-cols-[14rem_1fr] xl:grid-cols-[17.875rem_1fr]">
         <Aside navigationLinks={navigationLinks} className="hidden lg:block" />
 
-        <Prose as="main" id="main" className="">
-          {children}
-        </Prose>
-
-        <aside className="hidden flex-col gap-1 pt-8 pb-2 text-muted-foreground text-sm xl:flex">
-          <SnippetToc />
-        </aside>
+        {children}
       </div>
     </>
   );

@@ -1,16 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-
-const headingDepthMap = {
-  h2: 2,
-  h3: 3,
-  h4: 4,
-  h5: 5,
-  h6: 6,
-} as const;
 
 function useActiveItem(itemIds: string[]) {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -39,45 +30,16 @@ function useActiveItem(itemIds: string[]) {
 
   return activeId;
 }
+type TocItem = { title: string; id: string; depth: number };
 
 type SnippetTocProps = {
   className?: string;
   tocDepth?: number;
+  toc: TocItem[];
 };
 
-type TocItem = { title: string; id: string; depth: number };
-
-export default function SnippetToc({ className, tocDepth }: SnippetTocProps) {
-  const [toc, setToc] = useState<TocItem[]>([]);
-  const pathname = usePathname();
+export default function SnippetToc({ className, toc }: SnippetTocProps) {
   const activeHeading = useActiveItem(toc.map((item) => item.id));
-
-  // todo: we should fix this by moving this component to the snippet page
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we need to re run this effect when pathname changes, since this component is render inside the layout and not the snippet page,
-  useEffect(() => {
-    const headings = document.querySelectorAll(
-      tocDepth
-        ? Array.from({ length: tocDepth }, (_, i) => `h${i + 2}`).join(", ")
-        : "h2, h3",
-    );
-
-    const overview = document.getElementById("overview");
-    if (headings) {
-      const tocHeadings = Array.from(headings).map((heading) => ({
-        title: heading.textContent ?? "",
-        id: heading.id,
-        depth:
-          headingDepthMap[
-            heading.tagName.toLowerCase() as keyof typeof headingDepthMap
-          ],
-      }));
-      setToc(
-        overview
-          ? [{ title: "Overview", id: "overview", depth: 1 }, ...tocHeadings]
-          : tocHeadings,
-      );
-    }
-  }, [pathname, tocDepth]);
 
   if (toc.length <= 1) return null;
   return (

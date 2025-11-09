@@ -1,6 +1,7 @@
 "use client";
 
-import { type ComponentProps, Suspense, use } from "react";
+import { Loader2Icon } from "lucide-react";
+import { type ComponentProps, useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
 import { CopyButton, CopyButtonIcon } from "@/components/buttons/CopyButton";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -12,33 +13,34 @@ type ComponentSourceProps = {
   code: string;
 } & ComponentProps<"code">;
 
-export default function ComponentSourceClient(props: ComponentSourceProps) {
-  return (
-    <Suspense
-      fallback={
-        <Skeleton className="h-10 max-w-full rounded-xl bg-code-background" />
-      }
-    >
-      <ContentSuspended {...props} />
-    </Suspense>
-  );
-}
-
-function ContentSuspended({
+export default function ComponentSourceClient({
   lang = "tsx",
   className,
   code,
   ...props
 }: ComponentSourceProps) {
-  const codeHtml = use(
-    codeToHtml(code, {
-      lang,
-      themes: {
-        light: "github-light",
-        dark: "github-dark",
-      },
-    }),
-  );
+  const [codeHtml, setCodeHtml] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function getCodeHtml() {
+      const codeHtml = await codeToHtml(code, {
+        lang,
+        themes: {
+          light: "github-light",
+          dark: "github-dark",
+        },
+      });
+      setCodeHtml(codeHtml);
+    }
+    getCodeHtml();
+  }, [code, lang]);
+
+  if (!codeHtml)
+    return (
+      <Skeleton className="grid h-20 max-w-full place-items-center rounded-xl bg-code-background">
+        <Loader2Icon className="size-5 animate-spin" />
+      </Skeleton>
+    );
 
   return (
     <pre className="not-prose relative h-full max-w-full rounded-xl bg-code-background">

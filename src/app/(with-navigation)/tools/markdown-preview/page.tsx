@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import SnippetToc from "@/app/(with-navigation)/snippets/_components/SnippetToc";
+import SnippetToc from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetToc";
+import { extractHeadings } from "@/app/(with-navigation)/snippets/[...slug]/_utils/extractHeadings";
 import DropArea from "@/components/DropArea";
 import Prose from "@/components/Prose";
 import ReactMarkdown from "@/features/MDX-remote/ReactMarkdown";
@@ -36,7 +37,7 @@ export default function MarkdownRenderer() {
             <ReactMarkdown markdown={md} />
           </Prose>
           <aside className="hidden pt-8 pb-2 2xl:flex 2xl:flex-col">
-            <SnippetToc tocDepth={6} />
+            <SnippetToc toc={extractHeadings(md)} />
           </aside>
         </section>
       )}

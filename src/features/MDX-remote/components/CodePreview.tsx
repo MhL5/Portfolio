@@ -30,7 +30,6 @@ const previewSourceCodes = {
   ErrorBoundary: "new-york/ErrorBoundary/example.tsx",
   FadeShadow: "new-york/FadeShadow/example.tsx",
   Img: "new-york/Img/example.tsx",
-  MatchMedia: "new-york/MatchMedia/example.tsx",
   useCopyToClipboard: "hooks/useCopyToClipboard/example.tsx",
   useIsMounted: "hooks/useIsMounted/example.tsx",
   useUrlState: "hooks/useUrlState/example.tsx",

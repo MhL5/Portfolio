@@ -1,7 +1,7 @@
 "use client";
 
-import type { StringWithAutoComplete } from "@/registry/types/AutoComplete/AutoComplete";
 import { useEffect, useMemo, useState } from "react";
+import type { StringWithAutoComplete } from "@/registry/types/AutoComplete/AutoComplete";
 
 type Direction = "max" | "min";
 type TailwindcssBreakpointsRemValue =

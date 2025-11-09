@@ -226,19 +226,7 @@
         }
       ]
     },
-    {
-      "name": "MatchMedia",
-      "type": "registry:ui",
-      "title": "MatchMedia",
-      "description": "a component that conditionally renders its children based on a media query.",
-      "registryDependencies": ["https://mhl5.vercel.app/r/useMediaQuery.json"],
-      "files": [
-        {
-          "path": "src/registry/new-york/MatchMedia/MatchMedia.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
+    
     {
       "name": "ScrollToTop",
       "type": "registry:component",
