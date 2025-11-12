@@ -4,7 +4,10 @@ import { useCallback, useEffect, useRef } from "react";
 
 type Callback = () => void;
 
-function useTimerCore(
+/**
+ * Internal helper for timers. Use `useTimeout` or `useInterval` instead.
+ */
+function _useTimers(
   callback: Callback,
   delay: number,
   type: "timeout" | "interval",
@@ -45,9 +48,9 @@ function useTimerCore(
 }
 
 const useInterval = (callback: Callback, delay: number) =>
-  useTimerCore(callback, delay, "interval");
+  _useTimers(callback, delay, "interval");
 
 const useTimeout = (callback: Callback, delay: number) =>
-  useTimerCore(callback, delay, "timeout");
+  _useTimers(callback, delay, "timeout");
 
 export { useInterval, useTimeout };

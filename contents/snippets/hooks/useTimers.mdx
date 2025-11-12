@@ -1,11 +1,11 @@
 ## Installation
 
-<InstallationTabs name="useTimer" />
+<InstallationTabs name="useTimers" />
 
 ## Usage
 
 ```tsx
-import { useTimeout, useInterval } from "@/registry/hooks/useTimer/useTimer";
+import { useTimeout, useInterval } from "@/registry/hooks/useTimers/useTimers";
 ```
 
 ### timeout
@@ -16,7 +16,6 @@ const { reset, clear } = useTimeout(
     console.log("Timeout finished!");
   },
   5000,
-  "interval",
 );
 ```
 
@@ -25,9 +24,8 @@ const { reset, clear } = useTimeout(
 ```tsx
 const { reset, clear } = useInterval(
   () => {
-    console.log("Timeout finished!");
+    console.log("Interval finished!");
   },
   5000,
-  "interval",
 );
 ```

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTimeout } from "@/registry/hooks/useTimer/useTimer";
+import { useTimeout } from "@/registry/hooks/useTimers/useTimers";
 
 export function useDebounce(
   callback: () => void,

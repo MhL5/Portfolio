@@ -70,7 +70,7 @@
       "description": "An input that debounces the input value.",
       "registryDependencies": [
         "https://mhl5.vercel.app/r/useDebounce.json",
-        "https://mhl5.vercel.app/r/useTimer.json"
+        "https://mhl5.vercel.app/r/useTimers.json"
       ],
       "files": [
         {
@@ -226,6 +226,7 @@
         }
       ]
     },
+    
     {
       "name": "ScrollToTop",
       "type": "registry:component",
@@ -309,7 +310,7 @@
       "type": "registry:hook",
       "title": "useDebounce",
       "description": "A hook for debouncing a value.",
-      "registryDependencies": ["https://mhl5.vercel.app/r/useTimer.json"],
+      "registryDependencies": ["https://mhl5.vercel.app/r/useTimers.json"],
       "files": [
         {
           "path": "src/registry/hooks/useDebounce/useDebounce.ts",
@@ -443,13 +444,13 @@
       ]
     },
     {
-      "name": "useTimer",
+      "name": "useTimers",
       "type": "registry:hook",
-      "title": "useTimer",
-      "description": "Using `facade` pattern, this module exports a `useTimer` and a `useInterval` hook.",
+      "title": "useTimers",
+      "description": "Using `facade` pattern, the logic is handled by the `useTimers` hook and this module exports a `useTimeout` and a `useInterval` hook.",
       "files": [
         {
-          "path": "src/registry/hooks/useTimer/useTimer.ts",
+          "path": "src/registry/hooks/useTimers/useTimers.ts",
           "type": "registry:hook"
         }
       ]
