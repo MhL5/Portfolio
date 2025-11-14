@@ -354,6 +354,20 @@ const uiBookmarks: Bookmark[] = [
     title: "Efferd",
     description: "Beautiful Shadcn Blocks.",
   },
+  {
+    url: "https://www.shadcn.io/",
+    category: "ui",
+    title: "Shadcn UI",
+    description:
+      "Essential UI components, advanced patterns, and AI integrations. From buttons to AI chat interfaces - everything you need to build modern applications.",
+  },
+  {
+    url: "https://animate-ui.com/",
+    category: "ui",
+    title: "Animate UI",
+    description:
+      "A fully animated, open-source React component distribution. Browse a list of animated primitives, components and icons you can install and use in your projects.",
+  },
 ];
 
 export const allBookmarks: Bookmark[] = [
