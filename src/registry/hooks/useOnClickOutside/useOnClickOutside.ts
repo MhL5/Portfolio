@@ -1,8 +1,8 @@
 "use client";
 
+import type { RefObject } from "react";
 import useEventListener from "@/registry/hooks/useEventListener/useEventListener";
 import { isDocumentAvailable } from "@/registry/utils/checks/checks";
-import type { RefObject } from "react";
 
 export default function useOnClickOutside(
   ref: RefObject<HTMLElement | null>,

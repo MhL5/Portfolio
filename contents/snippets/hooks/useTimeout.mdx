@@ -1,0 +1,20 @@
+## Installation
+
+<InstallationTabs name="useTimeout" />
+
+## Usage
+
+```tsx
+import { useTimeout } from "@/registry/hooks/useTimeout/useTimeout";
+```
+
+<br/>
+
+```tsx
+const { reset, clear } = useTimeout(
+  () => {
+    console.log("Timeout finished!");
+  },
+  5000,
+);
+```

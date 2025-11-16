@@ -1,0 +1,20 @@
+## Installation
+
+<InstallationTabs name="useInterval" />
+
+## Usage
+
+```tsx
+import { useInterval } from "@/registry/hooks/useInterval/useInterval";
+```
+
+<br/>
+
+```tsx
+const { reset, clear } = useInterval(
+  () => {
+    console.log("Interval finished!");
+  },
+  5000,
+);
+```

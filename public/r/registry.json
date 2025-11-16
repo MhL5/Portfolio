@@ -396,30 +396,6 @@
       ]
     },
     {
-      "name": "useStateWithHistory",
-      "type": "registry:hook",
-      "title": "useStateWithHistory",
-      "description": "A hook that extends useState with history functionality, allowing undo and redo operations.",
-      "files": [
-        {
-          "path": "src/registry/hooks/useStateWithHistory/useStateWithHistory.ts",
-          "type": "registry:hook"
-        }
-      ]
-    },
-    {
-      "name": "useStateWithValidation",
-      "type": "registry:hook",
-      "title": "useStateWithValidation",
-      "description": "A hook with isValid state that validates the state value.",
-      "files": [
-        {
-          "path": "src/registry/hooks/useStateWithValidation/useStateWithValidation.ts",
-          "type": "registry:hook"
-        }
-      ]
-    },
-    {
       "name": "useStepper",
       "type": "registry:hook",
       "title": "useStepper",
@@ -456,13 +432,25 @@
       ]
     },
     {
-      "name": "useTimers",
+      "name": "useTimeout",
       "type": "registry:hook",
-      "title": "useTimers",
-      "description": "Using `facade` pattern, the logic is handled by the `useTimers` hook and this module exports a `useTimeout` and a `useInterval` hook.",
+      "title": "useTimeout",
+      "description": "A hook for setting a timeout.",
       "files": [
         {
-          "path": "src/registry/hooks/useTimers/useTimers.ts",
+          "path": "src/registry/hooks/useTimeout/useTimeout.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "useInterval",
+      "type": "registry:hook",
+      "title": "useInterval",
+      "description": "A hook for setting an interval.",
+      "files": [
+        {
+          "path": "src/registry/hooks/useInterval/useInterval.ts",
           "type": "registry:hook"
         }
       ]
