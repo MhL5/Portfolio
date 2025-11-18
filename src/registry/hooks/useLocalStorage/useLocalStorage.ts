@@ -1,72 +1,128 @@
-"use no memo";
+// useLocalStorage.ts
+import { useSyncExternalStore } from "react";
 
-import { useCallback, useMemo, useRef, useSyncExternalStore } from "react";
-import { readStorageJsonValue } from "@/utils/readStorageJson";
+type Serializer<T> = (value: T) => string;
+type Deserializer<T> = (value: string) => T;
 
-export function useLocalStorage<T>(key: string, defaultValue: T | (() => T)) {
-  const defaultVal = useMemo(
-    () => (defaultValue instanceof Function ? defaultValue() : defaultValue),
-    [defaultValue],
-  );
-  const snapshotRef = useRef<T | null>(null);
-  const snapshotKeyRef = useRef<string | null>(null);
+function createLocalStorageStore<T>(
+  key: string,
+  defaultValue: T,
+  serialize: Serializer<T>,
+  deserialize: Deserializer<T>,
+) {
+  let currentValue: T = readFromLocalStorage(key, defaultValue, deserialize);
+  const listeners = new Set<() => void>();
 
-  const getSnapshot = useCallback(() => {
-    const newValue = readStorageJsonValue(key, defaultVal, localStorage);
+  function readFromLocalStorageInner(): T {
+    try {
+      const item = window.localStorage.getItem(key);
+      if (item == null) return defaultValue;
+      return deserialize(item);
+    } catch {
+      return defaultValue;
+    }
+  }
 
-    const isSame =
-      snapshotKeyRef.current === key &&
-      JSON.stringify(snapshotRef.current) === JSON.stringify(newValue);
-    // Compare by JSON string to avoid reference inequality issues
-    if (isSame) return snapshotRef.current;
+  function notify() {
+    for (const listener of listeners) listener();
+  }
 
-    snapshotRef.current = newValue;
-    snapshotKeyRef.current = key;
-    return newValue;
-  }, [key, defaultVal]);
+  function setValue(next: T | ((prev: T) => T)) {
+    const resolved =
+      typeof next === "function"
+        ? (next as (prev: T) => T)(currentValue)
+        : next;
 
-  const snapshot: T = useSyncExternalStore(
-    (cb) => _subscribe(key, cb),
+    currentValue = resolved;
+
+    try {
+      window.localStorage.setItem(key, serialize(resolved));
+    } catch {
+      // ignore write errors (quota, private mode, etc.)
+    }
+
+    notify();
+  }
+
+  function subscribe(listener: () => void) {
+    listeners.add(listener);
+    return () => listeners.delete(listener);
+  }
+
+  function getSnapshot() {
+    return currentValue;
+  }
+
+  // for SSR: just use default; localStorage isn't available
+  function getServerSnapshot() {
+    return defaultValue;
+  }
+
+  // Sync store when other tabs or same tab modify this key or clear storage
+  if (
+    typeof window !== "undefined" &&
+    typeof window.addEventListener === "function"
+  ) {
+    window.addEventListener("storage", (event) => {
+      if (event.key === key || event.key === null) {
+        currentValue = readFromLocalStorageInner();
+        notify();
+      }
+    });
+  }
+
+  return {
+    subscribe,
     getSnapshot,
-    () => defaultVal,
-  );
-  const valueRef = useRef(snapshot);
-  valueRef.current = snapshot;
-
-  const setValue = useCallback(
-    (newValue: T | ((prev: T) => T)) => {
-      const nextValue =
-        newValue instanceof Function ? newValue(valueRef.current) : newValue;
-
-      if (nextValue === undefined || nextValue === null)
-        localStorage.removeItem(key);
-      else localStorage.setItem(key, JSON.stringify(nextValue));
-
-      window.dispatchEvent(
-        new StorageEvent("storage", {
-          key,
-        }),
-      );
-    },
-    [key],
-  );
-
-  const remove = useCallback(() => {
-    localStorage.removeItem(key);
-    window.dispatchEvent(
-      new StorageEvent("storage", {
-        key,
-      }),
-    );
-  }, [key]);
-
-  return [snapshot, setValue, remove] as const;
+    getServerSnapshot,
+    setValue,
+  };
 }
 
-function _subscribe(key: string, callback: () => void) {
-  const handler = (e: StorageEvent) => {
-    if (e.key === key) callback();
-  };
-  window.addEventListener("storage", handler);
-  return () => window.removeEventListener("storage", handler);
+function readFromLocalStorage<T>(
+  key: string,
+  defaultValue: T,
+  deserialize: Deserializer<T>,
+): T {
+  if (typeof window === "undefined") {
+    // SSR / Node: just return default
+    return defaultValue;
+  }
+
+  try {
+    const item = window.localStorage.getItem(key);
+    if (item == null) return defaultValue;
+    return deserialize(item);
+  } catch {
+    return defaultValue;
+  }
+}
+
+export function useLocalStorage<T>(
+  key: string,
+  defaultValue: T,
+  options?: {
+    serialize?: Serializer<T>;
+    deserialize?: Deserializer<T>;
+  },
+): [T, (value: T | ((prev: T) => T)) => void] {
+  const serialize: Serializer<T> =
+    options?.serialize ?? ((value) => JSON.stringify(value));
+  const deserialize: Deserializer<T> =
+    options?.deserialize ?? ((value) => JSON.parse(value));
+
+  const store = createLocalStorageStore<T>(
+    key,
+    defaultValue,
+    serialize,
+    deserialize,
+  );
+
+  const value = useSyncExternalStore(
+    store.subscribe,
+    store.getSnapshot,
+    store.getServerSnapshot,
+  );
+
+  return [value, store.setValue];
 }
