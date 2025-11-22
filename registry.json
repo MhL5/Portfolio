@@ -179,19 +179,6 @@
       ]
     },
     {
-      "name": "SkipLink",
-      "type": "registry:component",
-      "title": "SkipLink",
-      "description": "Accessible skip link to the main content of the page. useful for users who use keyboard navigation.\n",
-      "registryDependencies": ["button"],
-      "files": [
-        {
-          "path": "src/registry/new-york/SkipLink/SkipLink.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "StructuredDataScript",
       "type": "registry:component",
       "title": "StructuredDataScript",

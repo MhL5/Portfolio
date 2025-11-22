@@ -3,7 +3,6 @@
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/buttons/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +15,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import SkipLink from "@/registry/new-york/SkipLink/SkipLink";
 
 const links = [
   {
@@ -29,33 +27,14 @@ const links = [
   },
 ] as const;
 
-// todo: temp solution, its better to hard code an array of pages that have a main id
-function usePageWithMainId() {
-  const [hasMainId, setHasMainId] = useState(false);
-  const pathname = usePathname();
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we need to re run this effect when pathname changes
-  useEffect(() => {
-    const mainId = document.getElementById("main");
-    if (mainId) setHasMainId(true);
-
-    return () => setHasMainId(false);
-  }, [pathname]);
-
-  return hasMainId;
-}
-
 export default function Header() {
   const pathname = usePathname();
-  const hasMainId = usePageWithMainId();
 
   const isHome = pathname === "/";
 
   return (
     <>
-      <header
-        className={`${pathname === "/" ? "animate-fade-in" : ""} fixed top-0 z-50 h-13 w-[calc(100%-var(--removed-body-scroll-bar-size,0px))] border-border/30 border-b bg-background/50 backdrop-blur-md`}
-      >
+      <header className="fixed top-0 z-50 h-13 w-[calc(100%-var(--removed-body-scroll-bar-size,0px))] border-border/20 border-b bg-background/20 backdrop-blur-md dark:border-border/30">
         <nav className="mx-auto flex h-full w-full max-w-8xl items-center px-4">
           <Sheet>
             <SheetTrigger className="lg:hidden" asChild>
@@ -97,10 +76,6 @@ export default function Header() {
           </Sheet>
 
           <div className="mr-auto flex items-center gap-6">
-            {hasMainId && (
-              <SkipLink href="#main">Skip to main content</SkipLink>
-            )}
-
             <Button variant="link" asChild>
               <Link
                 href="/"
