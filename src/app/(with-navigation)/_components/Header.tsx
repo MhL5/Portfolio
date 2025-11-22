@@ -53,7 +53,9 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 z-50 h-13 w-[calc(100%-var(--removed-body-scroll-bar-size,0px))] border-border/30 border-b bg-background/50 backdrop-blur-md">
+      <header
+        className={`${pathname === "/" ? "animate-fade-in" : ""} fixed top-0 z-50 h-13 w-[calc(100%-var(--removed-body-scroll-bar-size,0px))] border-border/30 border-b bg-background/50 backdrop-blur-md`}
+      >
         <nav className="mx-auto flex h-full w-full max-w-8xl items-center px-4">
           <Sheet>
             <SheetTrigger className="lg:hidden" asChild>

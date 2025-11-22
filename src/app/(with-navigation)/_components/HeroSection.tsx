@@ -25,8 +25,6 @@ export default function HeroSection({
           efficient web applications.
         </h2>
       </div>
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-background" />
     </section>
   );
 }

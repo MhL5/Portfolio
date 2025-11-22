@@ -6,13 +6,13 @@ import Providers from "@/providers/Providers";
 import { domainUrl } from "@/utils/absoluteUrl";
 
 const figtree = localFont({
-  src: "./fonts/Figtree/Figtree-VariableFont_wght.ttf",
+  src: "../assets/fonts/Figtree/Figtree-VariableFont_wght.ttf",
   variable: "--font-figtree",
   display: "swap",
 });
 
 const spaceGrotesk = localFont({
-  src: "./fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf",
+  src: "../assets/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf",
   variable: "--font-space-grotesk",
   display: "swap",
 });
@@ -64,6 +64,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${spaceGrotesk.variable} ${figtree.variable} min-w-xs font-figtree antialiased`}
       >
+        {/* Azure Depths */}
+        <div
+          className="-z-10 fixed inset-0 h-full w-full"
+          style={{
+            background:
+              "radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%)",
+          }}
+        />
+
         <Providers>{children}</Providers>
       </body>
     </html>
