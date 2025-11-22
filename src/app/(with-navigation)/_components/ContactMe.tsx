@@ -1,7 +1,7 @@
-import { Button, type ButtonProps } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import type { ComponentProps } from "react";
+import { Button, type ButtonProps } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const links = {
   telegram: "https://t.me/mhl_5",
@@ -22,17 +22,17 @@ export default function ContactMe({
 
           <p className="mt-6 text-base text-muted-foreground md:text-lg">
             Want to chat? Just shoot me with a dm on{" "}
-            <FooterLinkButton>
+            <ContactMeButton>
               <Link href={links.telegram} target="_blank">
                 telegram
               </Link>
-            </FooterLinkButton>{" "}
+            </ContactMeButton>{" "}
             or{" "}
-            <FooterLinkButton>
+            <ContactMeButton>
               <Link href={links.discord} target="_blank">
                 discord
               </Link>
-            </FooterLinkButton>
+            </ContactMeButton>
             and I&apos;ll respond whenever I can.
           </p>
         </div>
@@ -41,7 +41,7 @@ export default function ContactMe({
   );
 }
 
-function FooterLinkButton({ className, ...props }: ButtonProps) {
+function ContactMeButton({ className, ...props }: ButtonProps) {
   return (
     <Button
       asChild

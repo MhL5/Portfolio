@@ -2,7 +2,7 @@
 
 // biome-ignore lint: we need to import next/image here since Img is a wrapper around it
 import Image from "next/image";
-import { type ComponentProps, useEffect, useState } from "react";
+import { type ComponentProps, useState } from "react";
 
 // the image is also in the public folder /image-placeholder.svg
 const fallbackSvgBase64 =
@@ -21,11 +21,6 @@ export default function Img({
   >("default");
   // if src is valid allow custom placeholders else use "empty"
   const placeholder = src ? placeholderProp : "empty";
-
-  // biome-ignore lint: when src changes, reset the state
-  useEffect(() => {
-    setImageState("default");
-  }, [src]);
 
   if (imgState === "fallback-svg")
     return (

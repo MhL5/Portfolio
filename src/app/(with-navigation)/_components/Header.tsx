@@ -30,8 +30,6 @@ const links = [
 export default function Header() {
   const pathname = usePathname();
 
-  const isHome = pathname === "/";
-
   return (
     <>
       <header className="fixed top-0 z-50 h-13 w-[calc(100%-var(--removed-body-scroll-bar-size,0px))] border-border/20 border-b bg-background/20 backdrop-blur-md dark:border-border/30">
@@ -86,7 +84,7 @@ export default function Header() {
             </Button>
 
             {links.map(({ href, label }) => {
-              const isActive = pathname === href;
+              const isActive = pathname.startsWith(href);
               return (
                 <Button
                   variant="link"
@@ -126,7 +124,7 @@ export default function Header() {
         </nav>
       </header>
 
-      {isHome ? null : <div className="h-14" aria-hidden="true" />}
+      <div className="h-14" aria-hidden="true" />
     </>
   );
 }
