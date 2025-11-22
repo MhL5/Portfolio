@@ -1,8 +1,8 @@
 "use client";
 
+import { type ReactNode, useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useEffect, useState, type ReactNode } from "react";
 
 type DeviceInfo = {
   "screen Width": string;

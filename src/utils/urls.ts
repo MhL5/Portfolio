@@ -9,4 +9,5 @@ export const domainUrl = isProd()
  *
  * @example absoluteUrl("/blogs") => "https://mhl5.vercel.app/blogs"
  */
-export const absoluteUrl = (path: `/${string}`) => `${domainUrl}${path}`;
+export const absoluteUrl = (path: `/${string}`) =>
+  new URL(path.replace(/([^:])(\/\/+)/g, "$1/"), domainUrl);

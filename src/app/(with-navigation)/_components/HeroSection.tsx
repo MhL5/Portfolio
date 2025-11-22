@@ -8,7 +8,7 @@ export default function HeroSection({
   return (
     <section
       className={cn(
-        "relative flex h-svh w-full flex-col items-center justify-center bg-gradient-to-tl dark:from-black dark:via-zinc-50/10 dark:to-black",
+        "relative flex h-svh w-full flex-col items-center justify-center",
         className,
       )}
       {...props}
