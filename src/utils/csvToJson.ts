@@ -12,7 +12,7 @@ export function csvToJson(csv: string): Record<string, unknown>[] {
       const result = headers.reduce(
         (acc, header, index) => {
           const value = lineValues[index];
-          acc[header] = value === "" || isNaN(+value) ? value : +value;
+          acc[header] = value === "" || Number.isNaN(+value) ? value : +value;
           return acc;
         },
         {} as Record<string, unknown>,

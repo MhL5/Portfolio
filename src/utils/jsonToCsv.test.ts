@@ -1,8 +1,8 @@
-import { jsonToCsv } from "@/utils/CsvConvertor/jsonToCsv";
-import { describe, expect, it } from "vitest";
+import { describe, expect, test } from "bun:test";
+import { jsonToCsv } from "./jsonToCsv";
 
 describe("JsonToCsv", () => {
-  it("should convert json data correctly to match the expected output", () => {
+  test("should convert json data correctly to match the expected output", () => {
     const jsonData = [
       {
         Type: "SP",
@@ -24,7 +24,7 @@ describe("JsonToCsv", () => {
     expect(result).toEqual(expectedCsv);
   });
 
-  it("should handle multiple data rows correctly", () => {
+  test("should handle multiple data rows correctly", () => {
     const jsonData = [
       { Name: "Alice", Age: 30, City: "New York" },
       { Name: "Bob", Age: 25, City: "Los Angeles" },
@@ -37,7 +37,7 @@ describe("JsonToCsv", () => {
     expect(result).toEqual(expectedCsv);
   });
 
-  it("should handle objects with different properties", () => {
+  test("should handle objects with different properties", () => {
     const jsonData = [
       { Name: "Alice", Age: 30 },
       { Name: "Bob", Age: 25, City: "Los Angeles" },
@@ -50,7 +50,7 @@ describe("JsonToCsv", () => {
     expect(result).toEqual(expectedCsv);
   });
 
-  it("should handle different data types and null/undefined values", () => {
+  test("should handle different data types and null/undefined values", () => {
     const jsonData = [
       { ID: 1, Value: "abc", Status: "active", Count: 5, IsEmpty: false },
       {
@@ -69,7 +69,7 @@ describe("JsonToCsv", () => {
     expect(result).toEqual(expectedCsv);
   });
 
-  it("should return an error message for an empty array", () => {
+  test("should return an error message for an empty array", () => {
     const jsonData: Record<string, unknown>[] = [];
 
     const expectedCsv = "Data must be a non-empty array";
@@ -78,14 +78,14 @@ describe("JsonToCsv", () => {
     expect(result).toEqual(expectedCsv);
   });
 
-  it("should return an error message for non-array input", () => {
+  test("should return an error message for non-array input", () => {
     // @ts-expect-error Testing invalid input type
     const result = jsonToCsv({ data: "not an array" });
 
     expect(result).toEqual("Data must be a non-empty array");
   });
 
-  it("should handle arrays with a single item", () => {
+  test("should handle arrays with a single item", () => {
     const jsonData = [{ Name: "Single Item", Value: 42 }];
 
     const expectedCsv = `Name,Value\r\n"Single Item",42`;
@@ -94,7 +94,7 @@ describe("JsonToCsv", () => {
     expect(result).toEqual(expectedCsv);
   });
 
-  it("should combine all unique keys from all objects", () => {
+  test("should combine all unique keys from all objects", () => {
     const jsonData = [
       { a: 1, b: 2 },
       { b: 3, c: 4 },
@@ -107,7 +107,7 @@ describe("JsonToCsv", () => {
     expect(result).toEqual(expectedCsv);
   });
 
-  it("should properly escape values with commas and quotes", () => {
+  test("should properly escape values with commas and quotes", () => {
     const jsonData = [
       { Name: "Alice, Smith", Description: 'She said "hello"' },
       { Name: 'Robert "Bob" Jones', Description: 'Comma, and "quotes"' },
@@ -119,7 +119,7 @@ describe("JsonToCsv", () => {
     expect(result).toEqual(expectedCsv);
   });
 
-  it("should handle values with commas and quotes", () => {
+  test("should handle values with commas and quotes", () => {
     const jsonData = [
       {
         id: "67f93936b626701012c5153e",

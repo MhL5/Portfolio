@@ -1,8 +1,8 @@
-import { csvToJson } from "@/utils/CsvConvertor/csvToJson";
-import { describe, expect, it } from "vitest";
+import { describe, expect, test } from "bun:test";
+import { csvToJson } from "./csvToJson";
 
 describe("csvToJson", () => {
-  it("should parse and convert the csv correctly to match the expected output", () => {
+  test("should parse and convert the csv correctly to match the expected output", () => {
     const csvString = `Type,Model,Material,Color,Size,Stock,,price,sale-price,Name
 SP,TKO,LT,BLK,39,1,SP-TKO-LT-BLK-39,1470000,5880000,صندل طبی زنانه مدل توکیو
 `;
@@ -25,7 +25,7 @@ SP,TKO,LT,BLK,39,1,SP-TKO-LT-BLK-39,1470000,5880000,صندل طبی زنانه �
     expect(result).toEqual(expectedValue);
   });
 
-  it("should handle multiple data rows correctly", () => {
+  test("should handle multiple data rows correctly", () => {
     const csvString = `Name,Age,City
 Alice,30,New York
 Bob,25,Los Angeles
@@ -39,7 +39,7 @@ Charlie,35,Chicago`;
     expect(result).toEqual(expectedValue);
   });
 
-  it("should ignore empty lines in the CSV", () => {
+  test("should ignore empty lines in the CSV", () => {
     const csvString = `Name,Age
 Alice,30
 
@@ -53,7 +53,7 @@ Bob,25
     expect(result).toEqual(expectedValue);
   });
 
-  it("should handle different data types and empty cells", () => {
+  test("should handle different data types and empty cells", () => {
     const csvString = `ID,Value,Status,Count,IsEmpty
 1,abc,active,5,false
 2,,inactive,,true
@@ -67,28 +67,28 @@ Bob,25
     expect(result).toEqual(expectedValue);
   });
 
-  it("should return an empty array for an empty CSV string", () => {
+  test("should return an empty array for an empty CSV string", () => {
     const csvString = "";
     const expectedValue: Record<string, unknown>[] = [];
     const result = csvToJson(csvString);
     expect(result).toEqual(expectedValue);
   });
 
-  it("should return an empty array for a CSV with only a header row", () => {
+  test("should return an empty array for a CSV with only a header row", () => {
     const csvString = "Header1,Header2,Header3";
     const expectedValue: Record<string, unknown>[] = [];
     const result = csvToJson(csvString);
     expect(result).toEqual(expectedValue);
   });
 
-  it("should return an empty array for a CSV with only a header row and a newline", () => {
+  test("should return an empty array for a CSV with only a header row and a newline", () => {
     const csvString = "Header1,Header2,Header3\n";
     const expectedValue: Record<string, unknown>[] = [];
     const result = csvToJson(csvString);
     expect(result).toEqual(expectedValue);
   });
 
-  it("should handle lines with fewer values than headers", () => {
+  test("should handle lines with fewer values than headers", () => {
     const csvString = `Col1,Col2,Col3
 Val1A,Val1B,Val1C
 Val2A,Val2B`; // Missing value for Col3
@@ -100,7 +100,7 @@ Val2A,Val2B`; // Missing value for Col3
     expect(result).toEqual(expectedValue);
   });
 
-  it("should ignore extra values in a line compared to headers", () => {
+  test("should ignore extra values in a line compared to headers", () => {
     const csvString = `Col1,Col2
 Val1A,Val1B,ExtraValue`; // Extra value
     const expectedValue = [
