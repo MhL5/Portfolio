@@ -395,19 +395,6 @@
       ]
     },
     {
-      "name": "LaravelPaginatedResourceType",
-      "type": "registry:lib",
-      "title": "LaravelPaginatedResourceType",
-      "description": "a reusable type that represents the paginated resource type from **Laravel**",
-      "files": [
-        {
-          "path": "src/registry/types/LaravelPaginatedResourceType/LaravelPaginatedResourceType.ts",
-          "type": "registry:lib",
-          "target": "src/types/LaravelPaginatedResourceType.ts"
-        }
-      ]
-    },
-    {
       "name": "PartialPick",
       "type": "registry:lib",
       "title": "PartialPick",
