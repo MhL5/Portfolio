@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { ReactNode } from "react";
 import { Toaster } from "@/components/ui/sonner";
@@ -15,6 +16,7 @@ export default function Providers({ children }: ProvidersProps) {
         {children}
       </ThemeProvider>
 
+      <GoogleAnalytics gaId="G-VCE68NR27Q" />
       <SpeedInsights />
     </>
   );
