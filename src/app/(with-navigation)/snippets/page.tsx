@@ -1,3 +1,4 @@
+import { cacheLife } from "next/cache";
 import { Suspense } from "react";
 import SnippetsList from "@/app/(with-navigation)/snippets/_components/SnippetsList";
 import SnippetToc from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetToc";
@@ -7,6 +8,9 @@ import MdxRemoteServer from "@/features/MDX-remote/MdxRemoteServer";
 import { fileReader } from "@/utils/fileReader";
 
 export default async function Page() {
+  "use cache";
+  cacheLife("weeks");
+
   const content = await fileReader("contents/snippets/snippets.mdx");
 
   return (

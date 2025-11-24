@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cacheLife } from "next/cache";
 import { notFound } from "next/navigation";
 import SnippetH1 from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetH1";
 import SnippetToc from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetToc";
@@ -13,6 +14,9 @@ import { fileReader } from "@/utils/fileReader";
 export async function generateMetadata({
   params,
 }: PageProps<"/snippets/[...slug]">): Promise<Metadata> {
+  "use cache";
+  cacheLife("weeks");
+
   const { slug = [] } = await params;
   if (!slug || slug.length === 0) return notFound();
 
@@ -53,6 +57,9 @@ export async function generateStaticParams() {
 export default async function Page({
   params,
 }: PageProps<"/snippets/[...slug]">) {
+  "use cache";
+  cacheLife("weeks");
+
   const { slug = [] } = await params;
 
   if (!slug || slug.length === 0) return notFound();
