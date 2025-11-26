@@ -11,34 +11,6 @@ import {
 } from "@/constants/constants";
 import { cn } from "@/lib/utils";
 
-type NavItemProps = {
-  title: string;
-  url: string;
-  isActive: boolean;
-  className?: string;
-  isSubItem?: boolean;
-};
-
-const NavItem = ({
-  title,
-  url,
-  isActive,
-  className,
-  isSubItem,
-}: NavItemProps) => (
-  <Button
-    asChild
-    variant={isActive ? "secondary" : "ghost"}
-    size={isSubItem ? "xs" : "sm"}
-    className={cn("w-full justify-between transition-all", className)}
-  >
-    <Link href={url as Route}>
-      {title}
-      <LinkIndicator />
-    </Link>
-  </Button>
-);
-
 type AsideProps = {
   className?: string;
   navigationLinks: typeof navigationLinks;
@@ -71,16 +43,12 @@ export default function Aside({ className, navigationLinks }: AsideProps) {
                   const isActive = pathname.includes(item.url);
 
                   return (
-                    <div
+                    <NavLink
                       key={`${item.title}-${item.url}-${i}`}
-                      className="space-y-1"
-                    >
-                      <NavItem
-                        title={item.title}
-                        url={item.url}
-                        isActive={isActive}
-                      />
-                    </div>
+                      title={item.title}
+                      url={item.url}
+                      isActive={isActive}
+                    />
                   );
                 })}
               </div>
@@ -89,5 +57,29 @@ export default function Aside({ className, navigationLinks }: AsideProps) {
         })}
       </nav>
     </aside>
+  );
+}
+
+type NavLinkProps = {
+  title: string;
+  url: string;
+  isActive: boolean;
+  className?: string;
+  isSubItem?: boolean;
+};
+
+function NavLink({ title, url, isActive, className, isSubItem }: NavLinkProps) {
+  return (
+    <Button
+      asChild
+      variant={isActive ? "secondary" : "ghost"}
+      size={isSubItem ? "xs" : "sm"}
+      className={cn("w-full justify-between transition-all", className)}
+    >
+      <Link href={url as Route}>
+        {title}
+        <LinkIndicator />
+      </Link>
+    </Button>
   );
 }
