@@ -57,7 +57,6 @@ export default function Example() {
 
       <AutoGrid
         as="ul"
-        uniqueId="auto-grid-example-1234"
         maxColCount={maxColCount}
         minColSize={`${minColSize}px`}
         gap={`${gap}px`}

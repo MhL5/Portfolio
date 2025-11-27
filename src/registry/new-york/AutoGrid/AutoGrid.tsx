@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import { type ComponentProps, useId } from "react";
 
 // Do not touch
 const cssCalculations = `
@@ -23,7 +23,6 @@ type AutoGridProps<T extends keyof HTMLElementTagNameMap> = {
   minColSize: `${number}rem` | `${number}px`;
   gap: `${number}rem` | `${number}px`;
 
-  uniqueId: string;
   as: T;
 } & ComponentProps<T>;
 
@@ -32,19 +31,19 @@ type AutoGridProps<T extends keyof HTMLElementTagNameMap> = {
  */
 export default function AutoGrid<T extends keyof HTMLElementTagNameMap>({
   gap,
-  uniqueId,
   maxColCount,
   minColSize,
   as,
   ...props
 }: AutoGridProps<T>) {
   const Component = as || "div";
+  const id = useId();
 
   return (
     <>
       <style>
         {`
-          #${uniqueId} {
+          #${id} {
             --grid-max-col-count: ${maxColCount || 5};
             --grid-min-col-size: ${minColSize || `5rem`};
             --grid-gap: ${gap || `1rem`};
@@ -52,7 +51,7 @@ export default function AutoGrid<T extends keyof HTMLElementTagNameMap>({
         `}
       </style>
       {/* @ts-expect-error todo: temp solution */}
-      <Component id={uniqueId} {...props} />
+      <Component id={id} {...props} />
     </>
   );
 }

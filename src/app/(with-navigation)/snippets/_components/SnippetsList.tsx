@@ -79,7 +79,6 @@ export default function SnippetsList() {
 
       <AutoGrid
         maxColCount={3}
-        uniqueId="snippets-list"
         minColSize="10rem"
         gap="1rem"
         className="mx-auto max-w-4xl"
