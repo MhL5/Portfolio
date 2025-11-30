@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type UseIsVisibleOptions = {
   rootMargin?: IntersectionObserverInit["rootMargin"];
@@ -23,12 +23,23 @@ export default function useIsVisible({
     if (initialState instanceof Function) return initialState();
     return initialState;
   });
+  const rootRef = useRef<UseIsVisibleOptions["root"]>(root);
+  const thresholdRef = useRef<UseIsVisibleOptions["threshold"]>(threshold);
+
   // refCallback automatically triggers when the element changes, while useRef doesn't
   // using useRef can break the logic specially if the component gets rendered with a delay due to fetching ...
   const [element, setElement] = useState<HTMLElement | null>(null);
   const refCallback = useCallback((node: HTMLElement | null) => {
     setElement(node);
   }, []);
+
+  useEffect(() => {
+    rootRef.current = root;
+  }, [root]);
+
+  useEffect(() => {
+    thresholdRef.current = threshold;
+  }, [threshold]);
 
   useEffect(() => {
     if (!element) return;
@@ -44,7 +55,7 @@ export default function useIsVisible({
         setIsVisible(entry.isIntersecting);
         if (once && entry.isIntersecting) observer.disconnect();
       },
-      { rootMargin, root, threshold },
+      { rootMargin, root: rootRef.current, threshold: thresholdRef.current },
     );
 
     observer.observe(element);
@@ -54,7 +65,7 @@ export default function useIsVisible({
       observer.unobserve(element);
       isMounted = false;
     };
-  }, [element, rootMargin, once, root, threshold]);
+  }, [element, rootMargin, once]);
 
   return { isVisible, ref: refCallback };
 }
