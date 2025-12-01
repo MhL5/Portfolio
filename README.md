@@ -40,7 +40,6 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
    create a `.env` file
    ```env
    NEXT_PUBLIC_FRONTEND_DOMAIN=https://yourdomain.com
-   PORT=7777
    ```
 4. Run the development server
    ```bash
