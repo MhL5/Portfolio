@@ -2,9 +2,10 @@ import ReactMarkdownComponent from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
-import Code from "@/features/MDX-remote/components/Code";
-import ComponentSourceClient from "@/features/MDX-remote/components/ComponentSourceClient";
-import { mdxComponents } from "@/features/MDX-remote/MdxComponents";
+
+import Code from "./components/Code";
+import ComponentSourceClient from "./components/ComponentSourceClient";
+import { mdxComponents } from "./MdxComponents";
 
 export default function ReactMarkdown({ markdown }: { markdown: string }) {
   return (

@@ -1,7 +1,8 @@
 "use client";
 
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
-import { mdxComponents } from "@/features/MDX-remote/MdxComponents";
+
+import { mdxComponents } from "./MdxComponents";
 
 type MdxRemoteClientProps = {
   source: MDXRemoteSerializeResult;

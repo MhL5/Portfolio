@@ -4,8 +4,8 @@ import { useState } from "react";
 import SnippetToc from "@/app/(with-navigation)/snippets/[...slug]/_components/SnippetToc";
 import { extractHeadings } from "@/app/(with-navigation)/snippets/[...slug]/_utils/extractHeadings";
 import DropArea from "@/components/DropArea";
+import ReactMarkdown from "@/components/MDX-remote/ReactMarkdown";
 import Prose from "@/components/Prose";
-import ReactMarkdown from "@/features/MDX-remote/ReactMarkdown";
 
 export default function MarkdownRenderer() {
   const [md, setMd] = useState("");

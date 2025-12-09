@@ -2,15 +2,16 @@ import type { Route } from "next";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { shadcnRegistry } from "@/constants/constants";
-import CliCommandCode from "@/features/MDX-remote/components/CliCommandCode";
-import CollapsibleCodeCard from "@/features/MDX-remote/components/CollapsibleCodeCard";
-import ComponentSource from "@/features/MDX-remote/components/ComponentSource";
 import type {
   CssVars,
   RegistryFileType,
   RegistryItemSchema,
 } from "@/types/shadcn-registry";
 import { absoluteUrl } from "@/utils/absoluteUrl";
+
+import CliCommandCode from "./CliCommandCode";
+import CollapsibleCodeCard from "./CollapsibleCodeCard";
+import ComponentSource from "./ComponentSource";
 
 const tabs = {
   cli: "cli",

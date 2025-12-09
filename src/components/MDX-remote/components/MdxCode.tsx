@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
-import Code from "@/features/MDX-remote/components/Code";
-import ComponentSource from "@/features/MDX-remote/components/ComponentSource";
+
+import Code from "./Code";
+import ComponentSource from "./ComponentSource";
 
 export default function MdxCode({
   children,
