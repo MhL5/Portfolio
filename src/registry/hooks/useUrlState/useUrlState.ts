@@ -25,9 +25,9 @@ export default function useUrlState(name: string, options: Options = {}) {
     if (value) return value;
 
     const defaultValue =
-      optionsRef.current.defaultValue instanceof Function
-        ? optionsRef.current.defaultValue()
-        : optionsRef.current.defaultValue;
+      options.defaultValue instanceof Function
+        ? options.defaultValue()
+        : options.defaultValue;
 
     return defaultValue ?? "";
   });
@@ -58,7 +58,8 @@ export default function useUrlState(name: string, options: Options = {}) {
 
   useEffect(() => {
     const value = searchParams.get(name);
-    if (value) setState(value);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (value) setState(value); // updates the state when the search params change
   }, [name, searchParams]);
 
   return [state, handleSetState, isPending] as const;

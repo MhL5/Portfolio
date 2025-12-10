@@ -27,9 +27,9 @@ export default function DebouncedInput({
     [inputValue],
   );
 
-  // keeps internal state in sync with the value prop
   useEffect(() => {
-    setInputValue(value || "");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setInputValue(value || ""); // keeps internal state in sync with the value prop
   }, [value]);
 
   return (
