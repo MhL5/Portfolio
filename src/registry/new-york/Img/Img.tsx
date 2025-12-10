@@ -2,7 +2,7 @@
 
 // biome-ignore lint: we need to import next/image here since Img is a wrapper around it
 import Image from "next/image";
-import { type ComponentProps, useEffect, useState } from "react";
+import { type ComponentProps, useState } from "react";
 
 // the image is also in the public folder https://mhl5.vercel.app/image-placeholder.svg
 const fallbackSvgBase64 =
@@ -10,22 +10,16 @@ const fallbackSvgBase64 =
 
 type ImgProps = ComponentProps<typeof Image>;
 
+type ImgState = "unoptimized-fallback" | "fallback-svg" | "default";
+
 export default function Img({
   src,
   alt,
   placeholder: placeholderProp,
   ...props
 }: ImgProps) {
-  const [imgState, setImageState] = useState<
-    "unoptimized-fallback" | "fallback-svg" | "default"
-  >("default");
-  // if src is valid allow custom placeholders else use "empty"
+  const [imgState, setImageState] = useState<ImgState>("default");
   const placeholder = src ? placeholderProp : "empty";
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: the state should be reset when the src changes
-  useEffect(() => {
-    setImageState("default");
-  }, [src]);
 
   // display fallback svg when image fails to load
   if (imgState === "fallback-svg")

@@ -3,7 +3,6 @@
 import { useSyncExternalStore } from "react";
 
 const subscribe = (onStoreChange: () => void) => () => onStoreChange();
-
 const getSnapshot = () => true;
 const getServerSnapshot = () => false;
 

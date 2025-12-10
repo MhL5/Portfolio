@@ -14,9 +14,7 @@ import { useIsMounted } from "@/hooks/useIsMounted";
 const isMounted = useIsMounted();
 
 // Use to prevent hydration errors
-if (!isMounted) {
-  return <div>Loading...</div>;
-}
+if (!isMounted) return <div>Loading...</div>;
 
 return <ClientOnlyComponent />;
 ```
