@@ -59,7 +59,7 @@ export default async function InstallationTabs({
                     href={dep.href as Route}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="capitalize underline underline-offset-3"
+                    className="underline underline-offset-3"
                   >
                     {dep.name}
                   </Link>

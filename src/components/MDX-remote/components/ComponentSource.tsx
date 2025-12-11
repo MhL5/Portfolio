@@ -41,7 +41,6 @@ export default async function ComponentSource({
       />
 
       <code
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: this is safe because the codeHtml variables comes from my own documents and are not user-generated
         dangerouslySetInnerHTML={{ __html: codeHtml }}
         className={cn("w-full max-w-full text-sm leading-relaxed", className)}
         {...props}

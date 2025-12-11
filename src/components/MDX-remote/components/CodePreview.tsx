@@ -1,62 +1,79 @@
-import { Loader2Icon } from "lucide-react";
-import { type ComponentType, lazy, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { OpenInV0Button } from "@/components/buttons/OpenInV0Button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 import ComponentSource from "./ComponentSource";
 
-function lazyImportComponent(path: string) {
-  return lazy(async () => {
-    const mod: Record<string, ComponentType<unknown>> = await import(
-      `@/registry/${path}`
-    );
-    const exportName =
-      Object.keys(mod).find(
-        (key) =>
-          typeof mod?.[key] === "function" || typeof mod?.[key] === "object",
-      ) || "";
-
-    return {
-      default: mod.default || mod[exportName],
-    };
-  });
-}
-
-// without @/registry/
 const previewSourceCodes = {
-  DebouncedInput: "new-york/DebouncedInput/example.tsx",
-  DrawerDialog: "new-york/DrawerDialog/example.tsx",
-  ErrorBoundary: "new-york/ErrorBoundary/example.tsx",
-  Img: "new-york/Img/example.tsx",
-  useLocalStorage: "hooks/useLocalStorage/example.tsx",
-  useSessionStorage: "hooks/useSessionStorage/example.tsx",
-  useCopyToClipboard: "hooks/useCopyToClipboard/example.tsx",
-  useIsMounted: "hooks/useIsMounted/example.tsx",
-  useUrlState: "hooks/useUrlState/example.tsx",
-  AutoGrid: "new-york/AutoGrid/example.tsx",
-  FallbackPagesError: "new-york/FallbackPages/ErrorExample.tsx",
-  FallbackPagesNotFound: "new-york/FallbackPages/NotFoundExample.tsx",
-  FallbackPagesLoading: "new-york/FallbackPages/LoadingExample.tsx",
-  TagsInput: "new-york/TagsInput/example.tsx",
+  DebouncedInput: "@/registry/new-york/DebouncedInput/example.tsx",
+  DrawerDialog: "@/registry/new-york/DrawerDialog/example.tsx",
+  ErrorBoundary: "@/registry/new-york/ErrorBoundary/example.tsx",
+  Img: "@/registry/new-york/Img/example.tsx",
+  useLocalStorage: "@/registry/hooks/useLocalStorage/example.tsx",
+  useSessionStorage: "@/registry/hooks/useSessionStorage/example.tsx",
+  useCopyToClipboard: "@/registry/hooks/useCopyToClipboard/example.tsx",
+  useIsMounted: "@/registry/hooks/useIsMounted/example.tsx",
+  useUrlState: "@/registry/hooks/useUrlState/example.tsx",
+  AutoGrid: "@/registry/new-york/AutoGrid/example.tsx",
+  FallbackPagesError: "@/registry/new-york/FallbackPages/ErrorExample.tsx",
+  FallbackPagesNotFound:
+    "@/registry/new-york/FallbackPages/NotFoundExample.tsx",
+  FallbackPagesLoading: "@/registry/new-york/FallbackPages/LoadingExample.tsx",
+  TagsInput: "@/registry/new-york/TagsInput/example.tsx",
 };
-const CODE_PREVIEWS = Object.entries(previewSourceCodes).reduce(
-  (acc, [key, value]) => {
-    acc[key as keyof typeof previewSourceCodes] = lazyImportComponent(value);
-    return acc;
-  },
-  {} as Record<keyof typeof previewSourceCodes, ComponentType<unknown>>,
-);
+
+const previewSources = {
+  DebouncedInput: dynamic(() =>
+    import(previewSourceCodes.DebouncedInput).then((mod) => mod.default),
+  ),
+  DrawerDialog: dynamic(() =>
+    import(previewSourceCodes.DrawerDialog).then((mod) => mod.default),
+  ),
+  ErrorBoundary: dynamic(() =>
+    import(previewSourceCodes.ErrorBoundary).then((mod) => mod.default),
+  ),
+  Img: dynamic(() => import(previewSourceCodes.Img).then((mod) => mod.default)),
+  useLocalStorage: dynamic(() =>
+    import(previewSourceCodes.useLocalStorage).then((mod) => mod.default),
+  ),
+  useSessionStorage: dynamic(() =>
+    import(previewSourceCodes.useSessionStorage).then((mod) => mod.default),
+  ),
+  useCopyToClipboard: dynamic(() =>
+    import(previewSourceCodes.useCopyToClipboard).then((mod) => mod.default),
+  ),
+  useIsMounted: dynamic(() =>
+    import(previewSourceCodes.useIsMounted).then((mod) => mod.default),
+  ),
+  useUrlState: dynamic(() =>
+    import(previewSourceCodes.useUrlState).then((mod) => mod.default),
+  ),
+  AutoGrid: dynamic(() =>
+    import(previewSourceCodes.AutoGrid).then((mod) => mod.default),
+  ),
+  FallbackPagesError: dynamic(() =>
+    import(previewSourceCodes.FallbackPagesError).then((mod) => mod.default),
+  ),
+  FallbackPagesNotFound: dynamic(() =>
+    import(previewSourceCodes.FallbackPagesNotFound).then((mod) => mod.default),
+  ),
+  FallbackPagesLoading: dynamic(() =>
+    import(previewSourceCodes.FallbackPagesLoading).then((mod) => mod.default),
+  ),
+  TagsInput: dynamic(() =>
+    import(previewSourceCodes.TagsInput).then((mod) => mod.default),
+  ),
+};
 
 type CodePreviewProps = {
-  name: keyof typeof CODE_PREVIEWS;
+  name: keyof typeof previewSources;
 };
 
-export default function CodePreview({ name }: CodePreviewProps) {
-  const PreviewComponent = CODE_PREVIEWS[name];
-  const previewSourceCode = previewSourceCodes?.[name];
+export default async function CodePreview({ name }: CodePreviewProps) {
+  const PreviewComponent = previewSources[name];
+  const previewSourceCodePath = previewSourceCodes[name].replace("@/", "src/");
 
-  if (!PreviewComponent || !previewSourceCode)
+  if (!PreviewComponent)
     return (
       <p className="not-prose text-muted-foreground text-sm">
         Component{" "}
@@ -84,16 +101,12 @@ export default function CodePreview({ name }: CodePreviewProps) {
             value="preview"
             className="flex h-full items-center justify-center p-4"
           >
-            <Suspense
-              fallback={<Loader2Icon className="size-16 animate-spin" />}
-            >
-              <PreviewComponent />
-            </Suspense>
+            <PreviewComponent />
           </TabsContent>
           <TabsContent value="code" className="h-full">
             <ComponentSource
               className="[&_pre]:h-[448px]"
-              path={`src/registry/${previewSourceCode}`}
+              path={previewSourceCodePath}
             />
           </TabsContent>
         </CardContent>
