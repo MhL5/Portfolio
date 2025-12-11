@@ -15,7 +15,16 @@ try {
 with `tryCatch`:
 
 ```tsx
-const [error, data] = await tryCatch(getUser());
+type Data = {
+  name: string;
+};
+
+type Error = {
+  message: string;
+  status: number;
+};
+
+const [error, data] = await tryCatch<Data, Error>(getUser());
 
 if (error) {
   // handle the error
@@ -27,38 +36,11 @@ data.name;
 
 the return type is a tuple: either `[error, undefined]` or `[undefined, data]`. This enforces type safety by requiring you to handle potential errors before accessing the data.
 
-### typescript example
-
-You can also add type arguments to the `tryCatch` function to enforce type safety. the first type argument is the type of the data, the second type argument is the type of the error.
-
-```tsx
-type User = {
-  name: string;
-};
-
-type Error = {
-  message: string;
-  status: number;
-};
-
-const [error, data] = await tryCatch<User, Error>(getUser());
-
-if (error) {
-  // handle the error, error is of type Error defined above
-  console.log(error.message);
-}
-
-// data is the user object, it is of type User defined above
-data.name;
-```
-
 ## Installation
 
 <InstallationTabs name="tryCatch" />
 
 ## Usage
-
-### tryCatch
 
 ```tsx
 type User = {
@@ -79,8 +61,3 @@ if (error) {
 user.name;
 ```
 
-### tryCatchSync
-
-```tsx
-const [error, data] = tryCatchSync(new Intl.NumberFormat(locale).format(count));
-```

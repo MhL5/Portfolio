@@ -1,7 +1,6 @@
 export const isServer = () => typeof window === "undefined";
 export const isClient = () => typeof window !== "undefined";
-
-export const isDOMAvailable = () => typeof document !== "undefined";
+export const isBrowser = () => typeof document !== "undefined";
 
 export const isDev = () => process.env.NODE_ENV === "development";
 export const isProd = () => process.env.NODE_ENV === "production";
