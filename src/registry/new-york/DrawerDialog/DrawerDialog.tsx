@@ -36,29 +36,29 @@ const DrawerDialogContext = createContext<DrawerDialogContextType | null>(null);
 
 type DrawerDialogProviderProps = {
   children: ReactNode;
-  isOpen?: ComponentProps<typeof Dialog>["open"];
-  setIsOpen?: ComponentProps<typeof Dialog>["onOpenChange"];
+  open?: ComponentProps<typeof Dialog>["open"];
+  onOpenChange?: ComponentProps<typeof Dialog>["onOpenChange"];
 };
 
 function DrawerDialogProvider({
   children,
-  isOpen,
-  setIsOpen,
+  open,
+  onOpenChange,
 }: DrawerDialogProviderProps) {
   const isSm = useMediaQuery("(min-width: 40rem)");
 
   return (
     <DrawerDialogContext value={{ isSm }}>
       {isSm ? (
-        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <Dialog open={open} onOpenChange={onOpenChange}>
           {children}
         </Dialog>
       ) : (
         <Drawer
           // autoFocus={open} fixes block aria hidden attribute accessibility bug
           // repositionInputs={true} prevents safari keyboard layout shift on dismissal
-          open={isOpen}
-          onOpenChange={setIsOpen}
+          open={open}
+          onOpenChange={onOpenChange}
         >
           {children}
         </Drawer>
