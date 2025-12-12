@@ -1,27 +1,27 @@
 "use client";
 
 import { TerminalIcon } from "lucide-react";
+import { useState } from "react";
 import { CopyButton } from "@/components/buttons/CopyButton";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useLocalStorage } from "@/registry/hooks/useLocalStorage/useLocalStorage";
 
 const PackageManagersActions = {
   install: {
-    pnpm: `pnpm add`,
     npm: `npm install`,
+    pnpm: `pnpm add`,
     yarn: `yarn add`,
     bun: `bun add`,
   },
   devInstall: {
-    pnpm: `pnpm add -D`,
     npm: `npm install -D`,
+    pnpm: `pnpm add -D`,
     yarn: `yarn add -D`,
     bun: `bun add -D`,
   },
   run: {
-    pnpm: `pnpm dlx`,
     npm: `npx`,
+    pnpm: `pnpm dlx`,
     yarn: `yarn`,
     bun: `bunx --bun`,
   },
@@ -56,10 +56,7 @@ export function CliCommandCodeInternal({
     code: string;
   }[];
 }) {
-  const [selectedTab, setSelectedTab] = useLocalStorage(
-    "cli-method",
-    commands[0].label,
-  );
+  const [selectedTab, setSelectedTab] = useState(commands[0].label);
 
   return (
     <Card className="not-prose bg-code-background p-0">

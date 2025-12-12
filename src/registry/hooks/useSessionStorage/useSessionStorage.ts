@@ -7,7 +7,6 @@ const SESSION_STORAGE_CHANGE_EVENT = "session-storage-change";
 
 export function useSessionStorage<T>(key: string, defaultValue: T | (() => T)) {
   const getSnapshot = useCallback(() => sessionStorage.getItem(key), [key]);
-  const getServerSnapshot = useCallback(() => null, []);
   const subscribe = useCallback(
     (onChange: () => void) => {
       const abortController = new AbortController();
@@ -33,11 +32,7 @@ export function useSessionStorage<T>(key: string, defaultValue: T | (() => T)) {
    * because if the parsed value is an object, it will cause an infinite loop
    * we will only return a string snapshot and parse it after (string is a primitive value)
    */
-  const jsonSnapshot = useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot,
-  );
+  const jsonSnapshot = useSyncExternalStore(subscribe, getSnapshot);
 
   const parsedSnapshot = useMemo(() => {
     const resolvedInitialValue =

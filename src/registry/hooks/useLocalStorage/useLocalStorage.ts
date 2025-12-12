@@ -7,7 +7,6 @@ const LOCAL_STORAGE_CHANGE_EVENT = "local-storage-change";
 
 export function useLocalStorage<T>(key: string, initialValue: T | (() => T)) {
   const getSnapshot = useCallback(() => localStorage.getItem(key), [key]);
-  const getServerSnapshot = useCallback(() => null, []);
   const subscribe = useCallback(
     (onChange: () => void) => {
       const abortController = new AbortController();
@@ -42,11 +41,7 @@ export function useLocalStorage<T>(key: string, initialValue: T | (() => T)) {
    * because if the parsed value is an object, it will cause an infinite loop
    * we will only return a string snapshot and parse it after (string is a primitive value)
    */
-  const jsonSnapshot = useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot,
-  );
+  const jsonSnapshot = useSyncExternalStore(subscribe, getSnapshot);
 
   const parsedSnapshot = useMemo(() => {
     const resolvedInitialValue =
