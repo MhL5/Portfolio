@@ -26,7 +26,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
-import { useMediaQuery } from "@/registry/hooks/useMediaQuery/useMediaQuery";
+import { useMediaQueryBreakpoint } from "@/registry/hooks/useMediaQuery/useMediaQuery";
 
 type DrawerDialogContextType = {
   isSm: boolean | undefined;
@@ -45,7 +45,7 @@ function DrawerDialogProvider({
   open,
   onOpenChange,
 }: DrawerDialogProviderProps) {
-  const isSm = useMediaQuery("(min-width: 40rem)");
+  const isSm = useMediaQueryBreakpoint("sm");
 
   return (
     <DrawerDialogContext value={{ isSm }}>
