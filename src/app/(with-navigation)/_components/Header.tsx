@@ -14,6 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { GITHUB_REPO_URL } from "@/constants";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -103,11 +104,7 @@ export default function Header() {
 
           <div className="flex items-center gap-2 px-2">
             <Button variant="ghost" asChild>
-              <Link
-                href="https://github.com/MhL5/mhl5.vercel.app"
-                target="_blank"
-                prefetch={false}
-              >
+              <Link href={GITHUB_REPO_URL} target="_blank" prefetch={false}>
                 <svg
                   role="img"
                   viewBox="0 0 24 24"

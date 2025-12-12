@@ -1,45 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Bug, Lightbulb, NotebookPen } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { GITHUB_REPO_URL } from "@/constants";
 import { cn } from "@/lib/utils";
 
-function useActiveItem(itemIds: string[]) {
-  const [activeId, setActiveId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries)
-          if (entry.isIntersecting) setActiveId(entry.target.id);
-      },
-      { rootMargin: "0% 0% -80% 0%" },
-    );
-
-    for (const id of itemIds ?? []) {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    }
-
-    return () => {
-      for (const id of itemIds ?? []) {
-        const element = document.getElementById(id);
-        if (element) observer.unobserve(element);
-      }
-    };
-  }, [itemIds]);
-
-  return activeId;
-}
-type TocItem = { title: string; id: string; depth: number };
+const contributeLinks = [
+  {
+    title: "Report an issue",
+    href: (pathname: string) =>
+      `${GITHUB_REPO_URL}/issues/new?title=[BUG]: ${pathname}&labels=bug`,
+    icon: Bug,
+  },
+  {
+    title: "Request a feature",
+    href: (pathname: string) =>
+      `${GITHUB_REPO_URL}/issues/new?title=[FEAT]: ${pathname}&labels=enhancement`,
+    icon: Lightbulb,
+  },
+  {
+    title: "Edit this page",
+    href: (pathname: string) =>
+      `${GITHUB_REPO_URL}/edit/main/contents/${pathname}.mdx`,
+    icon: NotebookPen,
+  },
+] as const;
 
 type SnippetTocProps = {
   className?: string;
   tocDepth?: number;
-  toc: TocItem[];
+  toc: { title: string; id: string; depth: number }[];
 };
 
 export default function SnippetToc({ className, toc }: SnippetTocProps) {
-  const activeHeading = useActiveItem(toc.map((item) => item.id));
+  const pathname = usePathname();
 
   if (toc.length <= 1) return null;
   return (
@@ -49,19 +43,29 @@ export default function SnippetToc({ className, toc }: SnippetTocProps) {
         className,
       )}
     >
-      <p className="sticky top-0 h-6 text-muted-foreground text-xs">
-        On This Page
-      </p>
+      <h3 className="h-6 text-muted-foreground text-xs">On This Page</h3>
 
       {toc.map((item, index) => (
         <a
           key={`${item.id}-${index}-${item.title}`}
           href={`#${item.id}`}
-          className="text-[0.8rem] text-muted-foreground no-underline transition-all hover:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[depth=5]:pl-8 data-[depth=6]:pl-10 data-[active=true]:font-semibold data-[active=true]:text-foreground"
-          data-active={item.id === `${activeHeading}`}
+          className="text-muted-foreground text-xs no-underline transition-all hover:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[depth=5]:pl-8 data-[depth=6]:pl-10 data-[active=true]:font-semibold data-[active=true]:text-foreground"
           data-depth={item.depth}
         >
           {item.title}
+        </a>
+      ))}
+
+      <h3 className="mt-6 h-6 text-muted-foreground text-xs">Contribute</h3>
+      {contributeLinks.map(({ href, title, icon: Icon }, index) => (
+        <a
+          key={`${href}-${index}-${title}`}
+          href={href(pathname)}
+          target="_blank"
+          className="text-muted-foreground text-xs no-underline transition-all hover:text-foreground"
+        >
+          <Icon className="mr-2 inline-block size-4" />
+          {title}
         </a>
       ))}
     </div>
