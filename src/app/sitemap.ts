@@ -1,9 +1,24 @@
-import type { MetadataRoute } from "next";
+import { getShadcnRegistry } from "@/app/(with-navigation)/snippets/_constants/snippetsConstants";
 import { absoluteUrl } from "@/utils/absoluteUrl";
+import type { MetadataRoute } from "next";
 
 export const revalidate = 259200; // 3 days
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const snippets = await getShadcnRegistry();
+
+  const snippetsLinks = snippets.items.reduce((acc, item) => {
+    const urlStartsWithSlash = item.meta.url.startsWith("/");
+    if (urlStartsWithSlash)
+      acc.push({
+        url: absoluteUrl(item.meta.url as `/${string}`),
+        changeFrequency: "monthly",
+        priority: 0.8,
+      });
+
+    return acc;
+  }, [] as MetadataRoute.Sitemap);
+
   return [
     {
       url: absoluteUrl("/"),
@@ -23,5 +38,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    ...snippetsLinks,
   ];
 }
